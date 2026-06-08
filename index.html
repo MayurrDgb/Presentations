@@ -11,8 +11,7 @@ body{display:flex;align-items:center;justify-content:center;padding:48px 24px;}
 .wrap{width:100%;max-width:880px;}
 .logo{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:30px;letter-spacing:-.5px;margin-bottom:40px;}
 .label{font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.7);margin-bottom:14px;}
-h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color:#fff;line-height:1.08;margin-bottom:14px;}
-.sub{font-size:16px;color:rgba(255,255,255,.55);margin-bottom:40px;max-width:560px;line-height:1.6;}
+h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color:#fff;line-height:1.08;margin-bottom:40px;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .card{display:block;text-decoration:none;border-radius:14px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease;}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.35);}
@@ -21,12 +20,11 @@ h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color
 .card .tag{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:10px;}
 .card h2{font-family:Arial Black,Arial,sans-serif;font-size:24px;font-weight:900;margin-bottom:8px;line-height:1.15;}
 .card p{font-size:13px;line-height:1.6;}
-.card .url{position:absolute;bottom:22px;left:24px;font-size:11px;font-weight:700;}
 .c-live{background:#F5E800;}
-.c-live .bar{background:#1C3040;}.c-live .arrow,.c-live .tag,.c-live h2,.c-live .url{color:#1C3040;}.c-live p{color:rgba(28,48,64,.75);}
-.c-soon{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);}
-.c-soon .bar{background:rgba(245,232,0,.5);}.c-soon .arrow,.c-soon h2{color:#F5E800;}.c-soon .tag{color:rgba(245,232,0,.7);}.c-soon p{color:rgba(237,232,224,.6);}.c-soon .url{color:rgba(245,232,0,.7);}
-.foot{margin-top:44px;font-size:11px;color:rgba(255,255,255,.3);}
+.c-live .bar{background:#1C3040;}.c-live .arrow,.c-live .tag,.c-live h2{color:#1C3040;}.c-live p{color:rgba(28,48,64,.78);}
+.credit{position:fixed;bottom:16px;right:22px;font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.3px;}
+.credit .by{font-weight:700;color:rgba(255,255,255,.42);}
+.conf{position:fixed;bottom:16px;left:22px;font-size:10px;color:rgba(255,255,255,.20);}
 @media(max-width:640px){.grid{grid-template-columns:1fr;}h1{font-size:34px;}}
 </style>
 </head>
@@ -35,7 +33,6 @@ h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color
   <div class="logo">Fortidia</div>
   <div class="label">PRESENTATIONS</div>
   <h1>Decks &amp; resources</h1>
-  <div class="sub">A central hub for our marketing presentations. Pick a deck below.</div>
   <div class="grid">
     <a class="card c-live" href="AI-Marketing/">
       <div class="bar"></div>
@@ -43,7 +40,6 @@ h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color
       <div class="tag">LIVE</div>
       <h2>Leveraging AI<br>in Marketing</h2>
       <p>The AI spectrum, marketing use cases, cost &amp; setup, and the workshop roadmap.</p>
-      <div class="url">/Presentations/AI-Marketing/</div>
     </a>
     <a class="card c-live" href="Best-Practices/">
       <div class="bar"></div>
@@ -51,10 +47,10 @@ h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color
       <div class="tag">LIVE</div>
       <h2>Best<br>Practice</h2>
       <p>A replicable go-to-market package — the MBE Fulfillment / Logistics offer.</p>
-      <div class="url">/Presentations/Best-Practices/</div>
     </a>
   </div>
-  <div class="foot">© 2026 Fortidia. This document contains confidential information.</div>
 </div>
+<div class="conf">© 2026 Fortidia · Confidential</div>
+<div class="credit">Crafted by <span class="by">Mayurr</span></div>
 </body>
 </html>
