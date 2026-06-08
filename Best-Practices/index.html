@@ -2,29 +2,260 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Best Practices — Fortidia</title>
+<title>Best Practice — MBE Fulfillment Go-to-Market Package</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{min-height:100%;background:#1C3040;font-family:Arial,sans-serif;color:#EDE8E0;}
-body{display:flex;align-items:center;justify-content:center;padding:48px 24px;text-align:center;}
-.wrap{max-width:620px;}
-.logo{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:30px;letter-spacing:-.5px;margin-bottom:36px;}
-.label{font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.7);margin-bottom:14px;}
-h1{font-family:Arial Black,Arial,sans-serif;font-size:52px;font-weight:900;color:#fff;line-height:1.05;margin-bottom:18px;}
-.line{width:90px;height:4px;background:#F5E800;border-radius:2px;margin:0 auto 22px;}
-p{font-size:16px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:32px;}
-a.back{display:inline-block;text-decoration:none;font-size:13px;font-weight:700;color:#1C3040;background:#F5E800;border-radius:24px;padding:11px 24px;}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;color-scheme:light;background:#EDE8E0;}
+#progress{position:fixed;top:0;left:0;height:3px;background:#F5E800;z-index:999;transition:width .3s ease;pointer-events:none;}
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);padding:8px 20px;border-radius:30px;z-index:999;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.3);color:white;padding:5px 16px;border-radius:20px;cursor:pointer;font-size:13px;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.15);}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:52px;text-align:center;}
+#fullbtn{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px;}
+#fullbtn:hover{color:white;}
+.slide{position:absolute;inset:0;display:none;}
+.slide.active{display:block;}
+.footer{position:absolute;bottom:0;left:0;right:0;height:36px;background:#1C3040;display:flex;align-items:center;justify-content:center;}
+.footer span{font-size:9.5px;color:#8FA0AD;}
+.footer-y{background:rgba(28,48,64,.9);}
+.logo-dk{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:28px;letter-spacing:-.5px;}
+.logo-yw{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:28px;letter-spacing:-.5px;}
+.tl{width:90px;height:3px;background:#F5E800;margin-bottom:6px;}
+.tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#1C3040;}
+.tt-w{color:rgba(255,255,255,.45);}
+.al{position:absolute;left:0;top:0;width:8px;height:100%;background:#F5E800;}
+.todo{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(245,232,0,.3);color:#8a7a00;padding:2px 7px;border-radius:10px;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="logo">Fortidia</div>
-  <div class="label">BEST PRACTICES</div>
-  <h1>Coming soon</h1>
-  <div class="line"></div>
-  <p>This deck is in preparation — guidelines, prompting tips and brand-safe workflows for the marketing team.</p>
-  <a class="back" href="../">&larr; Back to presentations</a>
+<div id="progress"></div>
+<div id="deck"><div id="stage">
+
+<!-- 0 — TITLE -->
+<div class="slide active" id="s0" style="background:#1C3040;overflow:hidden;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#F5E800" stroke-width="1" opacity="0.09">
+      <line x1="0" y1="150" x2="1200" y2="150"/><line x1="0" y1="330" x2="1200" y2="330"/><line x1="0" y1="510" x2="1200" y2="510"/>
+      <line x1="240" y1="0" x2="240" y2="675"/><line x1="600" y1="0" x2="600" y2="675"/><line x1="960" y1="0" x2="960" y2="675"/>
+    </g>
+  </svg>
+  <!-- giant overlapping echo wordmark -->
+  <div style="position:absolute;right:-24px;top:-46px;font-family:Arial Black,Arial,sans-serif;font-size:230px;font-weight:900;color:#F5E800;opacity:.06;line-height:.8;text-align:right;letter-spacing:-7px;">Best<br>Practice</div>
+  <div style="position:absolute;top:32px;right:36px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:34px;letter-spacing:-.5px;">Fortidia</div>
+  <!-- crisp title -->
+  <div style="position:absolute;left:64px;top:196px;">
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:90px;font-weight:900;color:#fff;line-height:.92;letter-spacing:-2px;">Best<br><span style="color:#F5E800;">Practice</span></div>
+    <div style="width:80px;height:4px;background:#F5E800;margin:26px 0 18px;border-radius:2px;"></div>
+    <div style="font-size:19px;color:rgba(255,255,255,.7);font-weight:300;">A ready-to-deploy go-to-market package</div>
+    <div style="font-size:15px;color:#F5E800;opacity:.9;font-weight:700;margin-top:8px;">MBE Fulfillment — Logistics offer</div>
+  </div>
+  <div style="position:absolute;left:64px;bottom:82px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.55);margin-bottom:6px;">FORTIDIA GROUP</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.4);">Marketing Summit · 2026</div>
+  </div>
 </div>
-</body>
-</html>
+
+<!-- 1 — RATIONALE -->
+<div class="slide" id="s1" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">RATIONALE</div></div>
+  <div style="position:absolute;left:42px;top:104px;font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;">The Why</div>
+  <div style="position:absolute;left:42px;top:158px;right:42px;font-size:14px;color:#1C3040;opacity:.6;line-height:1.5;">A real customer need + a fragmented, slow local response = an offer that under-performs its potential. We turned it into one packaged go-to-market.</div>
+
+  <div style="position:absolute;left:24px;right:24px;top:212px;bottom:120px;display:flex;gap:14px;">
+    <div style="flex:1;background:#1C3040;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#F5E800;margin-bottom:10px;">The market need</div>
+      <div style="font-size:12.5px;line-height:1.6;color:rgba(237,232,224,.85);">Logistics is a growing pain for merchants — and a high-value, recurring MBE offer (MBE Fulfillment).</div>
+      <div style="font-size:11.5px;line-height:1.6;color:rgba(237,232,224,.55);margin-top:8px;">72% of merchants spend 15h+ / week on order prep &amp; shipping.<br>Peak-season temp staff costs +30–50%.</div>
+      <div style="position:absolute;bottom:14px;left:18px;font-size:9px;color:rgba(237,232,224,.4);">Source: e-commerce sector studies</div>
+    </div>
+    <div style="flex:1;background:rgba(28,48,64,.06);border:1.5px solid rgba(28,48,64,.18);border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:10px;">The problem we hit</div>
+      <div style="font-size:12.5px;line-height:1.6;color:rgba(28,48,64,.78);">Each centre marketed the offer alone — inconsistent messages, slow production, no shared toolkit.</div>
+      <div style="font-size:11.5px;line-height:1.6;color:rgba(28,48,64,.55);margin-top:8px;">Source material on the offer was scattered, and there was no clear playbook to sell a complex, modular service.</div>
+    </div>
+    <div style="flex:1;background:#F5E800;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1C3040;border-radius:12px 12px 0 0;"></div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:10px;">Our answer</div>
+      <div style="font-size:12.5px;line-height:1.6;color:rgba(28,48,64,.85);">One packaged go-to-market: a cloud hub, a full ready-to-use asset pack, and personalised commercial materials.</div>
+      <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:12px;background:#1C3040;color:#F5E800;">Built once · delivered to all →</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;right:24px;bottom:48px;height:54px;background:#1C3040;border-radius:10px;display:flex;align-items:center;padding:0 20px;gap:16px;">
+    <div style="font-size:13px;font-weight:700;color:#F5E800;white-space:nowrap;">The best practice —</div>
+    <div style="font-size:13px;color:rgba(237,232,224,.8);">We shouldn't expect BSCs (Business Solution Centers) to know how to market the logistics offer. <em style="color:white;font-style:normal;font-weight:700;">Package it centrally, keep it brand-safe, and deliver ready-to-use assets to every centre.</em></div>
+  </div>
+</div>
+
+<!-- 2 — KEY RESULTS & METRICS -->
+<div class="slide" id="s2" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">KEY RESULTS &amp; METRICS</div></div>
+  <div style="position:absolute;left:42px;top:104px;font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;">What it delivers</div>
+  <div style="position:absolute;left:42px;top:158px;font-size:13px;color:#1C3040;opacity:.55;">Tangible output shipped — and what it costs to run.</div>
+
+  <!-- stat tiles -->
+  <div style="position:absolute;left:24px;right:24px;top:198px;height:124px;display:flex;gap:14px;">
+    <div style="flex:1;background:#1C3040;border-radius:12px;padding:16px 18px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#F5E800;line-height:1;">7</div><div style="font-size:11.5px;color:rgba(237,232,224,.72);line-height:1.45;margin-top:6px;">ready-to-use assets in the pack — brochure, flyer A5, 3-email sequence, LinkedIn carousel, story, profile banner, 16:9 screen</div></div>
+    <div style="flex:1;background:white;border-radius:12px;padding:16px 18px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;line-height:1;">3</div><div style="font-size:11.5px;color:rgba(28,48,64,.6);line-height:1.45;margin-top:6px;">channels covered — in-centre &amp; field, social, email nurturing</div></div>
+    <div style="flex:1;background:white;border-radius:12px;padding:16px 18px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;line-height:1;">€300</div><div style="font-size:11.5px;color:rgba(28,48,64,.6);line-height:1.45;margin-top:6px;">offer entry point / mo (STARTER pack) — the hook headline on the flyer</div></div>
+    <div style="flex:1;background:#F5E800;border-radius:12px;padding:16px 18px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;line-height:1;">~€78<span style="font-size:15px;">/mo</span></div><div style="font-size:11.5px;color:rgba(28,48,64,.7);line-height:1.45;margin-top:6px;">AI + automation stack to produce &amp; localise the whole pack — vs an agency</div></div>
+  </div>
+
+  <!-- hub + playbook -->
+  <div style="position:absolute;left:24px;right:24px;top:336px;background:rgba(28,48,64,.06);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+    <div style="font-size:20px;">🌐</div>
+    <div style="font-size:12px;color:#1C3040;opacity:.78;line-height:1.5;"><strong>1 internal hub</strong> (Google Site): assets + iLearn + LAB+ tutorials &nbsp;·&nbsp; <strong>usage playbook</strong> &nbsp;·&nbsp; <strong>mass-personalised</strong> per centre &nbsp;·&nbsp; same assets also <strong>declined for national Ads</strong> (PMax, Display, META…).</div>
+  </div>
+
+  <!-- pricing clarification -->
+  <div style="position:absolute;left:24px;right:24px;top:416px;bottom:48px;background:#1C3040;border-radius:12px;padding:18px 22px;border-left:5px solid #F5E800;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.8);margin-bottom:8px;">⚠ MARKETING ACTION ≠ CONTRACTUAL CLOSING</div>
+    <div style="font-size:13.5px;color:rgba(237,232,224,.9);line-height:1.65;">The personalised <strong style="color:#fff;">commercial flyer is a conversation hook</strong> — a simple price headline to open the discussion. It is <strong style="color:#fff;">not</strong> the pricing tool: the final <strong style="color:#fff;">price list &amp; offer are generated by the franchisee in MBE Hub</strong>. We've chosen to keep the marketing hook and the contractual closing deliberately separate.</div>
+  </div>
+</div>
+
+<!-- 3 — PROCESS & LEVERS -->
+<div class="slide" id="s3" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">PROCESS &amp; LEVERS FOR SUCCESS</div></div>
+  <div style="position:absolute;left:42px;top:104px;font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;">How we built it</div>
+  <div style="position:absolute;left:42px;top:158px;font-size:13px;color:#1C3040;opacity:.55;">The actual method — from scattered docs to a personalised pack in every centre's folder.</div>
+
+  <!-- 6-step flow -->
+  <div style="position:absolute;left:24px;right:24px;top:196px;height:178px;display:flex;gap:8px;">
+    <div style="flex:1;background:#1C3040;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(245,232,0,.7);">STEP 1</div>
+      <div style="font-size:13px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Gather</div>
+      <div style="font-size:10.5px;color:rgba(237,232,224,.72);line-height:1.45;">Consolidate scattered source docs &amp; offer info into one base.</div>
+    </div>
+    <div style="flex:1;background:white;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(28,48,64,.4);">STEP 2</div>
+      <div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Workshop</div>
+      <div style="font-size:10.5px;color:rgba(28,48,64,.65);line-height:1.45;">Working sessions with the Local Product Owner.</div>
+    </div>
+    <div style="flex:1;background:white;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(28,48,64,.4);">STEP 3</div>
+      <div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Sprints</div>
+      <div style="font-size:10.5px;color:rgba(28,48,64,.65);line-height:1.45;">Narrow down the USPs — iterate to fill the gaps.</div>
+    </div>
+    <div style="flex:1;background:white;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(28,48,64,.4);">STEP 4</div>
+      <div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Key Visual → master</div>
+      <div style="font-size:10.5px;color:rgba(28,48,64,.65);line-height:1.45;">Produce the Key Visual + an InDesign master holding all formats.</div>
+    </div>
+    <div style="flex:1;background:#1C3040;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(245,232,0,.7);">STEP 5</div>
+      <div style="font-size:13px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Mass-produce</div>
+      <div style="font-size:10.5px;color:rgba(237,232,224,.72);line-height:1.45;">Data-merge an attached CSV of centre details → pack dropped in each folder.</div>
+    </div>
+    <div style="flex:1;background:#F5E800;border-radius:10px;padding:13px 12px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1C3040;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(28,48,64,.55);">STEP 6</div>
+      <div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin:4px 0 6px;">Internal hub</div>
+      <div style="font-size:10.5px;color:rgba(28,48,64,.7);line-height:1.45;">Google Site LP: assets + iLearn + LAB+ in one place.</div>
+    </div>
+  </div>
+
+  <!-- Levers -->
+  <div style="position:absolute;left:24px;right:24px;top:392px;bottom:48px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.4;margin-bottom:8px;">LEVERS FOR SUCCESS</div>
+    <div style="display:flex;gap:12px;">
+      <div style="flex:1;background:white;border-radius:10px;padding:13px 15px;border-left:3px solid #F5E800;"><div style="font-size:12.5px;font-weight:900;color:#1C3040;margin-bottom:3px;">👥 Local Product Owner</div><div style="font-size:11px;color:rgba(28,48,64,.6);line-height:1.5;">Co-built &amp; validated through workshops — not top-down.</div></div>
+      <div style="flex:1;background:white;border-radius:10px;padding:13px 15px;border-left:3px solid #F5E800;"><div style="font-size:12.5px;font-weight:900;color:#1C3040;margin-bottom:3px;">🎯 One source of truth</div><div style="font-size:11px;color:rgba(28,48,64,.6);line-height:1.5;">Core product &amp; market info rationalised into one powerful base, aligned with reality.</div></div>
+      <div style="flex:1;background:white;border-radius:10px;padding:13px 15px;border-left:3px solid #F5E800;"><div style="font-size:12.5px;font-weight:900;color:#1C3040;margin-bottom:3px;">🗂️ Template + CSV data-merge</div><div style="font-size:11px;color:rgba(28,48,64,.6);line-height:1.5;">One InDesign master (all formats) + an attached CSV → personalised at scale.</div></div>
+      <div style="flex:1;background:white;border-radius:10px;padding:13px 15px;border-left:3px solid #F5E800;"><div style="font-size:12.5px;font-weight:900;color:#1C3040;margin-bottom:3px;">🌐 One hub</div><div style="font-size:11px;color:rgba(28,48,64,.6);line-height:1.5;">Assets + training in one place, always up to date.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 — CROSS-COUNTRY REPLICATION -->
+<div class="slide" id="s4" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">CROSS-COUNTRY REPLICATION</div></div>
+  <div style="position:absolute;left:42px;top:104px;font-family:Arial Black,Arial,sans-serif;font-size:38px;font-weight:900;color:#1C3040;">Replicating in other markets</div>
+  <div style="position:absolute;left:42px;top:158px;font-size:13px;color:#1C3040;opacity:.55;">What it takes — cost, timing and people — to stand this up in a new country.</div>
+
+  <!-- Resources row -->
+  <div style="position:absolute;left:24px;right:24px;top:196px;height:140px;display:flex;gap:14px;">
+    <div style="flex:1;background:#1C3040;border-radius:12px;padding:16px 18px;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div><div style="font-size:22px;margin-bottom:6px;">💶</div><div style="font-size:13px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;margin-bottom:4px;">Cost</div><div style="font-size:11.5px;color:rgba(237,232,224,.75);line-height:1.5;">~€78/mo AI + automation stack to produce &amp; localise the pack. Reuse existing templates — no agency.</div></div>
+    <div style="flex:1;background:white;border-radius:12px;padding:16px 18px;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div><div style="font-size:22px;margin-bottom:6px;">⏱️</div><div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin-bottom:4px;">Timing</div><div style="font-size:11.5px;color:rgba(28,48,64,.65);line-height:1.5;">Templates exist → mainly translation &amp; local adaptation of the package. <span class="todo">~X weeks</span></div></div>
+    <div style="flex:1;background:white;border-radius:12px;padding:16px 18px;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div><div style="font-size:22px;margin-bottom:6px;">👥</div><div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;margin-bottom:4px;">People</div><div style="font-size:11.5px;color:rgba(28,48,64,.65);line-height:1.5;">1 marketing owner + a Local Product Owner to validate USPs &amp; local specifics.</div></div>
+  </div>
+
+  <!-- Reuse vs localise -->
+  <div style="position:absolute;left:24px;right:24px;top:350px;bottom:48px;display:flex;gap:14px;">
+    <div style="flex:1.15;background:rgba(28,48,64,.06);border:1.5px solid rgba(28,48,64,.18);border-radius:12px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.45;margin-bottom:8px;">REUSE AS-IS (the engine)</div>
+      <div style="font-size:12px;color:#1C3040;opacity:.82;line-height:1.8;">✓ GSite hub structure &nbsp;·&nbsp; ✓ Asset templates (layouts) &nbsp;·&nbsp; ✓ Key Visual approach<br>✓ 3-email nurturing flow &nbsp;·&nbsp; ✓ Usage playbook &nbsp;·&nbsp; ✓ CSV mass-production</div>
+      <div style="margin-top:10px;background:rgba(245,232,0,.22);border-radius:8px;padding:8px 12px;font-size:11px;color:#6f6200;line-height:1.5;"><strong>⚙️ Price-personalisation tool</strong> — not plug-and-play yet; a bit of light dev &amp; tweaking adapts it to a new market.</div>
+    </div>
+    <div style="flex:1;background:#F5E800;border-radius:12px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.55);margin-bottom:8px;">LOCALISE PER MARKET</div>
+      <div style="font-size:12px;color:#1C3040;line-height:1.95;">→ Language &amp; tone<br>→ Market-specific USPs &amp; messaging<br>→ Legal mentions<br>→ Local contact &amp; centre details</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 — CLOSING -->
+<div class="slide" id="s5" style="background:#1C3040;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-yw">Fortidia</div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 80px 40px;">
+    <div style="width:100%;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.6);margin-bottom:16px;">TAKEAWAY</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color:white;line-height:1.08;">Package once.<br>Let every market launch.</div>
+      <div style="width:120px;height:4px;background:#F5E800;border-radius:2px;margin:22px 0 24px;"></div>
+      <div style="display:flex;gap:16px;max-width:920px;">
+        <div style="flex:1;background:rgba(255,255,255,.07);border-radius:10px;padding:16px 18px;border-left:3px solid #F5E800;"><div style="font-size:13px;font-weight:700;color:#F5E800;margin-bottom:4px;">The replication kit</div><div style="font-size:12px;color:rgba(237,232,224,.7);line-height:1.6;">Hub + asset templates + Key Visual + email flow + playbook.</div></div>
+        <div style="flex:1;background:rgba(255,255,255,.07);border-radius:10px;padding:16px 18px;border-left:3px solid #F5E800;"><div style="font-size:13px;font-weight:700;color:#F5E800;margin-bottom:4px;">The promise</div><div style="font-size:12px;color:rgba(237,232,224,.7);line-height:1.6;">Brand-safe, low-cost, ready-to-use — delivered to every centre.</div></div>
+        <div style="flex:1;background:#F5E800;border-radius:10px;padding:16px 18px;"><div style="font-size:13px;font-weight:700;color:#1C3040;margin-bottom:4px;">Next step</div><div style="font-size:12px;color:rgba(28,48,64,.8);line-height:1.6;">Pick a market, localise the kit, deliver to centres.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div>
+<div id="nav">
+  <button onclick="go(-1)">← Prev</button>
+  <span id="counter">1 / 6</span>
+  <button onclick="go(1)">Next →</button>
+  <button id="fullbtn" onclick="toggleFull()">⛶</button>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0;
+function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
+function go(d){show(cur+d);}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key.toLowerCase()==='f')toggleFull();
+});
+function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
+const stage=document.getElementById('stage');
+function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
+window.addEventListener('resize',resize);resize();
+show(0);
+</script></body></html>
