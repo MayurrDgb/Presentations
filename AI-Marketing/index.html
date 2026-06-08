@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leveraging AI in Marketing — Fortidia Summit 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;color-scheme:light;background:#EDE8E0;}
+#progress{position:fixed;top:0;left:0;height:3px;background:#F5E800;z-index:999;transition:width .3s ease;pointer-events:none;}
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);padding:8px 20px;border-radius:30px;z-index:999;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.3);color:white;padding:5px 16px;border-radius:20px;cursor:pointer;font-size:13px;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.15);}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:52px;text-align:center;}
+#fullbtn{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px;}
+#fullbtn:hover{color:white;}
+.slide{position:absolute;inset:0;display:none;}
+.slide.active{display:block;}
+.footer{position:absolute;bottom:0;left:0;right:0;height:36px;background:#1C3040;display:flex;align-items:center;justify-content:center;}
+.footer span{font-size:9.5px;color:#8FA0AD;}
+.footer-y{background:rgba(28,48,64,.9);}
+.logo-dk{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:28px;letter-spacing:-.5px;}
+.logo-yw{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:28px;letter-spacing:-.5px;}
+.logo-dk2{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:28px;letter-spacing:-.5px;}
+.tl{width:90px;height:3px;background:#F5E800;margin-bottom:6px;}
+.tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#1C3040;}
+.tt-w{color:rgba(255,255,255,.45);}
+.al{position:absolute;left:0;top:0;width:8px;height:100%;background:#F5E800;}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="deck"><div id="stage">
+<div class="slide active" id="s0" style="background:#1C3040;overflow:hidden;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+
+  <!-- SVG background -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+    <!-- Yellow diagonal panel — right side -->
+    <polygon points="620,0 1200,0 1200,675 820,675" fill="#F5E800"/>
+    <!-- Grid lines — full opacity, crisp -->
+    <g stroke="#F5E800" stroke-width="1" opacity="0.18">
+      <line x1="80" y1="0" x2="80" y2="630"/>
+      <line x1="200" y1="0" x2="200" y2="630"/>
+      <line x1="320" y1="0" x2="320" y2="630"/>
+      <line x1="460" y1="0" x2="460" y2="630"/>
+      <line x1="0" y1="110" x2="580" y2="110"/>
+      <line x1="0" y1="230" x2="580" y2="230"/>
+      <line x1="0" y1="350" x2="580" y2="350"/>
+      <line x1="0" y1="470" x2="580" y2="470"/>
+      <line x1="0" y1="580" x2="580" y2="580"/>
+    </g>
+    <!-- Node dots — bright -->
+    <g fill="#F5E800" opacity="0.55">
+      <circle cx="80" cy="110" r="3.5"/>
+      <circle cx="200" cy="230" r="3.5"/>
+      <circle cx="320" cy="110" r="3.5"/>
+      <circle cx="460" cy="350" r="5"/>
+      <circle cx="80" cy="350" r="3.5"/>
+      <circle cx="200" cy="470" r="3.5"/>
+      <circle cx="320" cy="350" r="3.5"/>
+      <circle cx="460" cy="230" r="3.5"/>
+      <circle cx="80" cy="470" r="3.5"/>
+      <circle cx="200" cy="110" r="3.5"/>
+      <circle cx="320" cy="470" r="3"/>
+      <circle cx="460" cy="110" r="3"/>
+    </g>
+    <!-- Connector lines — visible -->
+    <g stroke="#F5E800" stroke-width="1.2" opacity="0.22">
+      <line x1="80" y1="110" x2="200" y2="230"/>
+      <line x1="200" y1="230" x2="320" y2="110"/>
+      <line x1="320" y1="110" x2="460" y2="350"/>
+      <line x1="80" y1="350" x2="200" y2="470"/>
+      <line x1="200" y1="470" x2="320" y2="350"/>
+      <line x1="320" y1="350" x2="460" y2="230"/>
+      <line x1="80" y1="110" x2="80" y2="350"/>
+      <line x1="200" y1="230" x2="200" y2="470"/>
+      <line x1="460" y1="230" x2="460" y2="350"/>
+      <line x1="200" y1="110" x2="320" y2="230"/>
+    </g>
+    <!-- Ghost AI letters — slightly more visible -->
+    <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="260" font-weight="900" fill="#F5E800" opacity="0.05">AI</text>
+  </svg>
+
+  <!-- Fortidia logo on yellow -->
+  <div style="position:absolute;top:32px;right:36px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:34px;letter-spacing:-.5px;">Fortidia</div>
+
+  <!-- Title — safely inside the yellow zone, starts at 660px -->
+  <div style="position:absolute;top:130px;left:790px;right:36px;">
+    <div style="font-family:Arial,sans-serif;font-size:50px;color:#1C3040;line-height:1.08;font-weight:300;">Leveraging AI<br>in Marketing</div>
+    <div style="width:70px;height:3px;background:#1C3040;opacity:.2;margin:22px 0 16px;border-radius:2px;"></div>
+    <div style="font-size:16px;color:#1C3040;opacity:.6;">June 10, 2026</div>
+  </div>
+
+  <!-- Left label — bottom left -->
+  <div style="position:absolute;left:60px;bottom:90px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.55);margin-bottom:8px;">FORTIDIA GROUP</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.4);">Marketing Summit · 2026</div>
+  </div>
+</div>
+
+<div class="slide" id="s1" style="background:#EDE8E0;">
+  <div style="position:absolute;right:0;top:0;width:380px;height:100%;background:#F5E800;"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">CONTEXT</div></div>
+  <div style="position:absolute;left:60px;top:136px;font-family:Arial Black,Arial,sans-serif;font-size:50px;font-weight:900;color:#1C3040;line-height:1.12;">How it all<br>started</div>
+  <div style="position:absolute;left:60px;top:260px;font-size:16px;color:#1C3040;opacity:.55;">Two strategic streams. One shared vision.</div>
+  <div style="position:absolute;left:60px;top:290px;width:700px;height:1px;background:#1C3040;opacity:.12;"></div>
+  <div style="position:absolute;left:60px;top:308px;width:290px;background:#1C3040;border-radius:12px;padding:26px 22px 22px;color:white;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+    <div style="font-size:28px;font-weight:900;opacity:.1;position:absolute;top:10px;right:14px;color:#F5E800;">01</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;color:#F5E800;margin-bottom:3px;">AI CREATIVE FACTORY</div>
+    <div style="font-size:11px;opacity:.5;margin-bottom:12px;">Initial project stream</div>
+    <div style="font-size:13px;line-height:1.6;opacity:.9;">Optimise visual content creation with AI across DOCs.</div>
+    <div style="font-size:11px;line-height:1.6;margin-top:9px;opacity:.5;">Reduce agency dependency.<br>Accelerate time-to-market.</div>
+    <div style="display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:16px;background:#F5E800;color:#1C3040;">Visuals · Creative</div>
+  </div>
+  <div style="position:absolute;top:432px;left:364px;font-size:26px;color:#1C3040;opacity:.2;">+</div>
+  <div style="position:absolute;left:378px;top:308px;width:290px;background:rgba(28,48,64,.06);border:1.5px solid rgba(28,48,64,.18);border-radius:12px;padding:26px 22px 22px;color:#1C3040;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+    <div style="font-size:28px;font-weight:900;opacity:.1;position:absolute;top:10px;right:14px;">02</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;margin-bottom:3px;">PROMPT LIBRARY</div>
+    <div style="font-size:11px;opacity:.5;margin-bottom:12px;">Second project stream</div>
+    <div style="font-size:13px;line-height:1.6;opacity:.8;">Build an SEO &amp; content prompt database for DOC teams.</div>
+    <div style="font-size:11px;line-height:1.6;margin-top:9px;opacity:.5;">Standardise editorial production.<br>Improve organic visibility.</div>
+    <div style="display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:16px;background:#1C3040;color:#F5E800;">SEO · Content</div>
+  </div>
+  <div style="position:absolute;right:0;top:0;width:380px;height:100%;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;">
+      <div style="font-size:68px;font-weight:900;color:#1C3040;opacity:.07;font-family:Arial Black,Arial,sans-serif;line-height:1;">AI</div>
+      <div style="margin-top:-20px;">
+        <div style="width:200px;height:1px;background:#1C3040;opacity:.15;margin:0 auto 16px;"></div>
+        <div style="font-family:Arial Black,Arial,sans-serif;font-size:19px;font-weight:900;color:#1C3040;">One project</div>
+        <div style="font-size:14px;color:#1C3040;opacity:.6;margin-top:4px;">Marketing AI Factory</div>
+        <div style="width:200px;height:1px;background:#1C3040;opacity:.15;margin:16px auto;"></div>
+        <div style="font-size:13px;color:#1C3040;opacity:.65;line-height:1.6;">Start with a POC — best practices<br>+ needs = an optimised approach<br>to roll out across every DOC.</div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:56px;left:20px;right:20px;background:rgba(28,48,64,.1);border-radius:10px;padding:14px 18px;text-align:center;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.45;margin-bottom:6px;">METHODOLOGY</div>
+      <div style="font-size:13px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;">Observe → Ideate → Test → Validate</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s2" style="background:#EDE8E0;">
+  <div style="position:absolute;left:0;top:0;width:380px;height:100%;background:#1C3040;"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:40px;top:52px;"><div class="tl" style="background:rgba(255,255,255,.25);"></div><div class="tt tt-w">AGENDA</div></div>
+  <div style="position:absolute;left:40px;top:160px;font-family:Arial Black,Arial,sans-serif;font-size:52px;font-weight:900;color:white;line-height:1.12;">Today's<br>session</div>
+  <div style="position:absolute;left:40px;top:350px;width:176px;height:4px;background:#F5E800;border-radius:2px;"></div>
+  <div style="position:absolute;left:40px;top:368px;width:290px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;">Followed by a hands-on workshop where everyone defines their own use case.</div>
+  <div style="position:absolute;left:406px;right:18px;top:42px;bottom:44px;display:flex;flex-direction:column;gap:8px;">
+    <div style="flex:1;border-radius:10px;background:rgba(255,255,255,.65);display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#F5E800;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.3);margin-right:18px;">A</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:#1C3040;">Process &amp; Expectations</div><div style="font-size:12px;color:rgba(28,48,64,.45);margin-top:2px;">The feedback we got · AI usage snapshot across the network</div></div>
+    </div>
+    <div style="flex:1;border-radius:10px;background:rgba(255,255,255,.65);display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#F5E800;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.3);margin-right:18px;">B</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:#1C3040;">The AI Spectrum</div><div style="font-size:12px;color:rgba(28,48,64,.45);margin-top:2px;">Understanding AI tools, their roles, and how they articulate together</div></div>
+    </div>
+    <div style="flex:1;border-radius:10px;background:rgba(255,255,255,.65);display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#F5E800;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.3);margin-right:18px;">C</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:#1C3040;">Focus Marketing — What AI Can Do</div><div style="font-size:12px;color:rgba(28,48,64,.45);margin-top:2px;">Key capabilities · Asset evaluation</div></div>
+    </div>
+    <div style="flex:1;border-radius:10px;background:#1C3040;display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#F5E800;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.5);margin-right:18px;">D</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:white;">Live Demos</div><div style="font-size:12px;color:rgba(237,232,224,.5);margin-top:2px;">Mayurr · Erica</div></div>
+    </div>
+    <div style="flex:1;border-radius:10px;background:rgba(255,255,255,.65);display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#F5E800;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.3);margin-right:18px;">E</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:#1C3040;">Setup &amp; Cost</div><div style="font-size:12px;color:rgba(28,48,64,.45);margin-top:2px;">AI stack · Automation · Budget scenarios</div></div>
+    </div>
+    <div style="flex:1;border-radius:10px;background:#F5E800;display:flex;align-items:center;padding:0 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#1C3040;border-radius:10px 0 0 10px;"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.3);margin-right:18px;">F</div>
+      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;font-weight:900;color:#1C3040;">Workshop — Your Use Case</div><div style="font-size:12px;color:rgba(28,48,64,.52);margin-top:2px;">Define · Pitch · Build the Marketing AI H2 roadmap</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s3" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">PROCESS &amp; EXPECTATIONS</div></div>
+  <div style="position:absolute;left:42px;top:118px;font-family:Arial Black,Arial,sans-serif;font-size:44px;font-weight:900;color:#1C3040;">The feedback we got</div>
+  <div style="position:absolute;left:42px;top:176px;font-size:14px;color:#1C3040;opacity:.5;">Across countries, central marketing team, and local franchisees</div>
+  <div style="position:absolute;left:42px;top:212px;font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.4;">AI USAGE ACROSS THE NETWORK</div>
+  <div style="position:absolute;left:42px;top:228px;width:630px;">
+    <div style="height:9px;background:rgba(28,48,64,.1);border-radius:5px;overflow:hidden;display:flex;">
+      <div style="flex:1;background:rgba(28,48,64,.2);"></div><div style="flex:1;background:rgba(28,48,64,.38);"></div><div style="flex:1;background:rgba(28,48,64,.55);"></div><div style="flex:1;background:#F5E800;"></div>
+    </div>
+    <div style="display:flex;margin-top:4px;">
+      <span style="flex:1;text-align:center;font-size:10px;color:#1C3040;opacity:.55;">Reporting &amp; emails</span>
+      <span style="flex:1;text-align:center;font-size:10px;color:#1C3040;opacity:.55;">Content &amp; SEO</span>
+      <span style="flex:1;text-align:center;font-size:10px;color:#1C3040;opacity:.55;">Visuals &amp; creative</span>
+      <span style="flex:1;text-align:center;font-size:10px;font-weight:700;color:#1C3040;">Full workflows</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:1px;font-size:10px;color:#1C3040;opacity:.35;"><span>Basic</span><span>Advanced</span></div>
+  </div>
+  <div style="position:absolute;left:28px;right:28px;top:318px;bottom:44px;display:flex;gap:14px;">
+    <div style="flex:1;border-radius:12px;padding:22px 18px 18px;background:#1C3040;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:30px;font-weight:900;opacity:.1;position:absolute;top:8px;right:10px;color:#F5E800;">01</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#F5E800;margin-bottom:2px;">Fragmented AI tools</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.4);margin-bottom:10px;">Across the network</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(237,232,224,.88);">Many tools in use — ChatGPT, Gemini, Claude, image generators — with no shared standard or workflow.</div>
+      <div style="font-size:11px;line-height:1.6;margin-top:8px;color:rgba(237,232,224,.5);">Gemini is already in our Google Workspace, yet most teams rely on other tools depending on the task.</div>
+      <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:12px;background:rgba(245,232,0,.15);color:#F5E800;">No shared standard yet</div>
+    </div>
+    <div style="flex:1;border-radius:12px;padding:22px 18px 18px;background:rgba(28,48,64,.06);border:1.5px solid rgba(28,48,64,.18);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:30px;font-weight:900;opacity:.1;position:absolute;top:8px;right:10px;color:#1C3040;">02</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#1C3040;margin-bottom:2px;">Content &amp; creative gaps</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.4);margin-bottom:10px;">What teams are missing</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.78);">Assets feel too generic — no local industry or audience specificity. Messages lack sharpness and impact.</div>
+      <div style="font-size:11px;line-height:1.6;margin-top:8px;color:rgba(28,48,64,.5);">Some materials are outdated and no longer reflect current market realities.</div>
+      <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:12px;background:rgba(28,48,64,.1);color:#1C3040;">Shared across all markets</div>
+    </div>
+    <div style="flex:1;border-radius:12px;padding:22px 18px 18px;background:#F5E800;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1C3040;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:30px;font-weight:900;opacity:.1;position:absolute;top:8px;right:10px;color:#1C3040;">03</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#1C3040;margin-bottom:2px;">The opportunity</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.4);margin-bottom:10px;">What the network is asking for</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.85);">Bolder, targeted creatives adapted to local markets and industries.</div>
+      <div style="font-size:11px;line-height:1.6;margin-top:8px;color:rgba(28,48,64,.65);">Faster cycles. A/B testing. Shared library. Brand-safe, streamlined workflows.</div>
+      <div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:12px;background:#1C3040;color:#F5E800;">AI can solve this →</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s4" style="background:#1C3040;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-yw">Fortidia</div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 80px 40px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.6);margin-bottom:16px;">THE AI SPECTRUM</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:60px;font-weight:900;color:white;line-height:1.05;">Understanding AI —<br>tools, roles &amp;<br>how they work together</div>
+      <div style="width:120px;height:4px;background:#F5E800;border-radius:2px;margin-top:24px;margin-bottom:20px;"></div>
+      <div style="font-size:17px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.65;">It's not just about picking a tool. It's about understanding what each AI does — and how to combine them into something greater.</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s5" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">THE AI SPECTRUM</div></div>
+  <div style="position:absolute;left:42px;top:118px;font-family:Arial Black,Arial,sans-serif;font-size:40px;font-weight:900;color:#1C3040;">The AI tools landscape</div>
+  <div style="position:absolute;left:42px;top:170px;font-size:14px;color:#1C3040;opacity:.5;">Each tool has a role. Understanding them is the first step to using them well.</div>
+  <div style="position:absolute;left:24px;right:24px;top:204px;bottom:130px;display:flex;gap:12px;">
+    <div style="flex:1;background:white;border-radius:12px;padding:20px 16px;position:relative;overflow:hidden;border-top:4px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);margin-bottom:8px;">GENERAL PURPOSE</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;font-weight:900;color:#1C3040;margin-bottom:4px;">ChatGPT</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.5);margin-bottom:12px;">OpenAI · Most widely adopted</div>
+      <div style="font-size:12px;line-height:1.65;color:rgba(28,48,64,.8);">Writing, brainstorming, translation, data analysis, image generation — a versatile everyday assistant.</div>
+      <div style="font-size:11px;line-height:1.65;color:rgba(28,48,64,.5);margin-top:8px;">Image output quality varies — not always print-ready for large formats.</div>
+      <div style="position:absolute;bottom:12px;left:16px;right:16px;background:rgba(28,48,64,.06);border-radius:6px;padding:5px 8px;font-size:10px;color:rgba(28,48,64,.55);">Best for: everyday content &amp; ideation</div>
+    </div>
+    <div style="flex:1;background:#1C3040;border-radius:12px;padding:20px 16px;position:relative;overflow:hidden;border-top:4px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);margin-bottom:8px;">WORKSPACE INTEGRATED</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;font-weight:900;color:#F5E800;margin-bottom:4px;">Gemini</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.45);margin-bottom:12px;">Google · Native to our environment</div>
+      <div style="font-size:12px;line-height:1.65;color:rgba(237,232,224,.85);">Embedded in Docs, Slides, Gmail, Meet. Strong for summarisation and workspace productivity tasks.</div>
+      <div style="font-size:11px;line-height:1.65;color:rgba(237,232,224,.5);margin-top:8px;">Image generation is limited — AI-generated visuals are often visibly artificial, unsuitable for marketing.</div>
+      <div style="position:absolute;bottom:12px;left:16px;right:16px;background:rgba(245,232,0,.12);border-radius:6px;padding:5px 8px;font-size:10px;color:rgba(245,232,0,.8);">Best for: internal productivity &amp; docs</div>
+    </div>
+    <div style="flex:1;background:#F5E800;border-radius:12px;padding:20px 16px;position:relative;overflow:hidden;border-top:4px solid #1C3040;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.5);margin-bottom:8px;">REASONING &amp; ENTERPRISE</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;font-weight:900;color:#1C3040;margin-bottom:4px;">Claude</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.5);margin-bottom:12px;">Anthropic · Enterprise-grade</div>
+      <div style="font-size:12px;line-height:1.65;color:rgba(28,48,64,.85);">Deep reasoning, long-form content, complex briefs, structured outputs, and agentic task execution.</div>
+      <div style="font-size:11px;line-height:1.65;color:rgba(28,48,64,.6);margin-top:8px;">Designed for workflows where accuracy, nuance, and multi-step thinking matter most.</div>
+      <div style="position:absolute;bottom:12px;left:16px;right:16px;background:rgba(28,48,64,.12);border-radius:6px;padding:5px 8px;font-size:10px;color:rgba(28,48,64,.7);">Best for: strategy, automation &amp; complex tasks</div>
+    </div>
+    <div style="flex:1;background:white;border-radius:12px;padding:20px 16px;position:relative;overflow:hidden;border-top:4px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);margin-bottom:8px;">FULL AI STACK</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;font-weight:900;color:#1C3040;margin-bottom:4px;">AI + Automation</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.5);margin-bottom:12px;">Orchestrated · Brand-safe · Scalable</div>
+      <div style="font-size:12px;line-height:1.65;color:rgba(28,48,64,.8);">AI alone isn't enough. Connecting AI to automation layers and branded visual engines unlocks production at scale.</div>
+      <div style="font-size:11px;line-height:1.65;color:rgba(28,48,64,.5);margin-top:8px;">Brand identity — logos, colours, typography — stays protected by design.</div>
+      <div style="position:absolute;bottom:12px;left:16px;right:16px;background:rgba(28,48,64,.06);border-radius:6px;padding:5px 8px;font-size:10px;color:rgba(28,48,64,.55);">Best for: campaigns, assets &amp; workflows</div>
+    </div>
+  </div>
+  <!-- Bottom key message -->
+  <div style="position:absolute;left:24px;right:24px;bottom:44px;height:50px;background:#1C3040;border-radius:10px;display:flex;align-items:center;padding:0 20px;gap:16px;">
+    <div style="font-size:13px;font-weight:700;color:#F5E800;">Key insight —</div>
+    <div style="font-size:13px;color:rgba(237,232,224,.75);">AI tools are complementary, not competing. The value comes from knowing <em style="color:white;font-style:normal;font-weight:700;">when to use which</em> — and how to connect them.</div>
+  </div>
+</div>
+
+<div class="slide" id="s6" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">FOCUS MARKETING</div></div>
+  <div style="position:absolute;left:42px;top:118px;font-family:Arial Black,Arial,sans-serif;font-size:40px;font-weight:900;color:#1C3040;">What AI can do for marketing</div>
+  <div style="position:absolute;left:24px;right:24px;top:186px;bottom:50px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;">
+    <div style="background:#1C3040;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">✍️</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#F5E800;margin-bottom:6px;">Content &amp; Copywriting</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(237,232,224,.75);">Headlines, landing pages, SEO content, DEM copy, social posts — in any language, any tone.</div>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">🎨</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:6px;">Visual Creation</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.7);">AI-generated images, branded flyers, social banners — adapted to each local market.</div>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">🔍</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:6px;">Research &amp; Insights</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.7);">Competitive analysis, market benchmarks, audience profiles — in minutes not days.</div>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">🌍</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:6px;">Localisation</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.7);">Translate and adapt tone, references, industry vocabulary for each DOC market.</div>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">⚙️</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:6px;">Workflow Automation</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.7);">Connect AI to your tools — trigger production pipelines, route outputs, eliminate manual steps.</div>
+    </div>
+    <div style="background:#F5E800;border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1C3040;border-radius:12px 12px 0 0;"></div>
+      <div style="font-size:22px;margin-bottom:8px;">📊</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;margin-bottom:6px;">Performance &amp; Data</div>
+      <div style="font-size:12px;line-height:1.6;color:rgba(28,48,64,.75);">Crunch campaign data, model ROI scenarios, generate performance reports — fast.</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s7" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">USE CASE</div></div>
+  <div style="position:absolute;left:42px;top:82px;right:440px;">
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:28px;font-weight:900;color:#1C3040;margin-bottom:6px;">Same product. Two approaches.</div>
+    <div style="font-size:12px;color:#1C3040;opacity:.55;line-height:1.5;">One leads with the product. The other leads with the customer — showing a full range, targeting specific audiences, driving a clear action. <strong style="color:#1C3040;opacity:.9;">That shift is what AI makes easy to scale.</strong></div>
+  </div>
+  <!-- LEFT flyer -->
+  <div style="position:absolute;left:40px;top:175px;width:276px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;background:rgba(28,48,64,.15);color:#1C3040;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:7px;">COMMON VERSION</div>
+    <div style="background:white;border-radius:8px;padding:13px;box-shadow:0 3px 14px rgba(28,48,64,.14);">
+      <div style="background:#C8BAB0;border-radius:5px;height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:9px;"><span style="font-size:11px;color:#7a6a62;opacity:.7;">Generic gift photo</span></div>
+      <div style="background:#eee;border-radius:3px;height:16px;width:70px;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:#999;">MBE logo</span></div>
+      <div style="text-align:center;margin-bottom:7px;">
+        <div style="font-size:10px;color:#1C3040;opacity:.6;margin-bottom:2px;">Protégez vos cadeaux et expédiez</div>
+        <div style="font-size:12px;font-weight:900;color:#1C3040;">MBE SafeValue Essential</div>
+      </div>
+      <div style="border:1px solid #eee;border-radius:4px;padding:5px;text-align:center;margin-bottom:7px;">
+        <div style="font-size:11px;font-weight:900;color:#1C3040;">MBE SafeValue® ESSENTIAL</div>
+      </div>
+      <div style="font-size:10px;color:#1C3040;margin-bottom:2px;"><span style="color:#CC0000;">■ </span>Remboursement jusqu'à 1 000 €</div>
+      <div style="font-size:10px;color:#1C3040;margin-bottom:2px;"><span style="color:#CC0000;">■ </span>Emballage professionnel</div>
+      <div style="font-size:10px;color:#1C3040;margin-bottom:7px;"><span style="color:#CC0000;">■ </span>Sélection du transporteur</div>
+      <div style="background:#CC0000;border-radius:4px;padding:5px;text-align:center;"><span style="font-size:10px;color:white;font-weight:700;">mbefrance.fr/safevalue</span></div>
+    </div>
+  </div>
+  <!-- VS -->
+  <div style="position:absolute;left:328px;top:358px;width:42px;height:42px;border-radius:50%;background:#1C3040;display:flex;align-items:center;justify-content:center;z-index:2;">
+    <span style="font-family:Arial Black,Arial,sans-serif;font-size:12px;font-weight:900;color:#F5E800;">VS</span>
+  </div>
+  <!-- RIGHT flyer -->
+  <div style="position:absolute;left:384px;top:175px;width:276px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;background:#F5E800;color:#1C3040;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:7px;">AI-ASSISTED VERSION</div>
+    <div style="background:#CC2200;border-radius:8px;padding:13px;box-shadow:0 3px 14px rgba(28,48,64,.18);">
+      <div style="background:rgba(0,0,0,.25);border-radius:4px;height:13px;display:flex;align-items:center;justify-content:center;margin-bottom:7px;"><span style="font-size:9px;color:rgba(255,255,255,.45);">seasonal AI visual</span></div>
+      <div style="text-align:center;margin-bottom:7px;">
+        <div style="font-size:15px;font-weight:900;color:white;font-family:Arial Black,Arial,sans-serif;line-height:1.15;">A CHAQUE VALEUR,<br>SA PROTECTION.</div>
+        <div style="font-size:12px;font-weight:900;color:white;margin-top:3px;">MBE SafeValue.</div>
+      </div>
+      <div style="display:flex;gap:5px;margin-bottom:6px;align-items:center;">
+        <div style="flex:1;background:rgba(255,255,255,.9);border-radius:4px;padding:5px 6px;">
+          <div style="font-size:10px;font-weight:900;color:#1C3040;">Smartphones • Art • Envois pros</div>
+          <div style="font-size:9px;color:#1C3040;opacity:.7;">La gamme qui protège ce qui compte.</div>
+        </div>
+        <div style="background:white;border-radius:4px;padding:4px 7px;text-align:center;flex-shrink:0;">
+          <div style="font-size:9px;font-weight:900;color:#CC2200;">Dès</div>
+          <div style="font-size:13px;font-weight:900;color:#CC2200;">5,50€</div>
+        </div>
+      </div>
+      <div style="font-size:10px;font-weight:900;color:white;margin-bottom:2px;">• MBE SafeValue® ESSENTIAL</div>
+      <div style="font-size:10px;font-weight:900;color:white;margin-bottom:2px;">• MBE SafeValue® Art</div>
+      <div style="font-size:10px;font-weight:900;color:white;margin-bottom:6px;">• MBE SafeValue® 4Biz</div>
+      <div style="font-size:10px;color:rgba(255,255,255,.85);margin-bottom:3px;">Notre emballage expert protège,<br>MBE SafeValue garantit.</div>
+      <div style="font-size:12px;font-weight:900;color:white;margin-bottom:3px;">Demandez conseil.</div>
+      <div style="text-align:right;"><span style="font-size:10px;font-weight:900;color:white;">mbefrance.fr</span></div>
+    </div>
+  </div>
+  <!-- STAR RATINGS — pure HTML, no JS -->
+  <div style="position:absolute;left:690px;top:175px;right:20px;bottom:44px;display:flex;flex-direction:column;gap:7px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.4;margin-bottom:2px;">EVALUATION</div>
+    <!-- Headline angle -->
+    <div style="background:white;border-radius:8px;padding:8px 11px;border-top:3px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1C3040;margin-bottom:4px;">HEADLINE ANGLE</div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">Common</div><span style="color:#CC0000;font-size:13px;">★</span><span style="color:#ddd;font-size:13px;">★★★★</span><div style="font-size:8px;color:#bbb;margin-top:1px;">Product name</div></div>
+        <div style="width:1px;height:32px;background:#eee;flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">AI version</div><span style="color:#1A7A47;font-size:13px;">★★★★★</span><div style="font-size:8px;color:#1A7A47;margin-top:1px;">Benefit-led</div></div>
+      </div>
+    </div>
+    <!-- Audience targeting -->
+    <div style="background:white;border-radius:8px;padding:8px 11px;border-top:3px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1C3040;margin-bottom:4px;">AUDIENCE TARGETING</div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">Common</div><span style="color:#CC0000;font-size:13px;">★</span><span style="color:#ddd;font-size:13px;">★★★★</span><div style="font-size:8px;color:#bbb;margin-top:1px;">Generic</div></div>
+        <div style="width:1px;height:32px;background:#eee;flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">AI version</div><span style="color:#1A7A47;font-size:13px;">★★★★★</span><div style="font-size:8px;color:#1A7A47;margin-top:1px;">Segmented</div></div>
+      </div>
+    </div>
+    <!-- Message clarity -->
+    <div style="background:white;border-radius:8px;padding:8px 11px;border-top:3px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1C3040;margin-bottom:4px;">MESSAGE CLARITY</div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">Common</div><span style="color:#CC0000;font-size:13px;">★★</span><span style="color:#ddd;font-size:13px;">★★★</span><div style="font-size:8px;color:#bbb;margin-top:1px;">Features only</div></div>
+        <div style="width:1px;height:32px;background:#eee;flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">AI version</div><span style="color:#1A7A47;font-size:13px;">★★★★</span><span style="color:#ddd;font-size:13px;">★</span><div style="font-size:8px;color:#1A7A47;margin-top:1px;">Value + range</div></div>
+      </div>
+    </div>
+    <!-- Call to action -->
+    <div style="background:white;border-radius:8px;padding:8px 11px;border-top:3px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1C3040;margin-bottom:4px;">CALL TO ACTION</div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">Common</div><span style="color:#CC0000;font-size:13px;">★</span><span style="color:#ddd;font-size:13px;">★★★★</span><div style="font-size:8px;color:#bbb;margin-top:1px;">URL only</div></div>
+        <div style="width:1px;height:32px;background:#eee;flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">AI version</div><span style="color:#1A7A47;font-size:13px;">★★★★★</span><div style="font-size:8px;color:#1A7A47;margin-top:1px;">Action word</div></div>
+      </div>
+    </div>
+    <!-- Visual energy -->
+    <div style="background:white;border-radius:8px;padding:8px 11px;border-top:3px solid #F5E800;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1C3040;margin-bottom:4px;">VISUAL ENERGY</div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">Common</div><span style="color:#CC0000;font-size:13px;">★★</span><span style="color:#ddd;font-size:13px;">★★★</span><div style="font-size:8px;color:#bbb;margin-top:1px;">Safe / neutral</div></div>
+        <div style="width:1px;height:32px;background:#eee;flex-shrink:0;"></div>
+        <div style="flex:1;"><div style="font-size:8px;color:#999;margin-bottom:1px;">AI version</div><span style="color:#1A7A47;font-size:13px;">★★★★★</span><div style="font-size:8px;color:#1A7A47;margin-top:1px;">Bold / branded</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="slide" id="s8" style="background:#1C3040;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-yw">Fortidia</div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 80px 40px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.6);margin-bottom:16px;">LIVE DEMOS</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:64px;font-weight:900;color:white;line-height:1.05;">See it<br>happen.</div>
+      <div style="width:120px;height:4px;background:#F5E800;border-radius:2px;margin-top:24px;margin-bottom:24px;"></div>
+      <div style="display:flex;gap:16px;">
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:16px 22px;border-left:3px solid #F5E800;">
+          <div style="font-size:13px;font-weight:700;color:#F5E800;margin-bottom:4px;">Mayurr</div>
+          
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:16px 22px;border-left:3px solid #F5E800;">
+          <div style="font-size:13px;font-weight:700;color:#F5E800;margin-bottom:4px;">Erica</div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s9" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">SETUP &amp; COST</div></div>
+  <div style="position:absolute;left:42px;top:82px;font-family:Arial Black,Arial,sans-serif;font-size:32px;font-weight:900;color:#1C3040;">What does a full AI workflow cost?</div>
+  <div style="position:absolute;left:42px;top:126px;font-size:13px;color:#1C3040;opacity:.5;">1 campaign · ~10 assets · AI + Automation + Visual engine</div>
+  <div style="position:absolute;left:24px;right:24px;top:155px;height:130px;display:flex;align-items:center;gap:0;">
+    <div style="flex:1;background:#1C3040;border-radius:10px;padding:12px;height:115px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.7);">INPUT</div>
+      <div style="font-size:15px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;">Brief</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.7);">Product · Target · Season</div>
+    </div>
+    <div style="width:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#1C3040;opacity:.25;">→</div>
+    <div style="flex:1;background:#F5E800;border-radius:10px;padding:12px;height:115px;display:flex;flex-direction:column;justify-content:space-between;position:relative;">
+      <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.5);">CONTENT AI</div>
+      <div style="font-size:15px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;">Claude</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.75);">Copies · Headlines · SEO</div>
+      <div style="position:absolute;bottom:7px;right:7px;background:#1C3040;border-radius:8px;padding:2px 7px;font-size:9px;color:#F5E800;font-weight:700;">~$20/mo</div>
+    </div>
+    <div style="width:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#1C3040;opacity:.25;">→</div>
+    <div style="flex:1;background:rgba(28,48,64,.07);border:1.5px solid rgba(28,48,64,.18);border-radius:10px;padding:12px;height:115px;display:flex;flex-direction:column;justify-content:space-between;position:relative;">
+      <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">AUTOMATION</div>
+      <div style="font-size:15px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;">Make</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.7);">Connects &amp; routes workflows</div>
+      <div style="position:absolute;bottom:7px;right:7px;background:#1C3040;border-radius:8px;padding:2px 7px;font-size:9px;color:#EDE8E0;font-weight:700;">~$9/mo</div>
+    </div>
+    <div style="width:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#1C3040;opacity:.25;">→</div>
+    <div style="flex:1;background:rgba(28,48,64,.07);border:1.5px solid rgba(28,48,64,.18);border-radius:10px;padding:12px;height:115px;display:flex;flex-direction:column;justify-content:space-between;position:relative;">
+      <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">VISUAL ENGINE</div>
+      <div style="font-size:15px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;">Bannerbear</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.7);">Branded templates · Auto-fill</div>
+      <div style="position:absolute;bottom:7px;right:7px;background:#1C3040;border-radius:8px;padding:2px 7px;font-size:9px;color:#EDE8E0;font-weight:700;">~$49/mo</div>
+    </div>
+    <div style="width:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#1C3040;opacity:.25;">→</div>
+    <div style="flex:1;background:#1C3040;border-radius:10px;padding:12px;height:115px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.7);">OUTPUT</div>
+      <div style="font-size:15px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;">Assets</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.7);">Social · Flyers · LP · DEM</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;right:24px;top:298px;background:rgba(28,48,64,.06);border-left:4px solid #F5E800;border-radius:0 8px 8px 0;padding:7px 14px;display:flex;align-items:center;gap:10px;">
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      <div><span style="font-size:11.5px;">🔒 </span><span style="font-size:11.5px;font-weight:700;color:#1C3040;">Brand safety by design — </span><span style="font-size:11.5px;color:#1C3040;opacity:.65;">AI fills content only. Logos, colours &amp; typography are locked by template.</span></div>
+      <div><span style="font-size:11.5px;">💰 </span><span style="font-size:11.5px;font-weight:700;color:#1C3040;">Marketing Team — </span><span style="font-size:11.5px;color:#1C3040;opacity:.65;">costs are covered by the <strong style="opacity:1;">NMF (National Media Fund)</strong>. To get a Claude account, follow the access process →</span></div>
+    </div>
+    <div style="margin-left:auto;font-size:12px;font-weight:700;color:#1C3040;white-space:nowrap;">Stack total: <span style="color:#1A7A47;">~€78/mo</span></div>
+  </div>
+  <div style="position:absolute;left:24px;top:355px;width:546px;bottom:46px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.4;margin-bottom:7px;">COST PER SCENARIO</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#1C3040;">
+        <th style="padding:8px 10px;text-align:left;color:#F5E800;font-size:10px;font-weight:700;">SCENARIO</th>
+        <th style="padding:8px 10px;text-align:center;color:rgba(237,232,224,.6);font-size:10px;">ASSETS</th>
+        <th style="padding:8px 10px;text-align:center;color:rgba(237,232,224,.6);font-size:10px;">STACK / MO</th>
+        <th style="padding:8px 10px;text-align:center;color:rgba(237,232,224,.6);font-size:10px;">VS AGENCY</th>
+        <th style="padding:8px 10px;text-align:center;color:#F5E800;font-weight:700;font-size:10px;">SAVING</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:white;"><td style="padding:7px 10px;font-weight:700;color:#1C3040;">1 campaign · 1 DOC</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">~10</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">~€78</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">€800–1,500</td><td style="padding:7px 10px;text-align:center;font-weight:700;color:#1A7A47;">~90%</td></tr>
+        <tr style="background:rgba(28,48,64,.04);"><td style="padding:7px 10px;font-weight:700;color:#1C3040;">1 campaign · 5 DOCs</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">~50</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">~€78</td><td style="padding:7px 10px;text-align:center;color:#1C3040;">€4,000–7,000</td><td style="padding:7px 10px;text-align:center;font-weight:700;color:#1A7A47;">&gt;95%</td></tr>
+        <tr style="background:#F5E800;"><td style="padding:7px 10px;font-weight:900;color:#1C3040;">Full Group rollout</td><td style="padding:7px 10px;text-align:center;font-weight:700;color:#1C3040;">Scale ∞</td><td style="padding:7px 10px;text-align:center;font-weight:700;color:#1C3040;">TBD</td><td style="padding:7px 10px;text-align:center;font-weight:700;color:#1C3040;">60–70% budget</td><td style="padding:7px 10px;text-align:center;font-weight:900;color:#1C3040;">Transformative</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="position:absolute;right:24px;top:355px;width:354px;bottom:46px;background:#1C3040;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;">
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.7);margin-bottom:8px;">NEXT — WORKSHOP</div>
+      <div style="font-size:17px;font-weight:900;color:white;font-family:Arial Black,Arial,sans-serif;line-height:1.25;margin-bottom:10px;">Which tools do<br>YOU actually need?</div>
+      <div style="font-size:12px;color:rgba(237,232,224,.6);line-height:1.6;">The right stack depends on your use case, volume, and team. The workshop will surface real priorities — together.</div>
+    </div>
+    <div style="background:#F5E800;border-radius:8px;padding:10px 14px;">
+      <div style="font-size:11px;font-weight:700;color:#1C3040;margin-bottom:4px;">You'll walk away with:</div>
+      <div style="font-size:11px;color:#1C3040;opacity:.8;line-height:1.6;">✓ Your own use case defined<br>✓ A tool shortlist for H2<br>✓ An owner &amp; a timeline</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s-access" style="background:#1C3040;">
+  <div class="footer footer-y"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-yw">Fortidia</div>
+  <div style="position:absolute;left:48px;top:38px;font-family:Arial,sans-serif;font-size:42px;font-weight:300;color:white;">How to request access</div>
+  <div style="position:absolute;left:48px;top:94px;width:80px;height:3px;background:#F5E800;"></div>
+
+  <!-- LEFT: email template -->
+  <div style="position:absolute;left:48px;top:138px;width:470px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.7);margin-bottom:12px;">EMAIL TEMPLATE</div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:18px 20px;font-size:12.5px;line-height:1.9;color:rgba(237,232,224,.88);">
+      <div><strong style="color:white;">To:</strong> helpdesk@fortidia.com</div>
+      <div><strong style="color:white;">Subject:</strong> Claude Enterprise — Access Request — [Name]</div>
+      <div style="margin-top:8px;color:rgba(237,232,224,.65);">Hi, I'd like to request Claude Enterprise access:</div>
+      <div style="margin-top:8px;"><strong style="color:white;">Name:</strong> [First Last Name]</div>
+      <div><strong style="color:white;">Work email:</strong> [firstname.lastname@fortidia.com]</div>
+      <div><strong style="color:white;">Department:</strong> [e.g. Marketing / Legal]</div>
+      <div><strong style="color:white;">Cost center:</strong> [NMF — for the Marketing Team]</div>
+      <div><strong style="color:white;">Manager (CC):</strong> [Manager name]</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: vertical timeline -->
+  <div style="position:absolute;left:558px;right:40px;top:74px;bottom:58px;">
+    <div style="position:absolute;left:116px;top:24px;bottom:24px;width:2px;background:rgba(245,232,0,.4);"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="display:flex;align-items:flex-start;">
+        <div style="width:96px;text-align:right;font-family:Arial,sans-serif;font-size:44px;font-weight:300;color:#F5E800;line-height:1;flex-shrink:0;">01</div>
+        <div style="width:36px;flex-shrink:0;height:2px;background:#F5E800;margin-top:21px;"></div>
+        <div style="padding-top:4px;"><div style="font-size:17px;font-weight:700;color:white;margin-bottom:2px;">Send email to helpdesk</div><div style="font-size:13.5px;color:rgba(150,195,225,.9);">Claude Enterprise — Access Request</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;">
+        <div style="width:96px;text-align:right;font-family:Arial,sans-serif;font-size:44px;font-weight:300;color:#F5E800;line-height:1;flex-shrink:0;">02</div>
+        <div style="width:36px;flex-shrink:0;height:2px;background:#F5E800;margin-top:21px;"></div>
+        <div style="padding-top:4px;"><div style="font-size:17px;font-weight:700;color:white;margin-bottom:2px;">Address it to</div><div style="font-size:13.5px;color:rgba(150,195,225,.9);">helpdesk@fortidia.com</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;">
+        <div style="width:96px;text-align:right;font-family:Arial,sans-serif;font-size:44px;font-weight:300;color:#F5E800;line-height:1;flex-shrink:0;">03</div>
+        <div style="width:36px;flex-shrink:0;height:2px;background:#F5E800;margin-top:21px;"></div>
+        <div style="padding-top:4px;"><div style="font-size:17px;font-weight:700;color:white;margin-bottom:2px;">In the email body, include</div><div style="font-size:13.5px;color:rgba(150,195,225,.9);">Name, surname, department, cost center</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;">
+        <div style="width:96px;text-align:right;font-family:Arial,sans-serif;font-size:44px;font-weight:300;color:#F5E800;line-height:1;flex-shrink:0;">04</div>
+        <div style="width:36px;flex-shrink:0;height:2px;background:#F5E800;margin-top:21px;"></div>
+        <div style="padding-top:4px;"><div style="font-size:17px;font-weight:700;color:white;margin-bottom:2px;">Manager approval</div><div style="font-size:13.5px;color:rgba(150,195,225,.9);">CC your line manager for approval</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;">
+        <div style="width:96px;text-align:right;font-family:Arial,sans-serif;font-size:44px;font-weight:300;color:#F5E800;line-height:1;flex-shrink:0;">05</div>
+        <div style="width:36px;flex-shrink:0;height:2px;background:#F5E800;margin-top:21px;"></div>
+        <div style="padding-top:4px;"><div style="font-size:17px;font-weight:700;color:white;margin-bottom:2px;">Activation</div><div style="font-size:13.5px;color:rgba(150,195,225,.9);">IT provisioning within 2 business days</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s10" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">TOOLS CATALOGUE</div></div>
+  <div style="position:absolute;left:42px;top:100px;font-family:Arial Black,Arial,sans-serif;font-size:34px;font-weight:900;color:#1C3040;">Your AI-powered marketing toolkit</div>
+  <div style="position:absolute;left:42px;top:148px;font-size:13px;color:#1C3040;opacity:.5;">Three layers — each with a distinct role. Together, they form a full production system.</div>
+
+  <!-- Layer 1: AI Engines -->
+  <div style="position:absolute;left:24px;right:24px;top:178px;height:120px;">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:#1C3040;border-radius:10px 0 0 10px;display:flex;flex-direction:column;justify-content:center;padding:0 18px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.6);margin-bottom:4px;">LAYER 1</div>
+      <div style="font-size:14px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;">AI Engines</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.55);margin-top:3px;">Think, write, reason</div>
+    </div>
+    <div style="position:absolute;left:168px;right:0;top:0;bottom:0;background:white;border-radius:0 10px 10px 0;display:flex;align-items:center;gap:0;padding:0 16px;gap:14px;">
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">ChatGPT</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">General purpose · Images</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Gemini</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Workspace · Productivity</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:#F5E800;border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Claude</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.6);margin-top:2px;">Reasoning · Agentic tasks</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Midjourney / Firefly</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Image generation</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">ElevenLabs / Runway</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Voice &amp; video AI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 2: Automation/Linkers -->
+  <div style="position:absolute;left:24px;right:24px;top:312px;height:100px;">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:#1C3040;border-radius:10px 0 0 10px;display:flex;flex-direction:column;justify-content:center;padding:0 18px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.6);margin-bottom:4px;">LAYER 2</div>
+      <div style="font-size:14px;font-weight:900;color:#F5E800;font-family:Arial Black,Arial,sans-serif;">Linkers</div>
+      <div style="font-size:11px;color:rgba(237,232,224,.55);margin-top:3px;">Connect &amp; automate</div>
+    </div>
+    <div style="position:absolute;left:168px;right:0;top:0;bottom:0;background:white;border-radius:0 10px 10px 0;display:flex;align-items:center;padding:0 16px;gap:14px;">
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Make</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Workflow automation</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Zapier</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">App connectors</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">n8n</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Open-source flows</div>
+      </div>
+      <div style="flex:2;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Google Apps Script / APIs</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Custom integrations within Workspace</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 3: Creative tools -->
+  <div style="position:absolute;left:24px;right:24px;top:426px;height:100px;">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:#F5E800;border-radius:10px 0 0 10px;display:flex;flex-direction:column;justify-content:center;padding:0 18px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.5);margin-bottom:4px;">LAYER 3</div>
+      <div style="font-size:14px;font-weight:900;color:#1C3040;font-family:Arial Black,Arial,sans-serif;">Creative tools</div>
+      <div style="font-size:11px;color:rgba(28,48,64,.55);margin-top:3px;">Produce &amp; brand</div>
+    </div>
+    <div style="position:absolute;left:168px;right:0;top:0;bottom:0;background:white;border-radius:0 10px 10px 0;display:flex;align-items:center;padding:0 16px;gap:14px;">
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(245,232,0,.15);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Bannerbear</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Branded visual automation</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Adobe Express</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Quick branded assets</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Canva AI</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Templates + AI generation</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">Google Sites / Webflow</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">Landing pages</div>
+      </div>
+      <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(28,48,64,.04);border-radius:8px;">
+        <div style="font-size:13px;font-weight:900;color:#1C3040;">HeyGen / Synthesia</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.5);margin-top:2px;">AI video presenters</div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;right:24px;bottom:44px;font-size:11px;color:#1C3040;opacity:.4;font-style:italic;">This catalogue will evolve. The workshop will help identify which tools matter most for your use cases.</div>
+</div>
+
+<div class="slide" id="s-resources" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">RESOURCES</div></div>
+  <div style="position:absolute;left:42px;top:100px;font-family:Arial Black,Arial,sans-serif;font-size:34px;font-weight:900;color:#1C3040;">Go further — resources to explore</div>
+  <div style="position:absolute;left:42px;top:148px;font-size:13px;color:#1C3040;opacity:.5;">Real use cases, step-by-step tutorials and ready-to-use prompts — including marketing.</div>
+
+  <!-- Two primary links -->
+  <div style="position:absolute;left:24px;right:24px;top:186px;height:172px;display:flex;gap:16px;">
+    <a href="https://claude.com/resources/use-cases" target="_blank" rel="noopener" style="flex:1;text-decoration:none;background:#1C3040;border-radius:12px;padding:22px;position:relative;overflow:hidden;display:block;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:12px 12px 0 0;"></div>
+      <div style="position:absolute;top:18px;right:20px;font-size:20px;color:#F5E800;">↗</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(245,232,0,.7);margin-bottom:8px;">USE CASES</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;font-weight:900;color:#F5E800;margin-bottom:8px;">Real-world use cases</div>
+      <div style="font-size:13px;line-height:1.6;color:rgba(237,232,224,.78);">How teams across functions — including marketing — put AI to work, with concrete examples to draw inspiration from.</div>
+      <div style="position:absolute;bottom:18px;left:22px;font-size:11px;color:rgba(245,232,0,.85);font-weight:700;">claude.com/resources/use-cases</div>
+    </a>
+    <a href="https://claude.com/resources/tutorials" target="_blank" rel="noopener" style="flex:1;text-decoration:none;background:#F5E800;border-radius:12px;padding:22px;position:relative;overflow:hidden;display:block;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1C3040;border-radius:12px 12px 0 0;"></div>
+      <div style="position:absolute;top:18px;right:20px;font-size:20px;color:#1C3040;">↗</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(28,48,64,.55);margin-bottom:8px;">TUTORIALS</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;font-weight:900;color:#1C3040;margin-bottom:8px;">Hands-on tutorials</div>
+      <div style="font-size:13px;line-height:1.6;color:rgba(28,48,64,.78);">Step-by-step guides to build your skills — from prompting basics to building automated workflows.</div>
+      <div style="position:absolute;bottom:18px;left:22px;font-size:11px;color:#1C3040;font-weight:700;">claude.com/resources/tutorials</div>
+    </a>
+  </div>
+
+  <!-- Marketing picks -->
+  <div style="position:absolute;left:24px;right:24px;top:374px;bottom:48px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#1C3040;opacity:.4;margin-bottom:10px;">MARKETING PICKS · GO DEEPER</div>
+    <div style="display:flex;gap:14px;">
+      <a href="https://docs.claude.com/en/resources/prompt-library/library" target="_blank" rel="noopener" style="flex:1;text-decoration:none;background:white;border-radius:10px;padding:16px 16px;border-top:3px solid #F5E800;display:block;">
+        <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#1C3040;margin-bottom:4px;">Prompt Library ↗</div>
+        <div style="font-size:11.5px;line-height:1.55;color:rgba(28,48,64,.65);">Ready-made prompts to adapt for copy, SEO &amp; briefs.</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.45);margin-top:8px;">docs.claude.com/.../prompt-library</div>
+      </a>
+      <a href="https://claude.com/customers" target="_blank" rel="noopener" style="flex:1;text-decoration:none;background:white;border-radius:10px;padding:16px 16px;border-top:3px solid #F5E800;display:block;">
+        <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#1C3040;margin-bottom:4px;">Customer Stories ↗</div>
+        <div style="font-size:11.5px;line-height:1.55;color:rgba(28,48,64,.65);">How marketing teams ship faster with AI.</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.45);margin-top:8px;">claude.com/customers</div>
+      </a>
+      <a href="https://docs.claude.com" target="_blank" rel="noopener" style="flex:1;text-decoration:none;background:white;border-radius:10px;padding:16px 16px;border-top:3px solid #F5E800;display:block;">
+        <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;font-weight:900;color:#1C3040;margin-bottom:4px;">Claude Docs ↗</div>
+        <div style="font-size:11.5px;line-height:1.55;color:rgba(28,48,64,.65);">Prompting best practices &amp; how-to guides.</div>
+        <div style="font-size:10px;color:rgba(28,48,64,.45);margin-top:8px;">docs.claude.com</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s11" style="background:#F5E800;">
+  <div class="footer" style="background:#1C3040;"><span style="color:#8FA0AD;">© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div style="position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:28px;letter-spacing:-.5px;">Fortidia</div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 80px 40px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(28,48,64,.45);margin-bottom:16px;">WORKSHOP</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:64px;font-weight:900;color:#1C3040;line-height:1.05;">Your Turn</div>
+      <div style="width:120px;height:4px;background:#1C3040;border-radius:2px;margin-top:24px;margin-bottom:20px;opacity:.25;"></div>
+      <div style="font-size:18px;color:rgba(28,48,64,.7);max-width:640px;line-height:1.65;">10 min to define your use case.<br>20 min to pitch it to the group.<br>Together we build the <strong style="color:#1C3040;">Marketing AI H2 roadmap.</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s12" style="background:#EDE8E0;">
+  <div class="al"></div>
+  <div class="footer"><span>© 2026 Fortidia. This document contains confidential information. Reproduction and distribution are not authorized.</span></div>
+  <div class="logo-dk">Fortidia</div>
+  <div style="position:absolute;left:42px;top:52px;"><div class="tl"></div><div class="tt">THE 360° VISION</div></div>
+  <div style="position:absolute;left:42px;top:100px;font-family:Arial Black,Arial,sans-serif;font-size:34px;font-weight:900;color:#1C3040;">From product to market — AI at every step</div>
+  <div style="position:absolute;left:42px;top:148px;font-size:13px;color:#1C3040;opacity:.5;">One product. A complete AI-powered go-to-market. Sky is the limit.</div>
+
+  <!-- Flow arrows -->
+  <div style="position:absolute;left:24px;right:24px;top:178px;bottom:50px;display:flex;align-items:center;gap:0;">
+
+    <!-- Step 1 -->
+    <div style="flex:1;background:#1C3040;border-radius:10px;padding:16px 14px;height:380px;display:flex;flex-direction:column;gap:8px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">STEP 1</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#F5E800;line-height:1.2;">Market &amp;<br>Competitive<br>Intelligence</div>
+      <div style="width:30px;height:2px;background:rgba(245,232,0,.3);border-radius:1px;"></div>
+      <div style="font-size:11px;color:rgba(237,232,224,.65);line-height:1.55;">Deep research on the market, competitors, pricing and positioning</div>
+      <div style="margin-top:auto;background:rgba(245,232,0,.12);border-radius:6px;padding:6px 8px;font-size:10px;color:#F5E800;">AI: research &amp; synthesis</div>
+    </div>
+
+    <div style="width:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#1C3040;opacity:.25;">→</div>
+
+    <!-- Step 2 -->
+    <div style="flex:1;background:white;border-radius:10px;padding:16px 14px;height:380px;display:flex;flex-direction:column;gap:8px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">STEP 2</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;line-height:1.2;">USPs &amp;<br>Positioning</div>
+      <div style="width:30px;height:2px;background:rgba(28,48,64,.15);border-radius:1px;"></div>
+      <div style="font-size:11px;color:rgba(28,48,64,.65);line-height:1.55;">Define key differentiators, value proposition and audience targeting per market</div>
+      <div style="margin-top:auto;background:rgba(28,48,64,.06);border-radius:6px;padding:6px 8px;font-size:10px;color:rgba(28,48,64,.6);">AI: brief &amp; positioning</div>
+    </div>
+
+    <div style="width:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#1C3040;opacity:.25;">→</div>
+
+    <!-- Step 3 -->
+    <div style="flex:1;background:white;border-radius:10px;padding:16px 14px;height:380px;display:flex;flex-direction:column;gap:8px;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">STEP 3</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;font-weight:900;color:#1C3040;line-height:1.2;">Creative Axis &amp;<br>Tone of Voice</div>
+      <div style="width:30px;height:2px;background:rgba(28,48,64,.15);border-radius:1px;"></div>
+      <div style="font-size:11px;color:rgba(28,48,64,.65);line-height:1.55;">Define the creative direction, messaging pillars and brand voice coherent with each market</div>
+      <div style="margin-top:auto;background:rgba(28,48,64,.06);border-radius:6px;padding:6px 8px;font-size:10px;color:rgba(28,48,64,.6);">AI: creative strategy</div>
+    </div>
+
+    <div style="width:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#1C3040;opacity:.25;">→</div>
+
+    <!-- Step 4: Production streams -->
+    <div style="flex:2;height:380px;display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);padding-left:4px;">STEP 4 — PRODUCTION STREAMS</div>
+      <div style="flex:1;background:#F5E800;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;">
+        <div style="font-size:18px;">🎨</div>
+        <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;color:#1C3040;">Visual Assets</div><div style="font-size:10px;color:rgba(28,48,64,.6);margin-top:2px;">Flyers · Banners · Social · Posters · A/B variants</div></div>
+      </div>
+      <div style="flex:1;background:white;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;">
+        <div style="font-size:18px;">🌐</div>
+        <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;color:#1C3040;">Web &amp; Digital</div><div style="font-size:10px;color:rgba(28,48,64,.6);margin-top:2px;">Landing pages · SEO content · DEM · Product pages</div></div>
+      </div>
+      <div style="flex:1;background:white;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;">
+        <div style="font-size:18px;">📄</div>
+        <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;color:#1C3040;">Print &amp; Sales Enablement</div><div style="font-size:10px;color:rgba(28,48,64,.6);margin-top:2px;">Brochures · Flyers · Presentations · Pitch decks</div></div>
+      </div>
+      <div style="flex:1;background:white;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;">
+        <div style="font-size:18px;">🎬</div>
+        <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;font-weight:900;color:#1C3040;">Video &amp; Motion</div><div style="font-size:10px;color:rgba(28,48,64,.6);margin-top:2px;">Short videos · Reels · AI-generated testimonials</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div>
+<div id="nav">
+  <button onclick="go(-1)">← Prev</button>
+  <span id="counter">1 / 15</span>
+  <button onclick="go(1)">Next →</button>
+  <button id="fullbtn" onclick="toggleFull()">⛶</button>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0;
+function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
+function go(d){show(cur+d);}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key.toLowerCase()==='f')toggleFull();
+});
+function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
+const stage=document.getElementById('stage');
+function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
+window.addEventListener('resize',resize);resize();
+show(0);
+</script></body></html>
