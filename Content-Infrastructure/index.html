@@ -198,7 +198,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div class="box" style="position:absolute;left:320px;top:212px;width:240px;height:120px;background:#F5E800;color:#1C3040;">
     <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;">SINGLE SOURCE OF TRUTH</div>
     <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:5px 0 6px;line-height:1.2;">Centre Data Layer</div>
-    <div style="font-size:11px;opacity:.8;line-height:1.5;">One record per centre: NAP, hours, services, contracts, photos.</div>
+    <div style="font-size:11px;opacity:.8;line-height:1.5;">One record per centre: NAP, hours, services, photos.</div>
   </div>
 
   <!-- fan-out 3 -->
@@ -210,7 +210,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
       <div style="font-size:20px;">📍</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">YEXT sync</div><div style="font-size:11px;opacity:.65;">Google Business Profile, Maps &amp; directories — same data.</div></div>
     </div>
     <div class="box" style="background:#fff;color:#1C3040;display:flex;gap:12px;align-items:center;padding:12px 14px;">
-      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Mini back-office provisioned</div><div style="font-size:11px;opacity:.65;">Scoped access for that centre — photos, text, hours, contracts.</div></div>
+      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Mini back-office provisioned</div><div style="font-size:11px;opacity:.65;">Local content (photos, text, hours) + internal MBE contract signing.</div></div>
     </div>
   </div>
   <div style="position:absolute;left:565px;top:255px;font-size:20px;color:#1C3040;opacity:.3;">&rarr;</div>
@@ -218,7 +218,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <!-- write-back loop -->
   <div style="position:absolute;left:60px;top:392px;right:60px;background:rgba(28,48,64,.05);border-radius:10px;padding:14px 18px;">
     <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1C3040;opacity:.55;margin-bottom:6px;">THE WRITE-BACK LOOP</div>
-    <div style="font-size:12.5px;color:#1C3040;line-height:1.6;">Franchisee edits in the back-office &rarr; written back to the <b>Centre Data Layer</b> &rarr; the page re-renders &amp; YEXT re-syncs. Franchisees never touch Git; corporate never hand-edits local pages. <b>Each side owns its own plane.</b></div>
+    <div style="font-size:12.5px;color:#1C3040;line-height:1.6;">Franchisee <b>content edits</b> (photos, text, hours) &rarr; written back to the <b>Centre Data Layer</b> &rarr; the page re-renders &amp; YEXT re-syncs. Franchisees never touch Git; corporate never hand-edits local pages. <b>Each side owns its own plane.</b></div>
   </div>
   <div style="position:absolute;left:60px;top:474px;font-size:11px;color:#1C3040;opacity:.45;">Result: structured data &amp; an indexable local footprint are produced automatically — exactly the two things the audit found missing.</div>
 </div>
@@ -227,32 +227,33 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div class="slide" id="s5" style="background:#1C3040;">
   <div class="footer footer-y"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
   <div class="logo-yw" style="position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:28px;">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w">SMART LOCAL</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:42px;color:#fff;">Contracts become content</div>
-  <div style="position:absolute;left:60px;top:166px;width:640px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;">The mini back-office already lets centres sign MBE products — Safevalue, Auction, and more. Treat each signature as a <b style="color:#F5E800;">data flag</b>, and the SEO writes itself.</div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w">THE MINI BACK-OFFICE</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:42px;color:#fff;">Two jobs — one feeds the site</div>
+  <div style="position:absolute;left:60px;top:166px;width:900px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;">When a centre's local page is created, its franchisee gets a scoped mini back-office. Two distinct purposes — and only one of them touches the website.</div>
 
-  <!-- chain -->
-  <div style="position:absolute;left:60px;top:262px;width:240px;background:rgba(255,255,255,.06);border-radius:10px;padding:18px;">
-    <div style="font-size:26px;">✍️</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:#F5E800;margin:10px 0 6px;">Centre signs<br>MBE Auction</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;">In its mini back-office.</div>
-  </div>
-  <div style="position:absolute;left:312px;top:330px;font-size:22px;color:rgba(245,232,0,.5);">&rarr;</div>
-  <div style="position:absolute;left:352px;top:262px;width:240px;background:rgba(245,232,0,.12);border-radius:10px;padding:18px;">
-    <div style="font-size:26px;">🚩</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:#F5E800;margin:10px 0 6px;">Data flag set</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;">On that centre's record in the Data Layer.</div>
-  </div>
-  <div style="position:absolute;left:604px;top:330px;font-size:22px;color:rgba(245,232,0,.5);">&rarr;</div>
-  <div style="position:absolute;left:644px;top:262px;width:496px;background:#F5E800;border-radius:10px;padding:18px;color:#1C3040;">
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;margin-bottom:10px;">Three surfaces update — from one change</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-size:12.5px;line-height:1.4;">🏪 &nbsp;Local page surfaces the <b>Auction service block</b> + Service schema</div>
-      <div style="font-size:12.5px;line-height:1.4;">📍 &nbsp;YEXT adds the service to the Google Business Profile</div>
-      <div style="font-size:12.5px;line-height:1.4;">🔎 &nbsp;Eligible for local + AI-search results on that service</div>
+  <!-- LEFT: feeds the site -->
+  <div style="position:absolute;left:60px;top:236px;width:520px;height:300px;background:rgba(245,232,0,.10);border-radius:12px;padding:22px 24px;border-left:5px solid #F5E800;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#F5E800;">FEEDS THE SITE</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 14px;">Local content edits</div>
+    <div style="display:flex;gap:18px;margin-bottom:16px;">
+      <div style="color:rgba(255,255,255,.85);font-size:13px;">📷 Photos</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;">✏️ Text</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;">🕒 Opening hours</div>
     </div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6;">Written back to the <b style="color:#F5E800;">Centre Data Layer</b> → the local page re-renders and YEXT re-syncs. This is the local content loop.</div>
+    <div style="margin-top:16px;"><span class="tag" style="background:#F5E800;color:#1C3040;">PART OF THE CONTENT LOOP</span></div>
   </div>
-  <div style="position:absolute;left:60px;top:474px;right:60px;font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;">No one writes a page. No ticket to group IT. The centre's commercial reality and its digital footprint stay in lockstep — automatically, at network scale.</div>
+
+  <!-- RIGHT: internal only -->
+  <div style="position:absolute;left:620px;top:236px;width:520px;height:300px;background:rgba(255,255,255,.05);border-radius:12px;padding:22px 24px;border-left:5px solid rgba(255,255,255,.18);">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);">INTERNAL ONLY</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 14px;">MBE contract signing</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:14px;">The franchisee signs MBE products — Safevalue, Auction, and more — directly from the back-office.</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.6;">Stored in MBE's internal contracts. <b style="color:#fff;">Not a content or SEO trigger</b> — it stays inside the business.</div>
+    <div style="margin-top:16px;"><span class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);">INTERNAL — NOT SEO</span></div>
+  </div>
+
+  <div style="position:absolute;left:60px;top:556px;right:60px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6;">Keep the lanes separate: the back-office is a <b style="color:rgba(255,255,255,.8);">local CMS</b> for the page and a <b style="color:rgba(255,255,255,.8);">signing tool</b> for MBE — distinct flows, distinct systems.</div>
 </div>
 
 <!-- ============ S6 — THE SHELL STACK ============ -->
