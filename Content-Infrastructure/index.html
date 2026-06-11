@@ -207,7 +207,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
       <div style="font-size:20px;">🏪</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Local page generated</div><div style="font-size:11px;opacity:.65;">Templated, indexable, with LocalBusiness schema.</div></div>
     </div>
     <div class="box" style="background:#fff;color:#1C3040;display:flex;gap:12px;align-items:center;padding:12px 14px;">
-      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Mini back-office provisioned</div><div style="font-size:11px;opacity:.65;">Local content (photos, text, hours) + internal MBE contract signing.</div></div>
+      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Local content editor provisioned</div><div style="font-size:11px;opacity:.65;">Franchisee edits only the public page — photos, text &amp; hours.</div></div>
     </div>
   </div>
   <div style="position:absolute;left:565px;top:255px;font-size:20px;color:#1C3040;opacity:.3;">&rarr;</div>
@@ -220,37 +220,42 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div style="position:absolute;left:60px;top:474px;right:60px;font-size:11px;color:#1C3040;opacity:.45;line-height:1.5;">Result: structured data &amp; an indexable local footprint are produced automatically — exactly the two things the audit found missing. <i>(Google Business listings are driven by the franchisee CRM on its own track — outside this architecture.)</i></div>
 </div>
 
-<!-- ============ S5 — CONTRACTS BECOME CONTENT ============ -->
+<!-- ============ S5 — END-USER FIRST / DECOUPLE CONTRACTS ============ -->
 <div class="slide" id="s5" style="background:#1C3040;">
   <div class="footer footer-y"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
   <div class="logo-yw" style="position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:28px;">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w">THE MINI BACK-OFFICE</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:42px;color:#fff;">Two jobs — one feeds the site</div>
-  <div style="position:absolute;left:60px;top:166px;width:900px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;">When a centre's local page is created, its franchisee gets a scoped mini back-office. Two distinct purposes — and only one of them touches the website.</div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w">END-USER FIRST</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;color:#fff;">The site serves the visitor — nothing else</div>
+  <div style="position:absolute;left:60px;top:160px;width:1020px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;">Anything internal — contracts, enrollment, paperwork — has no place on the public website. Give it a clean track of its own.</div>
 
-  <!-- LEFT: feeds the site -->
-  <div style="position:absolute;left:60px;top:236px;width:520px;height:300px;background:rgba(245,232,0,.10);border-radius:12px;padding:22px 24px;border-left:5px solid #F5E800;">
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#F5E800;">FEEDS THE SITE</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 14px;">Local content edits</div>
-    <div style="display:flex;gap:18px;margin-bottom:16px;">
+  <!-- LEFT: on the site (end-user) -->
+  <div style="position:absolute;left:60px;top:226px;width:520px;height:310px;background:rgba(245,232,0,.10);border-radius:12px;padding:22px 24px;border-left:5px solid #F5E800;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#F5E800;">ON THE SITE — END-USER</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;">Local content only</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:14px;">The franchisee edits only what the visitor sees:</div>
+    <div style="display:flex;gap:18px;margin-bottom:14px;">
       <div style="color:rgba(255,255,255,.85);font-size:13px;">📷 Photos</div>
       <div style="color:rgba(255,255,255,.85);font-size:13px;">✏️ Text</div>
       <div style="color:rgba(255,255,255,.85);font-size:13px;">🕒 Opening hours</div>
     </div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6;">Written back to the <b style="color:#F5E800;">Centre Data Layer</b> → the local page re-renders. This is the local content loop.</div>
-    <div style="margin-top:16px;"><span class="tag" style="background:#F5E800;color:#1C3040;">PART OF THE CONTENT LOOP</span></div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6;">Written back to the <b style="color:#F5E800;">Centre Data Layer</b> → the public local page re-renders. Fast, indexable, visitor-centric.</div>
+    <div style="margin-top:14px;"><span class="tag" style="background:#F5E800;color:#1C3040;">SERVES THE VISITOR</span></div>
   </div>
 
-  <!-- RIGHT: internal only -->
-  <div style="position:absolute;left:620px;top:236px;width:520px;height:300px;background:rgba(255,255,255,.05);border-radius:12px;padding:22px 24px;border-left:5px solid rgba(255,255,255,.18);">
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);">INTERNAL ONLY</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 14px;">MBE contract signing</div>
-    <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:14px;">The franchisee signs MBE products — Safevalue, Auction, and more — directly from the back-office.</div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.6;">Stored in MBE's internal contracts. <b style="color:#fff;">Not a content or SEO trigger</b> — it stays inside the business.</div>
-    <div style="margin-top:16px;"><span class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);">INTERNAL — NOT SEO</span></div>
+  <!-- RIGHT: off the site (internal ops) -->
+  <div style="position:absolute;left:620px;top:226px;width:520px;height:310px;background:rgba(255,255,255,.05);border-radius:12px;padding:22px 24px;border-left:5px solid rgba(255,255,255,.18);">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);">OFF THE SITE — INTERNAL OPS</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;">Franchisee operations</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:12px;">Contracts (Safevalue, Auction…) run on dedicated tools — decoupled from the website:</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.35;">
+      <div>✍️ &nbsp;<b>Sign</b> — e-signature <span style="opacity:.6;">(DocuSign / Yousign)</span></div>
+      <div>🗄️ &nbsp;<b>Archive</b> — document vault <span style="opacity:.6;">(DocuWare)</span></div>
+      <div>📇 &nbsp;<b>Track</b> — franchisee CRM <span style="opacity:.6;">(system of record)</span></div>
+    </div>
+    <div style="margin-top:14px;"><span class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);">ZERO COUPLING TO THE SITE</span></div>
   </div>
 
-  <div style="position:absolute;left:60px;top:556px;right:60px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6;">Keep the lanes separate: the back-office is a <b style="color:rgba(255,255,255,.8);">local CMS</b> for the page and a <b style="color:rgba(255,255,255,.8);">signing tool</b> for MBE — distinct flows, distinct systems.</div>
+  <div style="position:absolute;left:60px;top:558px;right:60px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6;">One rule keeps it clean: the website exists for the <b style="color:rgba(255,255,255,.85);">end user</b>; the business runs on its <b style="color:rgba(255,255,255,.85);">own rails</b>. No internal feature ever rides on the public site.</div>
 </div>
 
 <!-- ============ S6 — THE SHELL STACK ============ -->
