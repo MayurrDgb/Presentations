@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="mbe">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formation Réseaux Sociaux — MBE France</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== THEME TOKENS ===================== */
+:root,[data-theme="mbe"]{
+  --bg:#FFFFFF; --ink:#221E1F; --muted:#76767A; --soft:#939598;
+  --accent:#E2001A;        /* strong fill accent */
+  --accent-tx:#E2001A;     /* accent that reads on light bg */
+  --on-accent:#FFFFFF;
+  --panel:#F4F4F5; --line:#E4E4E6;
+  --divider-bg:#221E1F; --divider-tx:#FFFFFF;
+  --footer-bg:#E2001A; --footer-tx:#FFFFFF;
+  --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+}
+[data-theme="fortidia"]{
+  --bg:#EDE8E0; --ink:#1C3040; --muted:rgba(28,48,64,.55); --soft:rgba(28,48,64,.4);
+  --accent:#F5E800;
+  --accent-tx:#1C3040;
+  --on-accent:#1C3040;
+  --panel:rgba(28,48,64,.05); --line:rgba(28,48,64,.12);
+  --divider-bg:#1C3040; --divider-tx:#FFFFFF;
+  --footer-bg:#1C3040; --footer-tx:#8FA0AD;
+}
+/* ===================== BASE ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ubuntu,Arial,sans-serif;color-scheme:light;}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;background:var(--bg);}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:999;transition:width .3s ease;pointer-events:none;}
+.slide{position:absolute;inset:0;display:none;background:var(--bg);}
+.slide.active{display:block;}
+.slide.dark{background:var(--divider-bg);}
+
+/* brand mark (top-right) */
+.brand{position:absolute;top:30px;right:38px;width:118px;height:64px;background:var(--logo) center/contain no-repeat;z-index:5;}
+.slide.dark .brand{background-image:var(--logo-neg);}
+.brand-ft{display:none;font-weight:700;font-size:26px;letter-spacing:-.5px;color:var(--ink);position:absolute;top:34px;right:38px;z-index:5;}
+.slide.dark .brand-ft{color:#fff;}
+[data-theme="fortidia"] .brand{background-image:none;}
+[data-theme="fortidia"] .brand-ft{display:block;}
+
+/* footer */
+.footer{position:absolute;left:0;right:0;bottom:0;height:30px;background:var(--footer-bg);display:flex;align-items:center;justify-content:center;}
+.footer span{font-size:8.5px;color:var(--footer-tx);letter-spacing:.2px;opacity:.92;}
+.footer .pg{position:absolute;right:18px;font-weight:700;font-size:10px;color:var(--footer-tx);}
+
+/* typography helpers */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--accent-tx);}
+.eyebrow .ln{display:inline-block;width:34px;height:3px;background:var(--accent);vertical-align:middle;margin-right:12px;border-radius:2px;}
+h1.t{font-weight:700;font-size:46px;color:var(--ink);line-height:1.08;letter-spacing:-.5px;}
+.sub{font-weight:400;font-size:18px;color:var(--accent-tx);}
+.lead{font-size:14px;color:var(--muted);line-height:1.6;}
+.src{font-size:9.5px;color:var(--soft);font-style:italic;}
+
+/* head block used on content slides */
+.head{position:absolute;left:60px;top:46px;}
+.head .ttl{font-weight:700;font-size:38px;color:var(--ink);line-height:1.05;letter-spacing:-.5px;margin-top:10px;}
+.head .stl{font-weight:400;font-size:17px;color:var(--accent-tx);margin-top:4px;}
+
+/* KPI cards */
+.kpis{position:absolute;left:60px;right:60px;top:300px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;}
+.kpi::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent);}
+.kpi .v{font-weight:700;font-size:34px;color:var(--accent-tx);line-height:1;}
+.kpi .k{font-size:13px;font-weight:500;color:var(--ink);margin-top:10px;}
+.kpi .n{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4;}
+
+/* agenda */
+.agenda{position:absolute;left:60px;right:60px;top:170px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ag{display:flex;align-items:center;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;position:relative;overflow:hidden;}
+.ag .no{font-weight:700;font-size:22px;color:var(--accent-tx);min-width:34px;}
+.ag .lb{font-weight:700;font-size:17px;color:var(--ink);}
+.ag .ds{font-size:12px;color:var(--muted);margin-top:2px;}
+.ag .bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent);}
+
+/* divider slide */
+.dv-idx{position:absolute;left:56px;top:120px;font-weight:700;font-size:150px;color:var(--accent);opacity:.16;line-height:1;}
+.dv-eye{position:absolute;left:64px;top:330px;font-size:12px;font-weight:700;letter-spacing:4px;color:var(--accent);}
+.dv-ttl{position:absolute;left:60px;top:356px;right:80px;font-weight:700;font-size:50px;color:var(--divider-tx);line-height:1.05;letter-spacing:-.5px;}
+.dv-sub{position:absolute;left:64px;top:452px;right:120px;font-size:16px;color:rgba(255,255,255,.6);line-height:1.5;}
+
+/* two-column generic */
+.col2{position:absolute;left:60px;right:60px;top:150px;bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:34px;}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;}
+.panel h3{font-weight:700;font-size:16px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.panel h3::before{content:"";width:14px;height:14px;border-radius:4px;background:var(--accent);}
+
+/* bar viz */
+.bars{display:flex;flex-direction:column;gap:11px;}
+.bars.tight{gap:8px;}
+.bar-row{display:grid;grid-template-columns:120px 1fr 56px;align-items:center;gap:12px;}
+.bar-row .bl{font-size:12.5px;color:var(--ink);font-weight:500;}
+.bar-row .bt{height:14px;background:var(--line);border-radius:8px;overflow:hidden;}
+.bar-row .bt i{display:block;height:100%;background:var(--accent);border-radius:8px;}
+.bar-row .bv{font-size:12.5px;font-weight:700;color:var(--accent-tx);text-align:right;}
+
+/* mini table */
+table.mb{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.mb th,table.mb td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);}
+table.mb th{font-weight:700;color:var(--ink);font-size:11px;letter-spacing:.4px;}
+table.mb td{color:var(--muted);}
+table.mb td.k{color:var(--ink);font-weight:500;}
+table.mb td.v{color:var(--accent-tx);font-weight:700;text-align:right;}
+table.mb tr:last-child td{border-bottom:none;}
+
+/* bullets / callouts */
+.kpts{display:flex;flex-direction:column;gap:12px;}
+.kpt{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--ink);line-height:1.5;}
+.kpt::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px;}
+.kpt b{color:var(--accent-tx);}
+
+/* example post cards */
+.posts{position:absolute;left:60px;right:60px;top:150px;bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.post{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;}
+.post .ph{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent-tx);margin-bottom:4px;}
+.post .pt{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:12px;}
+.post .pb{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:14px 15px;font-size:11.5px;line-height:1.6;color:var(--ink);white-space:pre-line;flex:1;}
+.post .pm{font-size:10.5px;color:var(--muted);margin-top:11px;display:flex;align-items:center;gap:8px;}
+.post .pm::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);}
+
+/* cheat sheet table */
+.cs{position:absolute;left:54px;right:54px;top:148px;}
+table.cheat{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;}
+table.cheat th,table.cheat td{padding:6px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35;}
+table.cheat thead th{font-weight:700;font-size:12px;color:#fff;background:var(--divider-bg);}
+table.cheat thead th:first-child{background:var(--accent);color:var(--on-accent);}
+table.cheat td.crit{font-weight:700;color:var(--ink);background:var(--panel);}
+table.cheat td{color:var(--muted);}
+
+/* checklist + golden rule */
+.gold{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:20px 24px;}
+.gold .gt{font-weight:700;font-size:20px;color:var(--accent-tx);margin-bottom:8px;}
+.gold p{font-size:13px;color:var(--ink);line-height:1.6;}
+.chk h3{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:9px;}
+.chk h3::before{content:"✓";display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:700;}
+.chk ul{list-style:none;font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* thanks */
+.thx{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.thx .big{font-weight:700;font-size:64px;color:#fff;letter-spacing:-1px;}
+.thx .ln{width:90px;height:4px;background:var(--accent);border-radius:2px;margin:22px 0;}
+.thx .sm{font-size:15px;color:rgba(255,255,255,.6);}
+
+/* ===================== PHOTOS ===================== */
+.bg-photo{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;}
+.bg-tint{position:absolute;inset:0;z-index:0;}
+.bg-tint.cover{background:linear-gradient(110deg,var(--divider-bg) 0%,rgba(20,18,19,.82) 32%,rgba(20,18,19,.42) 66%,rgba(20,18,19,.52) 100%);}
+.bg-tint.center{background:linear-gradient(90deg,rgba(18,16,17,.72) 0%,rgba(18,16,17,.55) 100%);}
+.dv-photo{position:absolute;top:0;right:0;width:560px;height:100%;background-size:cover;background-position:center;z-index:0;}
+.dv-photo::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--divider-bg) 0%,rgba(0,0,0,.10) 46%,rgba(0,0,0,0) 100%),
+  linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 24%);}
+.slide.haspic .dv-ttl{right:600px;}
+.slide.haspic .dv-sub{right:620px;}
+
+/* ===================== NAV ===================== */
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.16);}
+#nav .toggle{border-color:rgba(255,255,255,.45);font-weight:700;min-width:74px;}
+#nav .toggle.theme{color:#E2001A;}
+[data-theme="fortidia"] #nav .toggle.theme{color:#F5E800;}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:50px;text-align:center;}
+#nav .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 2px;}
+#fullbtn{border:none!important;color:rgba(255,255,255,.55);font-size:17px;padding:2px 6px!important;}
+#fullbtn:hover{color:#fff;}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="deck"><div id="stage">
+
+<!-- ============ S0 — COVER ============ -->
+<div class="slide dark active">
+  <div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80')"></div>
+  <div class="bg-tint cover"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div style="position:absolute;left:64px;top:206px;" class="eyebrow" data-i18n="cover.eye">MBE FRANCE · 2026</div>
+  <div style="position:absolute;left:60px;top:236px;right:120px;font-weight:700;font-size:62px;color:var(--divider-tx);line-height:1.04;letter-spacing:-1px;" data-i18n="cover.title">Formation Réseaux Sociaux</div>
+  <div style="position:absolute;left:64px;top:392px;width:90px;height:4px;background:var(--accent);border-radius:2px;"></div>
+  <div style="position:absolute;left:64px;top:418px;right:200px;font-size:18px;color:rgba(255,255,255,.62);line-height:1.5;" data-i18n="cover.sub">Le guide complet pour développer la visibilité de votre centre</div>
+  <div style="position:absolute;left:64px;bottom:64px;font-size:13px;color:rgba(255,255,255,.4);" data-i18n="cover.author">Département Marketing MBE France · Destiné aux nouveaux franchisés</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">1</span></div>
+</div>
+
+<!-- ============ S1 — KPIS ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="kpi.eye">EN UN COUP D'ŒIL</span></div>
+    <div class="ttl" data-i18n="kpi.title">Les réseaux sociaux en 2026</div>
+    <div class="stl" data-i18n="kpi.sub">Pourquoi votre centre doit y être présent</div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:182px;" class="lead" data-i18n="kpi.lead">Les réseaux sociaux ne sont plus optionnels : ils sont devenus le premier canal de découverte des commerces locaux. Voici l'essentiel à retenir avant de se lancer.</div>
+  <div class="kpis">
+    <div class="kpi"><div class="v">5,79<span style="font-size:18px;"> Mds</span></div><div class="k" data-i18n="kpi.k1">Utilisateurs dans le monde</div><div class="n" data-i18n="kpi.n1">Données avril 2026 (+5,4 % sur 12 mois)</div></div>
+    <div class="kpi"><div class="v">77<span style="font-size:18px;">%</span></div><div class="k" data-i18n="kpi.k2">Pénétration en France</div><div class="n" data-i18n="kpi.n2">de la population — 51,5 M d'utilisateurs</div></div>
+    <div class="kpi"><div class="v">1h47</div><div class="k" data-i18n="kpi.k3">Temps quotidien moyen</div><div class="n" data-i18n="kpi.n3">par utilisateur en France</div></div>
+    <div class="kpi"><div class="v">89<span style="font-size:18px;">%</span></div><div class="k" data-i18n="kpi.k4">Des PME françaises</div><div class="n" data-i18n="kpi.n4">utilisent au moins un réseau social</div></div>
+  </div>
+  <div style="position:absolute;left:60px;bottom:42px;" class="src" data-i18n="kpi.src">* Projection basée sur la croissance moyenne observée de +4,8 %/an. Sources : Hootsuite, We Are Social, Médiamétrie 2025.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">2</span></div>
+</div>
+
+<!-- ============ S2 — AGENDA ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="ag.eye">AU PROGRAMME</span></div>
+    <div class="ttl" data-i18n="ag.title">Le parcours de la formation</div>
+  </div>
+  <div class="agenda">
+    <div class="ag"><div class="bar"></div><div class="no">01</div><div><div class="lb" data-i18n="ag.l1">Marché Global</div><div class="ds" data-i18n="ag.d1">Chiffres clés monde &amp; France</div></div></div>
+    <div class="ag"><div class="bar"></div><div class="no">02</div><div><div class="lb" data-i18n="ag.l2">META — Facebook &amp; Instagram</div><div class="ds" data-i18n="ag.d2">Audiences, usages, recommandations</div></div></div>
+    <div class="ag"><div class="bar"></div><div class="no">03</div><div><div class="lb" data-i18n="ag.l3">LinkedIn</div><div class="ds" data-i18n="ag.d3">Le réseau B2B par excellence</div></div></div>
+    <div class="ag"><div class="bar"></div><div class="no">04</div><div><div class="lb" data-i18n="ag.l4">Exemples de posts</div><div class="ds" data-i18n="ag.d4">Modèles prêts à adapter</div></div></div>
+    <div class="ag"><div class="bar"></div><div class="no">05</div><div><div class="lb" data-i18n="ag.l5">Analyse des performances</div><div class="ds" data-i18n="ag.d5">Que mesurer, quand s'inquiéter</div></div></div>
+    <div class="ag"><div class="bar"></div><div class="no">06</div><div><div class="lb" data-i18n="ag.l6">Cheat Sheet</div><div class="ds" data-i18n="ag.d6">Le mémo de référence</div></div></div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">3</span></div>
+</div>
+
+<!-- ============ S3 — DIVIDER 01 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">01</div>
+  <div class="dv-eye" data-i18n="d1.eye">SECTION 01</div>
+  <div class="dv-ttl" data-i18n="d1.title">Marché Global</div>
+  <div class="dv-sub" data-i18n="d1.sub">L'ampleur du phénomène, dans le monde et en France — et ce que cela signifie pour un commerce local.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">4</span></div>
+</div>
+
+<!-- ============ S4 — MARCHE : EVOLUTION ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="mg.eye">MARCHÉ GLOBAL</span></div>
+    <div class="ttl" data-i18n="mg.title">Une croissance qui ne s'arrête pas</div>
+    <div class="stl" data-i18n="mg.sub">Utilisateurs des réseaux sociaux dans le monde (en milliards)</div>
+  </div>
+  <div style="position:absolute;left:60px;top:188px;width:640px;">
+    <svg viewBox="0 0 720 260" style="width:100%;height:auto;">
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="40" y1="40" x2="700" y2="40"/><line x1="40" y1="100" x2="700" y2="100"/>
+        <line x1="40" y1="160" x2="700" y2="160"/><line x1="40" y1="220" x2="700" y2="220"/>
+      </g>
+      <polygon points="60,180 160,140 260,113 360,93 460,75 560,59 660,34 660,220 60,220" fill="var(--accent)" opacity="0.10"/>
+      <polyline points="60,180 160,140 260,113 360,93 460,75 560,59 660,34" fill="none" stroke="var(--accent)" stroke-width="3"/>
+      <g fill="var(--accent)">
+        <circle cx="60" cy="180" r="4.5"/><circle cx="160" cy="140" r="4.5"/><circle cx="260" cy="113" r="4.5"/>
+        <circle cx="360" cy="93" r="4.5"/><circle cx="460" cy="75" r="4.5"/><circle cx="560" cy="59" r="4.5"/><circle cx="660" cy="34" r="5.5"/>
+      </g>
+      <g fill="var(--ink)" font-size="12" font-weight="700" text-anchor="middle" font-family="Ubuntu,Arial">
+        <text x="60" y="168">3,6</text><text x="160" y="128">4,2</text><text x="260" y="101">4,6</text>
+        <text x="360" y="81">4,9</text><text x="460" y="63">5,17</text><text x="560" y="47">5,42</text><text x="660" y="22">5,79</text>
+      </g>
+      <g fill="var(--muted)" font-size="11" text-anchor="middle" font-family="Ubuntu,Arial">
+        <text x="60" y="240">2020</text><text x="160" y="240">2021</text><text x="260" y="240">2022</text>
+        <text x="360" y="240">2023</text><text x="460" y="240">2024</text><text x="560" y="240">2025</text><text x="660" y="240">2026</text>
+      </g>
+    </svg>
+  </div>
+  <div style="position:absolute;right:60px;top:200px;width:420px;" class="kpts">
+    <div class="kpt"><div><b>69,9 %</b> <span data-i18n="mg.p1">de la population mondiale est sur les réseaux sociaux.</span></div></div>
+    <div class="kpt"><div data-i18n="mg.p2">En France : <b>53 millions</b> d'utilisateurs, soit <b>79 %</b> de pénétration.</div></div>
+    <div class="kpt"><div data-i18n="mg.p3">Temps moyen : <b>1h47/jour</b> en France (2h23 dans le monde).</div></div>
+    <div class="kpt"><div data-i18n="mg.p4"><b>89 %</b> des PME françaises utilisent au moins un réseau social.</div></div>
+  </div>
+  <div style="position:absolute;left:60px;bottom:42px;" class="src" data-i18n="mg.src">Source : Hootsuite Digital Report 2025. * Projection 2026.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">5</span></div>
+</div>
+
+<!-- ============ S5 — MARCHE : PLATEFORMES ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="pf.eye">MARCHÉ GLOBAL</span></div>
+    <div class="ttl" data-i18n="pf.title">Où sont les utilisateurs ?</div>
+  </div>
+  <div class="col2" style="top:150px;">
+    <div class="panel">
+      <h3 data-i18n="pf.h1">Dans le monde (millions d'utilisateurs)</h3>
+      <div class="bars">
+        <div class="bar-row"><span class="bl">Facebook</span><div class="bt"><i style="width:100%"></i></div><span class="bv">3 030</span></div>
+        <div class="bar-row"><span class="bl">YouTube</span><div class="bt"><i style="width:82%"></i></div><span class="bv">2 491</span></div>
+        <div class="bar-row"><span class="bl">Instagram</span><div class="bt"><i style="width:66%"></i></div><span class="bv">2 000</span></div>
+        <div class="bar-row"><span class="bl">TikTok</span><div class="bt"><i style="width:52%"></i></div><span class="bv">1 582</span></div>
+        <div class="bar-row"><span class="bl">LinkedIn</span><div class="bt"><i style="width:33%"></i></div><span class="bv">1 000</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="pf.other">Autres</span><div class="bt"><i style="width:17%"></i></div><span class="bv">530</span></div>
+      </div>
+      <div class="src" style="margin-top:14px;">Source : Statista 2025, We Are Social</div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="pf.h2">En France (millions d'utilisateurs actifs)</h3>
+      <div class="bars">
+        <div class="bar-row"><span class="bl">Facebook</span><div class="bt"><i style="width:100%"></i></div><span class="bv">40,8</span></div>
+        <div class="bar-row"><span class="bl">Instagram</span><div class="bt"><i style="width:70%"></i></div><span class="bv">28,5</span></div>
+        <div class="bar-row"><span class="bl">LinkedIn</span><div class="bt"><i style="width:59%"></i></div><span class="bv">24,0</span></div>
+        <div class="bar-row"><span class="bl">TikTok</span><div class="bt"><i style="width:54%"></i></div><span class="bv">22,1</span></div>
+        <div class="bar-row"><span class="bl">X (Twitter)</span><div class="bt"><i style="width:37%"></i></div><span class="bv">15,2</span></div>
+      </div>
+      <div class="src" style="margin-top:14px;">Source : Médiamétrie 2025, Hootsuite France</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">6</span></div>
+</div>
+
+<!-- ============ S6 — DIVIDER 02 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1522125670776-3c7abb882bc2?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">02</div>
+  <div class="dv-eye" data-i18n="d2.eye">SECTION 02</div>
+  <div class="dv-ttl">META<span style="color:var(--accent);">.</span></div>
+  <div class="dv-sub" data-i18n="d2.sub">Facebook &amp; Instagram — la porte d'entrée incontournable pour la notoriété locale et l'engagement client.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">7</span></div>
+</div>
+
+<!-- ============ S7 — META : CHIFFRES + DEMO ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="me.eye">META · FRANCE</span></div>
+    <div class="ttl" data-i18n="me.title">Deux audiences complémentaires</div>
+  </div>
+  <div class="col2" style="top:150px;">
+    <div class="panel">
+      <h3 data-i18n="me.h1">Chiffres clés France</h3>
+      <table class="mb">
+        <tr><td class="k">Facebook</td><td class="v">40,8 M</td></tr>
+        <tr><td class="k">Instagram</td><td class="v">28,5 M</td></tr>
+        <tr><td class="k" data-i18n="me.t1">Temps/jour Facebook</td><td class="v">34 min</td></tr>
+        <tr><td class="k" data-i18n="me.t2">Temps/jour Instagram</td><td class="v">51 min</td></tr>
+      </table>
+      <div style="margin-top:16px;" class="kpts">
+        <div class="kpt"><div data-i18n="me.p1"><b>Facebook</b> — audience mature : 43 % ont plus de 45 ans.</div></div>
+        <div class="kpt"><div data-i18n="me.p2"><b>Instagram</b> — audience jeune : 64 % ont moins de 35 ans.</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="me.h2">Répartition par âge (France)</h3>
+      <table class="mb">
+        <thead><tr><th data-i18n="me.age">Âge</th><th style="text-align:right">Facebook</th><th style="text-align:right">Instagram</th></tr></thead>
+        <tr><td class="k">18–24</td><td class="v">12 %</td><td class="v">31 %</td></tr>
+        <tr><td class="k">25–34</td><td class="v">24 %</td><td class="v">33 %</td></tr>
+        <tr><td class="k">35–44</td><td class="v">19 %</td><td class="v">16 %</td></tr>
+        <tr><td class="k">45–54</td><td class="v">18 %</td><td class="v">11 %</td></tr>
+        <tr><td class="k">55–64</td><td class="v">15 %</td><td class="v">6 %</td></tr>
+        <tr><td class="k">65+</td><td class="v">12 %</td><td class="v">3 %</td></tr>
+      </table>
+      <div class="src" style="margin-top:12px;">Source : Meta Audience Insights 2025</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">8</span></div>
+</div>
+
+<!-- ============ S8 — META : USAGES + RECO ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="mu.eye">META · POUR VOTRE CENTRE</span></div>
+    <div class="ttl" data-i18n="mu.title">Usages pros &amp; recommandations</div>
+  </div>
+  <div class="col2" style="top:150px;">
+    <div class="panel">
+      <h3 data-i18n="mu.h1">Usages professionnels (% des entreprises)</h3>
+      <div class="bars tight">
+        <div class="bar-row"><span class="bl" data-i18n="mu.u1">Notoriété locale</span><div class="bt"><i style="width:78%"></i></div><span class="bv">78 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="mu.u2">Engagement client</span><div class="bt"><i style="width:65%"></i></div><span class="bv">65 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="mu.u3">Service client</span><div class="bt"><i style="width:52%"></i></div><span class="bv">52 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="mu.u4">Génération de leads</span><div class="bt"><i style="width:48%"></i></div><span class="bv">48 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="mu.u5">Ventes directes</span><div class="bt"><i style="width:34%"></i></div><span class="bv">34 %</span></div>
+      </div>
+      <div class="src" style="margin-top:14px;">Source : Meta for Business 2025, BPI France</div>
+    </div>
+    <div class="panel" style="background:transparent;border:none;padding:0;">
+      <div class="panel" style="margin-bottom:14px;">
+        <h3 data-i18n="mu.r1t">Facebook — la recette</h3>
+        <div class="lead" style="color:var(--ink);" data-i18n="mu.r1b">Page pro locale · 3–4 posts/semaine · Facebook Ads dans un rayon de 10–20 km · messagerie activée. Format star : les <b>Reels</b>.</div>
+      </div>
+      <div class="panel">
+        <h3 data-i18n="mu.r2t">Instagram — la recette</h3>
+        <div class="lead" style="color:var(--ink);" data-i18n="mu.r2b">Contenu visuel soigné · Reels de 15–30 s · Stories quotidiennes · hashtags locaux. Les Reels ont une portée <b>×3</b> vs les posts.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">9</span></div>
+</div>
+
+<!-- ============ S9 — DIVIDER 03 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">03</div>
+  <div class="dv-eye" data-i18n="d3.eye">SECTION 03</div>
+  <div class="dv-ttl">LinkedIn</div>
+  <div class="dv-sub" data-i18n="d3.sub">Le réseau des décideurs. Là où se jouent les opportunités B2B et la crédibilité professionnelle de votre centre.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">10</span></div>
+</div>
+
+<!-- ============ S10 — LINKEDIN : CHIFFRES ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="li.eye">LINKEDIN · FRANCE</span></div>
+    <div class="ttl" data-i18n="li.title">Audience &amp; objectifs B2B</div>
+  </div>
+  <div class="col2" style="top:150px;">
+    <div class="panel">
+      <h3 data-i18n="li.h1">Audience (composition)</h3>
+      <div class="bars tight">
+        <div class="bar-row"><span class="bl" data-i18n="li.a1">Cadres intermédiaires</span><div class="bt"><i style="width:100%"></i></div><span class="bv">34 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.a2">Cadres supérieurs</span><div class="bt"><i style="width:82%"></i></div><span class="bv">28 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.a3">Entrepreneurs</span><div class="bt"><i style="width:53%"></i></div><span class="bv">18 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.a4">Salariés</span><div class="bt"><i style="width:44%"></i></div><span class="bv">15 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.a5">Autres</span><div class="bt"><i style="width:15%"></i></div><span class="bv">5 %</span></div>
+      </div>
+      <div style="margin-top:14px;" class="kpts">
+        <div class="kpt"><div data-i18n="li.x1"><b>24 M</b> d'utilisateurs, dont <b>8,5 M</b> de décideurs B2B.</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="li.h2">Objectifs marketing B2B (% des entreprises)</h3>
+      <div class="bars tight">
+        <div class="bar-row"><span class="bl" data-i18n="li.o1">Notoriété de marque</span><div class="bt"><i style="width:82%"></i></div><span class="bv">82 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.o2">Génération de leads</span><div class="bt"><i style="width:76%"></i></div><span class="bv">76 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.o3">Recrutement</span><div class="bt"><i style="width:68%"></i></div><span class="bv">68 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.o4">Thought leadership</span><div class="bt"><i style="width:54%"></i></div><span class="bv">54 %</span></div>
+        <div class="bar-row"><span class="bl" data-i18n="li.o5">Ventes directes</span><div class="bt"><i style="width:42%"></i></div><span class="bv">42 %</span></div>
+      </div>
+      <div class="src" style="margin-top:14px;">Source : LinkedIn B2B Marketing Benchmark 2025</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">11</span></div>
+</div>
+
+<!-- ============ S11 — LINKEDIN : POINTS CLES ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="lk.eye">LINKEDIN · À RETENIR</span></div>
+    <div class="ttl" data-i18n="lk.title">Ce qui fait la différence</div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:200px;display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;">
+    <div class="kpt"><div data-i18n="lk.p1"><b>62 %</b> des cadres supérieurs y sont actifs.</div></div>
+    <div class="kpt"><div data-i18n="lk.p2"><b>80 %</b> des leads B2B issus des réseaux sociaux viennent de LinkedIn.</div></div>
+    <div class="kpt"><div data-i18n="lk.p3">Taux d'engagement moyen : <b>2,1 %</b> — portée organique <b>15 %</b>.</div></div>
+    <div class="kpt"><div data-i18n="lk.p4">Meilleur moment pour publier : <b>mardi à jeudi, 8h–10h</b>.</div></div>
+    <div class="kpt"><div data-i18n="lk.p5">Format star : les <b>carrousels PDF</b> — jusqu'à <b>10×</b> plus d'engagement.</div></div>
+    <div class="kpt"><div data-i18n="lk.p6">Objectif réaliste : <b>10 à 20</b> nouvelles connexions B2B par mois.</div></div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">12</span></div>
+</div>
+
+<!-- ============ S12 — DIVIDER 04 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1570101945621-945409a6370f?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">04</div>
+  <div class="dv-eye" data-i18n="d4.eye">SECTION 04</div>
+  <div class="dv-ttl" data-i18n="d4.title">Exemples de posts</div>
+  <div class="dv-sub" data-i18n="d4.sub">Des modèles concrets, prêts à adapter à votre centre. Remplacez simplement les [crochets].</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">13</span></div>
+</div>
+
+<!-- ============ S13 — POSTS FACEBOOK ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="fb.eye">EXEMPLES · FACEBOOK</span></div>
+    <div class="ttl" data-i18n="fb.title">Facebook — notoriété &amp; proximité</div>
+  </div>
+  <div class="posts">
+    <div class="post">
+      <div class="ph" data-i18n="fb.p1h">POST 1 — SERVICE DU JOUR</div>
+      <div class="pt" data-i18n="fb.p1t">Mettre en avant un service</div>
+      <div class="pb" data-i18n="fb.p1b">🎁 Besoin d'envoyer un colis urgent ?
+Chez MBE [Ville], on s'occupe de tout : emballage professionnel, choix du transporteur et suivi en temps réel.
+📦 Passez nous voir au [Adresse] ou appelez-nous au [Téléphone]
+#MBE[Ville] #ExpéditionColis #ServiceLocal</div>
+      <div class="pm" data-i18n="fb.p1m">Lun–Mer 9h–11h · Texte + Photo</div>
+    </div>
+    <div class="post">
+      <div class="ph" data-i18n="fb.p2h">POST 2 — TÉMOIGNAGE CLIENT</div>
+      <div class="pt" data-i18n="fb.p2t">Valoriser un avis 5 étoiles</div>
+      <div class="pb" data-i18n="fb.p2b">⭐ Merci Sophie pour cet avis 5 étoiles !
+« Service impeccable ! Livré en 48h pile. Je recommande ! »
+Votre satisfaction est notre priorité 💙</div>
+      <div class="pm" data-i18n="fb.p2m">Jeu–Ven 14h–16h · Capture d'écran de l'avis</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">14</span></div>
+</div>
+
+<!-- ============ S14 — POSTS INSTAGRAM ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="ig.eye">EXEMPLES · INSTAGRAM</span></div>
+    <div class="ttl" data-i18n="ig.title">Instagram — visuel &amp; storytelling</div>
+  </div>
+  <div class="posts">
+    <div class="post">
+      <div class="ph" data-i18n="ig.p1h">POST 1 — COULISSES (FEED)</div>
+      <div class="pt" data-i18n="ig.p1t">Montrer l'humain du centre</div>
+      <div class="pb" data-i18n="ig.p1b">✨ Une journée type chez MBE [Ville]
+De l'emballage sur-mesure à l'expédition internationale 📦💙
+#MBE #MBE[Ville] #Expédition #Logistique #[Ville]</div>
+      <div class="pm" data-i18n="ig.p1m">Mar–Jeu 18h–20h · Photo 1080×1080</div>
+    </div>
+    <div class="post">
+      <div class="ph" data-i18n="ig.p2h">POST 2 — REEL TUTORIEL (15–30 s)</div>
+      <div class="pt" data-i18n="ig.p2t">Un mini-tuto qui rassure</div>
+      <div class="pb" data-i18n="ig.p2b">Scène 1 (3s) : « Comment on emballe un colis fragile chez MBE ? »
+Scène 2 (8s) : time-lapse de l'emballage
+Scène 3 (5s) : scotchage + étiquette
+Scène 4 (4s) : colis prêt → « Expédié en toute sécurité ✓ »</div>
+      <div class="pm" data-i18n="ig.p2m">Mer–Ven 19h–21h · Vertical 9:16 (1080×1920)</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">15</span></div>
+</div>
+
+<!-- ============ S15 — POSTS LINKEDIN ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="ll.eye">EXEMPLES · LINKEDIN</span></div>
+    <div class="ttl" data-i18n="ll.title">LinkedIn — expertise &amp; valeur</div>
+  </div>
+  <div class="posts">
+    <div class="post">
+      <div class="ph" data-i18n="ll.p1h">POST 1 — EXPERTISE B2B</div>
+      <div class="pt" data-i18n="ll.p1t">Partager un conseil utile</div>
+      <div class="pb" data-i18n="ll.p1b">📊 E-commerce : 3 erreurs logistiques qui coûtent cher
+
+1️⃣ Sous-estimer les délais transporteurs → +48h en période de rush
+2️⃣ Négliger l'emballage → 68 % des litiges viennent de colis mal protégés
+3️⃣ Gérer seul sa logistique → déléguer = 15h/semaine économisées
+
+💬 Et vous, votre plus grande difficulté logistique ?
+#Logistique #Ecommerce #PME #MBE</div>
+      <div class="pm" data-i18n="ll.p1m">Mar–Jeu 8h–10h · Texte long 1 200–1 500 caractères</div>
+    </div>
+    <div class="post">
+      <div class="ph" data-i18n="ll.p2h">POST 2 — ÉTUDE DE CAS</div>
+      <div class="pt" data-i18n="ll.p2t">Prouver par les résultats</div>
+      <div class="pb" data-i18n="ll.p2b">🎯 Comment [Entreprise] a multiplié par 3 ses expéditions sans embaucher
+
+Solution MBE :
+✓ Stockage temporaire | ✓ Emballage délégué | ✓ Tarifs négociés
+
+Résultats : 150 colis/mois • 20h/sem économisées • −15 % de coûts</div>
+      <div class="pm" data-i18n="ll.p2m">Mercredi 9h · Carrousel PDF 4–6 slides</div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">16</span></div>
+</div>
+
+<!-- ============ S16 — DIVIDER 05 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">05</div>
+  <div class="dv-eye" data-i18n="d5.eye">SECTION 05</div>
+  <div class="dv-ttl" data-i18n="d5.title">Analyse des performances</div>
+  <div class="dv-sub" data-i18n="d5.sub">Savoir ce qu'il faut mesurer — et reconnaître les signaux qui disent « ça marche » ou « il faut ajuster ».</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">17</span></div>
+</div>
+
+<!-- ============ S17 — ANALYSE 3 RESEAUX ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="an.eye">ANALYSE</span></div>
+    <div class="ttl" data-i18n="an.title">Ce qu'il faut suivre, réseau par réseau</div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:158px;bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+    <div class="panel">
+      <h3>Facebook</h3>
+      <table class="mb"><tr><td class="k" data-i18n="an.reach">Portée</td><td class="v">5–10 %</td></tr><tr><td class="k" data-i18n="an.eng">Engagement</td><td class="v">1–6 %</td></tr></table>
+      <div class="lead" style="color:var(--ink);margin-top:12px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.good">✓ Bon signe :</b> <span data-i18n="an.fb.good">portée &gt; 100 personnes, engagement &gt; 1 %, +5–10 abonnés/sem.</span></div>
+      <div class="lead" style="margin-top:8px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.bad">⚠ Alerte :</b> <span data-i18n="an.fb.bad">portée &lt; 50, engagement &lt; 0,5 %, aucune demande entrante.</span></div>
+    </div>
+    <div class="panel">
+      <h3>Instagram</h3>
+      <table class="mb"><tr><td class="k" data-i18n="an.imp">Impressions</td><td class="v">2–3× abonnés</td></tr><tr><td class="k" data-i18n="an.reels">Portée Reels</td><td class="v">3–5× abonnés</td></tr></table>
+      <div class="lead" style="color:var(--ink);margin-top:12px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.good">✓ Bon signe :</b> <span data-i18n="an.ig.good">Reels à 500–2 000 personnes, engagement &gt; 3 %, DM reçus.</span></div>
+      <div class="lead" style="margin-top:8px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.bad">⚠ Alerte :</b> <span data-i18n="an.ig.bad">portée &lt; nb d'abonnés, engagement &lt; 1 %, aucune sauvegarde.</span></div>
+    </div>
+    <div class="panel">
+      <h3>LinkedIn</h3>
+      <table class="mb"><tr><td class="k" data-i18n="an.imp">Impressions</td><td class="v">10–20× rel.</td></tr><tr><td class="k" data-i18n="an.eng">Engagement</td><td class="v">2–8 %</td></tr></table>
+      <div class="lead" style="color:var(--ink);margin-top:12px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.good">✓ Bon signe :</b> <span data-i18n="an.li.good">500–2 000 impressions, commentaires de décideurs, demandes de devis.</span></div>
+      <div class="lead" style="margin-top:8px;font-size:12px;"><b style="color:var(--accent-tx);" data-i18n="an.bad">⚠ Alerte :</b> <span data-i18n="an.li.bad">impressions &lt; 100, engagement &lt; 1 %, aucun commentaire.</span></div>
+    </div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">18</span></div>
+</div>
+
+<!-- ============ S18 — ROI ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="roi.eye">ANALYSE · RETOUR SUR INVESTISSEMENT</span></div>
+    <div class="ttl" data-i18n="roi.title">Combien ça rapporte ?</div>
+  </div>
+  <div class="kpis" style="top:210px;grid-template-columns:repeat(3,1fr);">
+    <div class="kpi"><div class="v">3–6h</div><div class="k" data-i18n="roi.k1">Temps investi par semaine</div></div>
+    <div class="kpi"><div class="v">1–3</div><div class="k" data-i18n="roi.k2">Nouveaux clients/mois (à 3–6 mois)</div></div>
+    <div class="kpi"><div class="v">600–7 200&nbsp;€</div><div class="k" data-i18n="roi.k3">CA additionnel estimé / an</div></div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:400px;" class="gold">
+    <div class="gt" data-i18n="roi.gt">La patience paie</div>
+    <p data-i18n="roi.gp">Les premiers résultats concrets arrivent en général après <b>3 à 6 mois</b> de régularité. C'est un investissement de visibilité locale, pas un canal de vente immédiat — et c'est précisément ce qui le rend durable.</p>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">19</span></div>
+</div>
+
+<!-- ============ S19 — DIVIDER 06 ============ -->
+<div class="slide dark haspic">
+  <div class="dv-photo" style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1100&q=80')"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="dv-idx">06</div>
+  <div class="dv-eye" data-i18n="d6.eye">SECTION 06</div>
+  <div class="dv-ttl" data-i18n="d6.title">Cheat Sheet</div>
+  <div class="dv-sub" data-i18n="d6.sub">Le mémo à garder sous les yeux. Tout ce qu'il faut décider en un clin d'œil, réseau par réseau.</div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">20</span></div>
+</div>
+
+<!-- ============ S20 — CHEAT SHEET TABLE ============ -->
+<div class="slide">
+  <div class="brand" style="top:22px;width:90px;height:48px;"></div><div class="brand-ft" style="top:26px;font-size:20px;">Fortidia</div>
+  <div style="position:absolute;left:54px;top:40px;">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="ch.eye">CHEAT SHEET</span></div>
+    <div style="font-weight:700;font-size:28px;color:var(--ink);margin-top:8px;" data-i18n="ch.title">Le bon réseau, le bon réflexe</div>
+  </div>
+  <div class="cs" style="top:120px;">
+    <table class="cheat">
+      <thead><tr>
+        <th data-i18n="ch.crit">Critère</th><th>Facebook</th><th>Instagram</th><th>LinkedIn</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="crit" data-i18n="ch.r1">Objectif</td><td data-i18n="ch.fb1">Notoriété locale + SAV</td><td data-i18n="ch.ig1">Visibilité + storytelling</td><td data-i18n="ch.li1">Leads B2B</td></tr>
+        <tr><td class="crit" data-i18n="ch.r2">Audience</td><td data-i18n="ch.fb2">PME locales, 35–65 ans</td><td data-i18n="ch.ig2">Jeunes entrepreneurs, 18–45 ans</td><td data-i18n="ch.li2">Décideurs B2B, 30–55 ans</td></tr>
+        <tr><td class="crit" data-i18n="ch.r3">Fréquence</td><td data-i18n="ch.fb3">3–4 posts/sem</td><td data-i18n="ch.ig3">3–5 posts/sem + Stories</td><td data-i18n="ch.li3">2–3 posts/sem</td></tr>
+        <tr><td class="crit" data-i18n="ch.r4">Horaires</td><td data-i18n="ch.fb4">Lun–Mer 9h–11h / Jeu–Ven 14h–16h</td><td data-i18n="ch.ig4">Mar–Jeu 18h–20h</td><td data-i18n="ch.li4">Mar–Jeu 8h–10h</td></tr>
+        <tr><td class="crit" data-i18n="ch.r5">Format star</td><td data-i18n="ch.fb5">Reels, photos, témoignages</td><td data-i18n="ch.ig5">Reels 15–30s, carrousels, Stories</td><td data-i18n="ch.li5">Carrousels PDF, articles</td></tr>
+        <tr><td class="crit" data-i18n="ch.r6">Engagement cible</td><td>1–3 % / 3–6 %</td><td>3–6 % / 6–10 %</td><td>2–4 % / 4–8 %</td></tr>
+        <tr><td class="crit" data-i18n="ch.r7">Hashtags</td><td>3–5</td><td>10–15</td><td>3–5</td></tr>
+        <tr><td class="crit" data-i18n="ch.r8">Ton</td><td data-i18n="ch.fb8">Chaleureux, communautaire</td><td data-i18n="ch.ig8">Inspirant, décontracté</td><td data-i18n="ch.li8">Expert, apporteur de valeur</td></tr>
+        <tr><td class="crit" data-i18n="ch.r9">CTA</td><td data-i18n="ch.fb9">« Passez nous voir »</td><td data-i18n="ch.ig9">« Lien en bio » / « DM »</td><td data-i18n="ch.li9">« Demandez un devis »</td></tr>
+        <tr><td class="crit" data-i18n="ch.r10">Budget pub</td><td>50–150 €/mois</td><td>30–100 €/mois</td><td>100–300 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">21</span></div>
+</div>
+
+<!-- ============ S21 — CHECKLIST + GOLDEN RULE ============ -->
+<div class="slide">
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="head">
+    <div class="eyebrow"><span class="ln"></span><span data-i18n="cl.eye">CHEAT SHEET · LE RYTHME</span></div>
+    <div class="ttl" data-i18n="cl.title">La routine hebdomadaire</div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:158px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+    <div class="panel chk">
+      <h3>Facebook</h3>
+      <ul><li data-i18n="cl.fb1">3–4 posts publiés</li><li data-i18n="cl.fb2">Commentaires répondus</li><li data-i18n="cl.fb3">Messages privés traités</li><li data-i18n="cl.fb4">Insights consultés</li></ul>
+    </div>
+    <div class="panel chk">
+      <h3>Instagram</h3>
+      <ul><li data-i18n="cl.ig1">3–5 posts / Reels</li><li data-i18n="cl.ig2">Stories quotidiennes</li><li data-i18n="cl.ig3">DM répondus sous 24h</li><li data-i18n="cl.ig4">Analytics Reels vérifiés</li></ul>
+    </div>
+    <div class="panel chk">
+      <h3>LinkedIn</h3>
+      <ul><li data-i18n="cl.li1">2–3 posts publiés</li><li data-i18n="cl.li2">10–15 commentaires chez des prospects</li><li data-i18n="cl.li3">5–10 nouvelles connexions</li><li data-i18n="cl.li4">Profil optimisé</li></ul>
+    </div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:430px;" class="gold">
+    <div class="gt" data-i18n="cl.gt">Règle d'or — Régularité &gt; Quantité</div>
+    <p data-i18n="cl.gp">Mieux vaut 2–3 posts de qualité par semaine pendant 6 mois que publier tous les jours pendant 2 semaines puis abandonner. Les clés : <b>Régularité · Qualité · Interaction · Analyse · Patience</b>.</p>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">22</span></div>
+</div>
+
+<!-- ============ S22 — THANKS ============ -->
+<div class="slide dark">
+  <div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1600&q=80')"></div>
+  <div class="bg-tint center"></div>
+  <div class="brand"></div><div class="brand-ft">Fortidia</div>
+  <div class="thx">
+    <div class="big" data-i18n="th.big">Merci</div>
+    <div class="ln"></div>
+    <div class="sm" data-i18n="th.sm">Des questions ? L'équipe Marketing MBE France est là pour vous accompagner.</div>
+  </div>
+  <div class="footer"><span data-i18n="footer.conf">© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France</span><span class="pg">23</span></div>
+</div>
+
+</div></div>
+
+<div id="nav">
+  <button onclick="go(-1)" data-i18n="nav.prev">← Précédent</button>
+  <span id="counter">1 / 23</span>
+  <button onclick="go(1)" data-i18n="nav.next">Suivant →</button>
+  <span class="sep"></span>
+  <button class="toggle theme" id="themeBtn" onclick="toggleTheme()">Fortidia</button>
+  <button class="toggle" id="langBtn" onclick="toggleLang()">EN</button>
+  <button id="fullbtn" onclick="toggleFull()">⛶</button>
+</div>
+
+<script>
+/* ===================== I18N DICTIONARY ===================== */
+const I18N = {
+fr:{
+"nav.prev":"← Précédent","nav.next":"Suivant →",
+"footer.conf":"© 2026 Mail Boxes Etc. — a Fortidia Company · Document confidentiel — Département Marketing MBE France",
+"cover.eye":"MBE FRANCE · 2026","cover.title":"Formation Réseaux Sociaux","cover.sub":"Le guide complet pour développer la visibilité de votre centre","cover.author":"Département Marketing MBE France · Destiné aux nouveaux franchisés",
+"kpi.eye":"EN UN COUP D'ŒIL","kpi.title":"Les réseaux sociaux en 2026","kpi.sub":"Pourquoi votre centre doit y être présent","kpi.lead":"Les réseaux sociaux ne sont plus optionnels : ils sont devenus le premier canal de découverte des commerces locaux. Voici l'essentiel à retenir avant de se lancer.",
+"kpi.k1":"Utilisateurs dans le monde","kpi.n1":"Données avril 2026 (+5,4 % sur 12 mois)","kpi.k2":"Pénétration en France","kpi.n2":"de la population — 51,5 M d'utilisateurs","kpi.k3":"Temps quotidien moyen","kpi.n3":"par utilisateur en France","kpi.k4":"Des PME françaises","kpi.n4":"utilisent au moins un réseau social","kpi.src":"Sources : DataReportal / We Are Social — Digital 2026 (avril 2026) · Médiamétrie · BPI France.",
+"ag.eye":"AU PROGRAMME","ag.title":"Le parcours de la formation",
+"ag.l1":"Marché Global","ag.d1":"Chiffres clés monde & France","ag.l2":"META — Facebook & Instagram","ag.d2":"Audiences, usages, recommandations","ag.l3":"LinkedIn","ag.d3":"Le réseau B2B par excellence","ag.l4":"Exemples de posts","ag.d4":"Modèles prêts à adapter","ag.l5":"Analyse des performances","ag.d5":"Que mesurer, quand s'inquiéter","ag.l6":"Cheat Sheet","ag.d6":"Le mémo de référence",
+"d1.eye":"SECTION 01","d1.title":"Marché Global","d1.sub":"L'ampleur du phénomène, dans le monde et en France — et ce que cela signifie pour un commerce local.",
+"mg.eye":"MARCHÉ GLOBAL","mg.title":"Une croissance qui ne s'arrête pas","mg.sub":"Utilisateurs des réseaux sociaux dans le monde (en milliards)","mg.p1":"de la population mondiale est sur les réseaux sociaux.","mg.p2":"En France : <b>51,5 millions</b> d'utilisateurs, soit <b>77 %</b> de pénétration.","mg.p3":"Temps moyen : <b>1h47/jour</b> en France (2h23 dans le monde).","mg.p4":"<b>89 %</b> des PME françaises utilisent au moins un réseau social.","mg.src":"Sources : DataReportal / We Are Social — Digital 2026 (données avril 2026).",
+"pf.eye":"MARCHÉ GLOBAL","pf.title":"Où sont les utilisateurs ?","pf.h1":"Dans le monde (millions d'utilisateurs)","pf.h2":"En France (millions d'utilisateurs actifs)","pf.other":"Autres",
+"d2.eye":"SECTION 02","d2.sub":"Facebook & Instagram — la porte d'entrée incontournable pour la notoriété locale et l'engagement client.",
+"me.eye":"META · FRANCE","me.title":"Deux audiences complémentaires","me.h1":"Chiffres clés France","me.t1":"Temps/jour Facebook","me.t2":"Temps/jour Instagram","me.p1":"<b>Facebook</b> — audience mature : 43 % ont plus de 45 ans.","me.p2":"<b>Instagram</b> — audience jeune : 64 % ont moins de 35 ans.","me.h2":"Répartition par âge (France)","me.age":"Âge",
+"mu.eye":"META · POUR VOTRE CENTRE","mu.title":"Usages pros & recommandations","mu.h1":"Usages professionnels (% des entreprises)","mu.u1":"Notoriété locale","mu.u2":"Engagement client","mu.u3":"Service client","mu.u4":"Génération de leads","mu.u5":"Ventes directes","mu.r1t":"Facebook — la recette","mu.r1b":"Page pro locale · 3–4 posts/semaine · Facebook Ads dans un rayon de 10–20 km · messagerie activée. Format star : les <b>Reels</b>.","mu.r2t":"Instagram — la recette","mu.r2b":"Contenu visuel soigné · Reels de 15–30 s · Stories quotidiennes · hashtags locaux. Les Reels ont une portée <b>×3</b> vs les posts.",
+"d3.eye":"SECTION 03","d3.sub":"Le réseau des décideurs. Là où se jouent les opportunités B2B et la crédibilité professionnelle de votre centre.",
+"li.eye":"LINKEDIN · FRANCE","li.title":"Audience & objectifs B2B","li.h1":"Audience (composition)","li.a1":"Cadres intermédiaires","li.a2":"Cadres supérieurs","li.a3":"Entrepreneurs","li.a4":"Salariés","li.a5":"Autres","li.x1":"<b>24 M</b> d'utilisateurs, dont <b>8,5 M</b> de décideurs B2B.","li.h2":"Objectifs marketing B2B (% des entreprises)","li.o1":"Notoriété de marque","li.o2":"Génération de leads","li.o3":"Recrutement","li.o4":"Thought leadership","li.o5":"Ventes directes",
+"lk.eye":"LINKEDIN · À RETENIR","lk.title":"Ce qui fait la différence","lk.p1":"<b>62 %</b> des cadres supérieurs y sont actifs.","lk.p2":"<b>80 %</b> des leads B2B issus des réseaux sociaux viennent de LinkedIn.","lk.p3":"Taux d'engagement moyen : <b>2,1 %</b> — portée organique <b>15 %</b>.","lk.p4":"Meilleur moment pour publier : <b>mardi à jeudi, 8h–10h</b>.","lk.p5":"Format star : les <b>carrousels PDF</b> — jusqu'à <b>10×</b> plus d'engagement.","lk.p6":"Objectif réaliste : <b>10 à 20</b> nouvelles connexions B2B par mois.",
+"d4.eye":"SECTION 04","d4.title":"Exemples de posts","d4.sub":"Des modèles concrets, prêts à adapter à votre centre. Remplacez simplement les [crochets].",
+"fb.eye":"EXEMPLES · FACEBOOK","fb.title":"Facebook — notoriété & proximité","fb.p1h":"POST 1 — SERVICE DU JOUR","fb.p1t":"Mettre en avant un service","fb.p1b":"🎁 Besoin d'envoyer un colis urgent ?\nChez MBE [Ville], on s'occupe de tout : emballage professionnel, choix du transporteur et suivi en temps réel.\n📦 Passez nous voir au [Adresse] ou appelez-nous au [Téléphone]\n#MBE[Ville] #ExpéditionColis #ServiceLocal","fb.p1m":"Lun–Mer 9h–11h · Texte + Photo","fb.p2h":"POST 2 — TÉMOIGNAGE CLIENT","fb.p2t":"Valoriser un avis 5 étoiles","fb.p2b":"⭐ Merci Sophie pour cet avis 5 étoiles !\n« Service impeccable ! Livré en 48h pile. Je recommande ! »\nVotre satisfaction est notre priorité 💙","fb.p2m":"Jeu–Ven 14h–16h · Capture d'écran de l'avis",
+"ig.eye":"EXEMPLES · INSTAGRAM","ig.title":"Instagram — visuel & storytelling","ig.p1h":"POST 1 — COULISSES (FEED)","ig.p1t":"Montrer l'humain du centre","ig.p1b":"✨ Une journée type chez MBE [Ville]\nDe l'emballage sur-mesure à l'expédition internationale 📦💙\n#MBE #MBE[Ville] #Expédition #Logistique #[Ville]","ig.p1m":"Mar–Jeu 18h–20h · Photo 1080×1080","ig.p2h":"POST 2 — REEL TUTORIEL (15–30 s)","ig.p2t":"Un mini-tuto qui rassure","ig.p2b":"Scène 1 (3s) : « Comment on emballe un colis fragile chez MBE ? »\nScène 2 (8s) : time-lapse de l'emballage\nScène 3 (5s) : scotchage + étiquette\nScène 4 (4s) : colis prêt → « Expédié en toute sécurité ✓ »","ig.p2m":"Mer–Ven 19h–21h · Vertical 9:16 (1080×1920)",
+"ll.eye":"EXEMPLES · LINKEDIN","ll.title":"LinkedIn — expertise & valeur","ll.p1h":"POST 1 — EXPERTISE B2B","ll.p1t":"Partager un conseil utile","ll.p1b":"📊 E-commerce : 3 erreurs logistiques qui coûtent cher\n\n1️⃣ Sous-estimer les délais transporteurs → +48h en période de rush\n2️⃣ Négliger l'emballage → 68 % des litiges viennent de colis mal protégés\n3️⃣ Gérer seul sa logistique → déléguer = 15h/semaine économisées\n\n💬 Et vous, votre plus grande difficulté logistique ?\n#Logistique #Ecommerce #PME #MBE","ll.p1m":"Mar–Jeu 8h–10h · Texte long 1 200–1 500 caractères","ll.p2h":"POST 2 — ÉTUDE DE CAS","ll.p2t":"Prouver par les résultats","ll.p2b":"🎯 Comment [Entreprise] a multiplié par 3 ses expéditions sans embaucher\n\nSolution MBE :\n✓ Stockage temporaire | ✓ Emballage délégué | ✓ Tarifs négociés\n\nRésultats : 150 colis/mois • 20h/sem économisées • −15 % de coûts","ll.p2m":"Mercredi 9h · Carrousel PDF 4–6 slides",
+"d5.eye":"SECTION 05","d5.title":"Analyse des performances","d5.sub":"Savoir ce qu'il faut mesurer — et reconnaître les signaux qui disent « ça marche » ou « il faut ajuster ».",
+"an.eye":"ANALYSE","an.title":"Ce qu'il faut suivre, réseau par réseau","an.reach":"Portée","an.eng":"Engagement","an.imp":"Impressions","an.reels":"Portée Reels","an.good":"✓ Bon signe :","an.bad":"⚠ Alerte :","an.fb.good":"portée > 100 personnes, engagement > 1 %, +5–10 abonnés/sem.","an.fb.bad":"portée < 50, engagement < 0,5 %, aucune demande entrante.","an.ig.good":"Reels à 500–2 000 personnes, engagement > 3 %, DM reçus.","an.ig.bad":"portée < nb d'abonnés, engagement < 1 %, aucune sauvegarde.","an.li.good":"500–2 000 impressions, commentaires de décideurs, demandes de devis.","an.li.bad":"impressions < 100, engagement < 1 %, aucun commentaire.",
+"roi.eye":"ANALYSE · RETOUR SUR INVESTISSEMENT","roi.title":"Combien ça rapporte ?","roi.k1":"Temps investi par semaine","roi.k2":"Nouveaux clients/mois (à 3–6 mois)","roi.k3":"CA additionnel estimé / an","roi.gt":"La patience paie","roi.gp":"Les premiers résultats concrets arrivent en général après <b>3 à 6 mois</b> de régularité. C'est un investissement de visibilité locale, pas un canal de vente immédiat — et c'est précisément ce qui le rend durable.",
+"d6.eye":"SECTION 06","d6.title":"Cheat Sheet","d6.sub":"Le mémo à garder sous les yeux. Tout ce qu'il faut décider en un clin d'œil, réseau par réseau.",
+"ch.eye":"CHEAT SHEET","ch.title":"Le bon réseau, le bon réflexe","ch.crit":"Critère","ch.r1":"Objectif","ch.fb1":"Notoriété locale + SAV","ch.ig1":"Visibilité + storytelling","ch.li1":"Leads B2B","ch.r2":"Audience","ch.fb2":"PME locales, 35–65 ans","ch.ig2":"Jeunes entrepreneurs, 18–45 ans","ch.li2":"Décideurs B2B, 30–55 ans","ch.r3":"Fréquence","ch.fb3":"3–4 posts/sem","ch.ig3":"3–5 posts/sem + Stories","ch.li3":"2–3 posts/sem","ch.r4":"Horaires","ch.fb4":"Lun–Mer 9h–11h / Jeu–Ven 14h–16h","ch.ig4":"Mar–Jeu 18h–20h","ch.li4":"Mar–Jeu 8h–10h","ch.r5":"Format star","ch.fb5":"Reels, photos, témoignages","ch.ig5":"Reels 15–30s, carrousels, Stories","ch.li5":"Carrousels PDF, articles","ch.r6":"Engagement cible","ch.r7":"Hashtags","ch.r8":"Ton","ch.fb8":"Chaleureux, communautaire","ch.ig8":"Inspirant, décontracté","ch.li8":"Expert, apporteur de valeur","ch.r9":"CTA","ch.fb9":"« Passez nous voir »","ch.ig9":"« Lien en bio » / « DM »","ch.li9":"« Demandez un devis »","ch.r10":"Budget pub",
+"cl.eye":"CHEAT SHEET · LE RYTHME","cl.title":"La routine hebdomadaire","cl.fb1":"3–4 posts publiés","cl.fb2":"Commentaires répondus","cl.fb3":"Messages privés traités","cl.fb4":"Insights consultés","cl.ig1":"3–5 posts / Reels","cl.ig2":"Stories quotidiennes","cl.ig3":"DM répondus sous 24h","cl.ig4":"Analytics Reels vérifiés","cl.li1":"2–3 posts publiés","cl.li2":"10–15 commentaires chez des prospects","cl.li3":"5–10 nouvelles connexions","cl.li4":"Profil optimisé","cl.gt":"Règle d'or — Régularité > Quantité","cl.gp":"Mieux vaut 2–3 posts de qualité par semaine pendant 6 mois que publier tous les jours pendant 2 semaines puis abandonner. Les clés : <b>Régularité · Qualité · Interaction · Analyse · Patience</b>.",
+"th.big":"Merci","th.sm":"Des questions ? L'équipe Marketing MBE France est là pour vous accompagner."
+},
+en:{
+"nav.prev":"← Prev","nav.next":"Next →",
+"footer.conf":"© 2026 Mail Boxes Etc. — a Fortidia Company · Confidential document — MBE France Marketing Department",
+"cover.eye":"MBE FRANCE · 2026","cover.title":"Social Media Training","cover.sub":"The complete guide to growing your store's local visibility","cover.author":"MBE France Marketing Department · For new franchisees",
+"kpi.eye":"AT A GLANCE","kpi.title":"Social media in 2026","kpi.sub":"Why your store needs to be there","kpi.lead":"Social media is no longer optional: it has become the number-one channel for discovering local businesses. Here's the essential context before you get started.",
+"kpi.k1":"Users worldwide","kpi.n1":"April 2026 data (+5.4% over 12 months)","kpi.k2":"Penetration in France","kpi.n2":"of the population — 51.5M users","kpi.k3":"Average daily time","kpi.n3":"per user in France","kpi.k4":"of French SMBs","kpi.n4":"use at least one social network","kpi.src":"Sources: DataReportal / We Are Social — Digital 2026 (April 2026) · Médiamétrie · BPI France.",
+"ag.eye":"ON THE AGENDA","ag.title":"The training journey",
+"ag.l1":"Global Market","ag.d1":"Key figures — world & France","ag.l2":"META — Facebook & Instagram","ag.d2":"Audiences, uses, recommendations","ag.l3":"LinkedIn","ag.d3":"The B2B network by excellence","ag.l4":"Post examples","ag.d4":"Ready-to-adapt templates","ag.l5":"Performance analysis","ag.d5":"What to measure, when to worry","ag.l6":"Cheat Sheet","ag.d6":"The reference memo",
+"d1.eye":"SECTION 01","d1.title":"Global Market","d1.sub":"The scale of the phenomenon, worldwide and in France — and what it means for a local business.",
+"mg.eye":"GLOBAL MARKET","mg.title":"Growth that won't stop","mg.sub":"Social media users worldwide (in billions)","mg.p1":"of the world's population is on social media.","mg.p2":"In France: <b>51.5 million</b> users, i.e. <b>77%</b> penetration.","mg.p3":"Average time: <b>1h47/day</b> in France (2h23 worldwide).","mg.p4":"<b>89%</b> of French SMBs use at least one social network.","mg.src":"Sources: DataReportal / We Are Social — Digital 2026 (April 2026 data).",
+"pf.eye":"GLOBAL MARKET","pf.title":"Where are the users?","pf.h1":"Worldwide (millions of users)","pf.h2":"In France (millions of active users)","pf.other":"Others",
+"d2.eye":"SECTION 02","d2.sub":"Facebook & Instagram — the essential gateway for local awareness and customer engagement.",
+"me.eye":"META · FRANCE","me.title":"Two complementary audiences","me.h1":"Key figures — France","me.t1":"Time/day Facebook","me.t2":"Time/day Instagram","me.p1":"<b>Facebook</b> — mature audience: 43% are over 45.","me.p2":"<b>Instagram</b> — young audience: 64% are under 35.","me.h2":"Breakdown by age (France)","me.age":"Age",
+"mu.eye":"META · FOR YOUR STORE","mu.title":"Business uses & recommendations","mu.h1":"Business uses (% of companies)","mu.u1":"Local awareness","mu.u2":"Customer engagement","mu.u3":"Customer service","mu.u4":"Lead generation","mu.u5":"Direct sales","mu.r1t":"Facebook — the playbook","mu.r1b":"Local business page · 3–4 posts/week · Facebook Ads within a 10–20 km radius · messaging enabled. Star format: <b>Reels</b>.","mu.r2t":"Instagram — the playbook","mu.r2b":"Polished visual content · 15–30s Reels · daily Stories · local hashtags. Reels reach <b>×3</b> vs posts.",
+"d3.eye":"SECTION 03","d3.sub":"The decision-makers' network. Where B2B opportunities and your store's professional credibility are won.",
+"li.eye":"LINKEDIN · FRANCE","li.title":"Audience & B2B goals","li.h1":"Audience (composition)","li.a1":"Middle managers","li.a2":"Senior executives","li.a3":"Entrepreneurs","li.a4":"Employees","li.a5":"Others","li.x1":"<b>24M</b> users, including <b>8.5M</b> B2B decision-makers.","li.h2":"B2B marketing goals (% of companies)","li.o1":"Brand awareness","li.o2":"Lead generation","li.o3":"Recruitment","li.o4":"Thought leadership","li.o5":"Direct sales",
+"lk.eye":"LINKEDIN · KEY TAKEAWAYS","lk.title":"What makes the difference","lk.p1":"<b>62%</b> of senior executives are active here.","lk.p2":"<b>80%</b> of B2B leads from social media come from LinkedIn.","lk.p3":"Average engagement rate: <b>2.1%</b> — organic reach <b>15%</b>.","lk.p4":"Best time to post: <b>Tuesday to Thursday, 8–10am</b>.","lk.p5":"Star format: <b>PDF carousels</b> — up to <b>10×</b> more engagement.","lk.p6":"Realistic target: <b>10 to 20</b> new B2B connections per month.",
+"d4.eye":"SECTION 04","d4.title":"Post examples","d4.sub":"Concrete templates, ready to adapt to your store. Just replace the [brackets].",
+"fb.eye":"EXAMPLES · FACEBOOK","fb.title":"Facebook — awareness & proximity","fb.p1h":"POST 1 — SERVICE OF THE DAY","fb.p1t":"Highlight a service","fb.p1b":"🎁 Need to send an urgent parcel?\nAt MBE [City], we handle everything: professional packing, carrier selection and real-time tracking.\n📦 Come see us at [Address] or call us at [Phone]\n#MBE[City] #ParcelShipping #LocalService","fb.p1m":"Mon–Wed 9–11am · Text + Photo","fb.p2h":"POST 2 — CUSTOMER REVIEW","fb.p2t":"Showcase a 5-star review","fb.p2b":"⭐ Thank you Sophie for this 5-star review!\n\"Impeccable service! Delivered in exactly 48h. Highly recommend!\"\nYour satisfaction is our priority 💙","fb.p2m":"Thu–Fri 2–4pm · Screenshot of the review",
+"ig.eye":"EXAMPLES · INSTAGRAM","ig.title":"Instagram — visuals & storytelling","ig.p1h":"POST 1 — BEHIND THE SCENES (FEED)","ig.p1t":"Show the people behind the store","ig.p1b":"✨ A typical day at MBE [City]\nFrom custom packing to international shipping 📦💙\n#MBE #MBE[City] #Shipping #Logistics #[City]","ig.p1m":"Tue–Thu 6–8pm · Photo 1080×1080","ig.p2h":"POST 2 — TUTORIAL REEL (15–30s)","ig.p2t":"A quick how-to that reassures","ig.p2b":"Scene 1 (3s): \"How do we pack a fragile parcel at MBE?\"\nScene 2 (8s): packing time-lapse\nScene 3 (5s): taping + label\nScene 4 (4s): parcel ready → \"Shipped safely ✓\"","ig.p2m":"Wed–Fri 7–9pm · Vertical 9:16 (1080×1920)",
+"ll.eye":"EXAMPLES · LINKEDIN","ll.title":"LinkedIn — expertise & value","ll.p1h":"POST 1 — B2B EXPERTISE","ll.p1t":"Share a useful tip","ll.p1b":"📊 E-commerce: 3 logistics mistakes that cost dearly\n\n1️⃣ Underestimating carrier lead times → +48h during peak periods\n2️⃣ Neglecting packaging → 68% of disputes come from poorly protected parcels\n3️⃣ Handling logistics alone → delegating = 15h/week saved\n\n💬 And you, what's your biggest logistics challenge?\n#Logistics #Ecommerce #SMB #MBE","ll.p1m":"Tue–Thu 8–10am · Long text 1,200–1,500 characters","ll.p2h":"POST 2 — CASE STUDY","ll.p2t":"Prove it with results","ll.p2b":"🎯 How [Company] tripled its shipments without hiring\n\nMBE solution:\n✓ Temporary storage | ✓ Outsourced packing | ✓ Negotiated rates\n\nResults: 150 parcels/month • 20h/week saved • −15% costs","ll.p2m":"Wednesday 9am · PDF carousel 4–6 slides",
+"d5.eye":"SECTION 05","d5.title":"Performance analysis","d5.sub":"Know what to measure — and recognise the signals that say \"it's working\" or \"time to adjust\".",
+"an.eye":"ANALYSIS","an.title":"What to track, network by network","an.reach":"Reach","an.eng":"Engagement","an.imp":"Impressions","an.reels":"Reels reach","an.good":"✓ Good sign:","an.bad":"⚠ Warning:","an.fb.good":"reach > 100 people, engagement > 1%, +5–10 followers/week.","an.fb.bad":"reach < 50, engagement < 0.5%, no inbound requests.","an.ig.good":"Reels reaching 500–2,000 people, engagement > 3%, DMs received.","an.ig.bad":"reach < follower count, engagement < 1%, no saves.","an.li.good":"500–2,000 impressions, comments from decision-makers, quote requests.","an.li.bad":"impressions < 100, engagement < 1%, no comments.",
+"roi.eye":"ANALYSIS · RETURN ON INVESTMENT","roi.title":"What's the payoff?","roi.k1":"Time invested per week","roi.k2":"New clients/month (at 3–6 months)","roi.k3":"Estimated additional revenue / year","roi.gt":"Patience pays off","roi.gp":"Concrete results usually arrive after <b>3 to 6 months</b> of consistency. It's a local-visibility investment, not an instant sales channel — and that's exactly what makes it durable.",
+"d6.eye":"SECTION 06","d6.title":"Cheat Sheet","d6.sub":"The memo to keep in sight. Everything you need to decide at a glance, network by network.",
+"ch.eye":"CHEAT SHEET","ch.title":"The right network, the right reflex","ch.crit":"Criterion","ch.r1":"Goal","ch.fb1":"Local awareness + support","ch.ig1":"Visibility + storytelling","ch.li1":"B2B leads","ch.r2":"Audience","ch.fb2":"Local SMBs, 35–65 yrs","ch.ig2":"Young entrepreneurs, 18–45 yrs","ch.li2":"B2B decision-makers, 30–55 yrs","ch.r3":"Frequency","ch.fb3":"3–4 posts/week","ch.ig3":"3–5 posts/week + Stories","ch.li3":"2–3 posts/week","ch.r4":"Timing","ch.fb4":"Mon–Wed 9–11am / Thu–Fri 2–4pm","ch.ig4":"Tue–Thu 6–8pm","ch.li4":"Tue–Thu 8–10am","ch.r5":"Star format","ch.fb5":"Reels, photos, testimonials","ch.ig5":"15–30s Reels, carousels, Stories","ch.li5":"PDF carousels, articles","ch.r6":"Target engagement","ch.r7":"Hashtags","ch.r8":"Tone","ch.fb8":"Warm, community-driven","ch.ig8":"Inspiring, casual","ch.li8":"Expert, value-driven","ch.r9":"CTA","ch.fb9":"\"Come see us\"","ch.ig9":"\"Link in bio\" / \"DM\"","ch.li9":"\"Request a quote\"","ch.r10":"Ad budget",
+"cl.eye":"CHEAT SHEET · THE RHYTHM","cl.title":"The weekly routine","cl.fb1":"3–4 posts published","cl.fb2":"Comments replied to","cl.fb3":"Private messages handled","cl.fb4":"Insights reviewed","cl.ig1":"3–5 posts / Reels","cl.ig2":"Daily Stories","cl.ig3":"DMs answered within 24h","cl.ig4":"Reels analytics checked","cl.li1":"2–3 posts published","cl.li2":"10–15 comments on prospects' posts","cl.li3":"5–10 new connections","cl.li4":"Profile optimised","cl.gt":"Golden rule — Consistency > Quantity","cl.gp":"Better 2–3 quality posts a week for 6 months than posting every day for 2 weeks then quitting. The keys: <b>Consistency · Quality · Interaction · Analysis · Patience</b>.",
+"th.big":"Thank you","th.sm":"Questions? The MBE France Marketing team is here to support you."
+}
+};
+
+/* ===================== DECK ENGINE ===================== */
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0, lang='fr', theme='mbe';
+
+function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
+function go(d){show(cur+d);}
+
+function applyLang(l){
+  lang=l;
+  const dict=I18N[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(dict[k]!==undefined) el.innerHTML=dict[k];
+  });
+  document.documentElement.lang=l;
+  document.getElementById('langBtn').textContent = (l==='fr')?'EN':'FR';
+}
+function toggleLang(){applyLang(lang==='fr'?'en':'fr');}
+
+function applyTheme(t){
+  theme=t;
+  document.documentElement.dataset.theme=t;
+  document.getElementById('themeBtn').textContent = (t==='mbe')?'Fortidia':'MBE';
+}
+function toggleTheme(){applyTheme(theme==='mbe'?'fortidia':'mbe');}
+
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key.toLowerCase()==='f')toggleFull();
+  if(e.key.toLowerCase()==='t')toggleTheme();
+  if(e.key.toLowerCase()==='l')toggleLang();
+});
+function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
+const stage=document.getElementById('stage');
+function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
+window.addEventListener('resize',resize);
+
+/* init */
+applyLang('fr');applyTheme('mbe');resize();show(0);
+</script>
+</body>
+</html>
