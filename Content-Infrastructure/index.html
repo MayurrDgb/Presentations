@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="fortidia">
 <head>
 <meta charset="utf-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Next MBE Website — MBE France Digital Infrastructure</title>
 <style>
+:root,[data-theme="fortidia"]{
+  --bg:#EDE8E0; --ink:#1C3040; --accent:#F5E800; --surface:#FFFFFF;
+  --on-dark:#EDE8E0; --footer-bg:#1C3040; --footer-tx:#8FA0AD;
+}
+[data-theme="mbe"]{
+  --bg:#FFFFFF; --ink:#221E1F; --accent:#E2001A; --surface:#F4F4F5;
+  --on-dark:#F4F4F5; --footer-bg:#E2001A; --footer-tx:#FFFFFF;
+  --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
 #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
-#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;color-scheme:light;background:#EDE8E0;}
-#progress{position:fixed;top:0;left:0;height:3px;background:#F5E800;z-index:999;transition:width .3s ease;pointer-events:none;}
-#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);padding:8px 20px;border-radius:30px;z-index:999;}
-#nav button{background:none;border:1.5px solid rgba(255,255,255,.3);color:white;padding:5px 16px;border-radius:20px;cursor:pointer;font-size:13px;transition:background .15s;}
-#nav button:hover{background:rgba(255,255,255,.15);}
-#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:52px;text-align:center;}
-#fullbtn{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px;}
-#fullbtn:hover{color:white;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;color-scheme:light;background:var(--bg);}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:999;transition:width .3s ease;pointer-events:none;}
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.16);}
+#nav .toggle{border-color:rgba(255,255,255,.45);font-weight:700;min-width:72px;}
+#nav .toggle.theme{color:#F5E800;}
+[data-theme="mbe"] #nav .toggle.theme{color:#E2001A;}
+#nav .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 2px;}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:50px;text-align:center;}
+#fullbtn{background:none;border:none!important;color:rgba(255,255,255,.55);cursor:pointer;font-size:17px;line-height:1;padding:2px 6px!important;}
+#fullbtn:hover{color:#fff;}
 .slide{position:absolute;inset:0;display:none;}
 .slide.active{display:block;}
-.footer{position:absolute;bottom:0;left:0;right:0;height:36px;background:#1C3040;display:flex;align-items:center;justify-content:center;}
-.footer span{font-size:9.5px;color:#8FA0AD;}
-.footer-y{background:rgba(28,48,64,.9);}
-.logo-dk{position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:28px;letter-spacing:-.5px;}
-.tl{width:90px;height:3px;background:#F5E800;margin-bottom:6px;}
-.tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#1C3040;}
+.footer{position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--footer-bg);display:flex;align-items:center;justify-content:center;}
+.footer span{font-size:9.5px;color:var(--footer-tx);}
+.brand{position:absolute;top:24px;right:28px;width:100px;height:54px;z-index:6;}
+.brand-ft{font-family:Arial Black,Arial,sans-serif;font-weight:900;font-size:28px;letter-spacing:-.5px;line-height:54px;display:block;text-align:right;}
+[data-theme="fortidia"] .brand .brand-ft{color:var(--ink);}
+[data-theme="fortidia"] .brand.brand-dark .brand-ft{color:var(--accent);}
+[data-theme="mbe"] .brand{background:var(--logo) right center/contain no-repeat;}
+[data-theme="mbe"] .brand.brand-dark{background-image:var(--logo-neg);}
+[data-theme="mbe"] .brand .brand-ft{display:none;}
+.tl{width:90px;height:3px;background:var(--accent);margin-bottom:6px;}
+.tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--ink);}
 .tt-w{color:rgba(255,255,255,.45);}
-.al{position:absolute;left:0;top:0;width:8px;height:100%;background:#F5E800;}
-.h{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;line-height:1.1;}
+.al{position:absolute;left:0;top:0;width:8px;height:100%;background:var(--accent);}
+.h{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:var(--ink);line-height:1.1;}
 .box{border-radius:10px;padding:16px 16px;position:relative;}
-.box .topbar{position:absolute;top:0;left:0;right:0;height:4px;background:#F5E800;border-radius:10px 10px 0 0;}
+.box .topbar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);border-radius:10px 10px 0 0;}
 .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 10px;border-radius:14px;}
-.arrowx{display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;color:#1C3040;opacity:.3;}
+.arrowx{display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;color:var(--ink);opacity:.3;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){.slide.active{animation:fadeIn .45s ease both}}
 </style>
 </head>
 <body>
@@ -39,348 +60,368 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div id="deck"><div id="stage">
 
 <!-- ============ S0 — TITLE ============ -->
-<div class="slide active" id="s0" style="background:#1C3040;overflow:hidden;">
-  <div class="footer footer-y"><span>© 2026 Fortidia / MBE France. Confidential — internal working document.</span></div>
+<div class="slide active" id="s0" style="background:var(--ink);overflow:hidden;">
+  <div class="footer"><span data-i18n="footer.full">© 2026 Fortidia / MBE France. Confidential — internal working document.</span></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="620,0 1200,0 1200,675 820,675" fill="#F5E800"/>
-    <g stroke="#F5E800" stroke-width="1" opacity="0.18">
+    <polygon points="620,0 1200,0 1200,675 820,675" fill="var(--accent)"/>
+    <g stroke="var(--accent)" stroke-width="1" opacity="0.18">
       <line x1="80" y1="0" x2="80" y2="630"/><line x1="200" y1="0" x2="200" y2="630"/>
       <line x1="320" y1="0" x2="320" y2="630"/><line x1="460" y1="0" x2="460" y2="630"/>
       <line x1="0" y1="110" x2="580" y2="110"/><line x1="0" y1="230" x2="580" y2="230"/>
       <line x1="0" y1="350" x2="580" y2="350"/><line x1="0" y1="470" x2="580" y2="470"/>
       <line x1="0" y1="580" x2="580" y2="580"/>
     </g>
-    <g fill="#F5E800" opacity="0.55">
+    <g fill="var(--accent)" opacity="0.55">
       <circle cx="80" cy="110" r="3.5"/><circle cx="200" cy="230" r="3.5"/><circle cx="320" cy="110" r="3.5"/>
       <circle cx="460" cy="350" r="5"/><circle cx="80" cy="350" r="3.5"/><circle cx="200" cy="470" r="3.5"/>
       <circle cx="320" cy="350" r="3.5"/><circle cx="460" cy="230" r="3.5"/><circle cx="200" cy="110" r="3.5"/>
     </g>
-    <g stroke="#F5E800" stroke-width="1.2" opacity="0.22">
+    <g stroke="var(--accent)" stroke-width="1.2" opacity="0.22">
       <line x1="80" y1="110" x2="200" y2="230"/><line x1="200" y1="230" x2="320" y2="110"/>
       <line x1="320" y1="110" x2="460" y2="350"/><line x1="80" y1="350" x2="200" y2="470"/>
       <line x1="200" y1="470" x2="320" y2="350"/><line x1="460" y1="230" x2="460" y2="350"/>
     </g>
-    <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="230" font-weight="900" fill="#F5E800" opacity="0.05">{ }</text>
+    <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="230" font-weight="900" fill="var(--accent)" opacity="0.05">{ }</text>
   </svg>
-  <div style="position:absolute;top:32px;right:36px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#1C3040;font-size:34px;letter-spacing:-.5px;">Fortidia</div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
   <div style="position:absolute;top:118px;left:805px;right:34px;">
-    <div style="font-family:Arial,sans-serif;font-size:42px;color:#1C3040;line-height:1.1;font-weight:300;">The Next<br>MBE Website</div>
-    <div style="width:70px;height:3px;background:#1C3040;opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
-    <div style="font-size:15px;color:#1C3040;opacity:.7;line-height:1.5;">An empty shell you push<br>content to — with Claude Code &amp; Git.</div>
-    <div style="font-size:13px;color:#1C3040;opacity:.45;margin-top:14px;">June 2026</div>
+    <div style="font-family:Arial,sans-serif;font-size:42px;color:var(--ink);line-height:1.1;font-weight:300;" data-i18n="s0.title">The Next<br>MBE Website</div>
+    <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
+    <div style="font-size:15px;color:var(--ink);opacity:.7;line-height:1.5;" data-i18n="s0.sub">An empty shell you push<br>content to — with Claude Code &amp; Git.</div>
+    <div style="font-size:13px;color:var(--ink);opacity:.45;margin-top:14px;" data-i18n="s0.date">June 2026</div>
   </div>
   <div style="position:absolute;left:60px;bottom:90px;">
-    <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.55);margin-bottom:8px;">MBE FRANCE · DIGITAL INFRASTRUCTURE</div>
-    <div style="font-size:14px;color:rgba(255,255,255,.4);">Target architecture — clean-slate proposal</div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:color-mix(in srgb,var(--accent) 55%,transparent);margin-bottom:8px;" data-i18n="s0.kicker">MBE FRANCE · DIGITAL INFRASTRUCTURE</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.4);" data-i18n="s0.tag">Target architecture — clean-slate proposal</div>
   </div>
 </div>
 
 <!-- ============ S1 — THE PROBLEM ============ -->
-<div class="slide" id="s1" style="background:#EDE8E0;">
-  <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:#F5E800;"></div>
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">STARTING POINT</div></div>
-  <div class="h" style="position:absolute;left:60px;top:120px;font-size:46px;">The wall we<br>keep hitting</div>
-  <div style="position:absolute;left:60px;top:248px;width:560px;font-size:14px;color:#1C3040;opacity:.6;line-height:1.55;">The Nov-2025 audit wasn't a content problem first. It was a <b>system</b> problem — we can't reliably ship to our own site.</div>
+<div class="slide" id="s1" style="background:var(--bg);">
+  <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:var(--accent);"></div>
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s1.eye">STARTING POINT</div></div>
+  <div class="h" style="position:absolute;left:60px;top:120px;font-size:46px;" data-i18n="s1.h">The wall we<br>keep hitting</div>
+  <div style="position:absolute;left:60px;top:248px;width:560px;font-size:14px;color:var(--ink);opacity:.6;line-height:1.55;" data-i18n="s1.lead">The Nov-2025 audit wasn't a content problem first. It was a <b>system</b> problem — we can't reliably ship to our own site.</div>
 
   <div style="position:absolute;left:60px;top:316px;width:560px;display:flex;flex-direction:column;gap:11px;">
-    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:#1C3040;font-weight:900;font-size:14px;flex-shrink:0;width:18px;">01</div><div style="font-size:13.5px;color:#1C3040;line-height:1.5;"><b>Recommend-only agency.</b> No CMS access → every change routes through group IT, with long, unpredictable delays.</div></div>
-    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:#1C3040;font-weight:900;font-size:14px;flex-shrink:0;width:18px;">02</div><div style="font-size:13.5px;color:#1C3040;line-height:1.5;"><b>Broken sitemap.</b> Google can't crawl properly — ~343 of ~1,400 URLs seen, ~227 indexed.</div></div>
-    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:#1C3040;font-weight:900;font-size:14px;flex-shrink:0;width:18px;">03</div><div style="font-size:13.5px;color:#1C3040;line-height:1.5;"><b>Local pages invisible.</b> The franchise network — our core asset — isn't indexed.</div></div>
-    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:#1C3040;font-weight:900;font-size:14px;flex-shrink:0;width:18px;">04</div><div style="font-size:13.5px;color:#1C3040;line-height:1.5;"><b>Zero structured data &amp; slow pages.</b> No schema.org; LCP &gt;15s; images not in WebP/AVIF.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">01</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p1"><b>Recommend-only agency.</b> No CMS access → every change routes through group IT, with long, unpredictable delays.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">02</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p2"><b>Broken sitemap.</b> Google can't crawl properly — ~343 of ~1,400 URLs seen, ~227 indexed.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">03</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p3"><b>Local pages invisible.</b> The franchise network — our core asset — isn't indexed.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">04</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p4"><b>Zero structured data &amp; slow pages.</b> No schema.org; LCP &gt;15s; images not in WebP/AVIF.</div></div>
   </div>
-  <div style="position:absolute;right:34px;top:150px;width:268px;color:#1C3040;">
+  <div style="position:absolute;right:34px;top:150px;width:268px;color:var(--ink);">
     <div style="font-family:Arial Black,Arial,sans-serif;font-size:60px;line-height:1;">73.5%</div>
-    <div style="font-size:13px;margin-top:8px;opacity:.8;line-height:1.5;">of indexable pages generate <b>no traffic</b>. Almost all clicks come from our own brand name.</div>
-    <div style="width:50px;height:3px;background:#1C3040;opacity:.25;margin:18px 0;"></div>
-    <div style="font-size:12px;opacity:.7;line-height:1.5;">The fix isn't "write more". It's an architecture we can actually operate.</div>
+    <div style="font-size:13px;margin-top:8px;opacity:.8;line-height:1.5;" data-i18n="s1.stat"><b>no traffic</b> from 73.5% of indexable pages. Almost all clicks come from our own brand name.</div>
+    <div style="width:50px;height:3px;background:var(--ink);opacity:.25;margin:18px 0;"></div>
+    <div style="font-size:12px;opacity:.7;line-height:1.5;" data-i18n="s1.note">The fix isn't "write more". It's an architecture we can actually operate.</div>
   </div>
 </div>
 
 <!-- ============ S2 — THE PRINCIPLE ============ -->
-<div class="slide" id="s2" style="background:#EDE8E0;">
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">THE PRINCIPLE</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;">Two content planes, one shell</div>
-  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:#1C3040;opacity:.55;">Different content has different owners and rhythms. Stop forcing it through one pipe.</div>
+<div class="slide" id="s2" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s2.eye">THE PRINCIPLE</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;" data-i18n="s2.h">Two content planes, one shell</div>
+  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:var(--ink);opacity:.55;" data-i18n="s2.lead">Different content has different owners and rhythms. Stop forcing it through one pipe.</div>
 
-  <!-- Plane A -->
-  <div class="box" style="position:absolute;left:60px;top:210px;width:495px;height:200px;background:#1C3040;color:#fff;">
+  <div class="box" style="position:absolute;left:60px;top:210px;width:495px;height:200px;background:var(--ink);color:#fff;">
     <div class="topbar"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.65);">PLANE A</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#F5E800;margin:4px 0 8px;">Editorial / Corporate</div>
-    <div style="font-size:12.5px;line-height:1.6;opacity:.9;">Services, hubs, landing pages, blog. Slow-changing, marketing-owned. Authored as <b>code</b> — pushed via Claude&nbsp;Code &amp; Git.</div>
-    <div style="margin-top:14px;"><span class="tag" style="background:#F5E800;color:#1C3040;">GIT · CLAUDE CODE · PR REVIEW</span></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s2.aTag">PLANE A</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:var(--accent);margin:4px 0 8px;" data-i18n="s2.aH">Editorial / Corporate</div>
+    <div style="font-size:12.5px;line-height:1.6;opacity:.9;" data-i18n="s2.aB">Services, hubs, landing pages, blog. Slow-changing, marketing-owned. Authored as <b>code</b> — pushed via Claude&nbsp;Code &amp; Git.</div>
+    <div style="margin-top:14px;"><span class="tag" style="background:var(--accent);color:var(--ink);">GIT · CLAUDE CODE · PR REVIEW</span></div>
   </div>
-  <!-- Plane B -->
-  <div class="box" style="position:absolute;left:600px;top:210px;width:540px;height:200px;background:#fff;color:#1C3040;">
+  <div class="box" style="position:absolute;left:600px;top:210px;width:540px;height:200px;background:var(--surface);color:var(--ink);">
     <div class="topbar"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.45);">PLANE B</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#1C3040;margin:4px 0 8px;">Local / Centres</div>
-    <div style="font-size:12.5px;line-height:1.6;opacity:.8;">One page per franchisee. Created &amp; edited from <b>data</b> — driven by the franchisee CRM and the centre's own mini back-office.</div>
-    <div style="margin-top:14px;"><span class="tag" style="background:#1C3040;color:#F5E800;">CRM · DATA LAYER · LOCAL CMS</span></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 45%,transparent);" data-i18n="s2.bTag">PLANE B</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:var(--ink);margin:4px 0 8px;" data-i18n="s2.bH">Local / Centres</div>
+    <div style="font-size:12.5px;line-height:1.6;opacity:.8;" data-i18n="s2.bB">One page per franchisee. Created &amp; edited from <b>data</b> — driven by the franchisee CRM and the centre's own mini back-office.</div>
+    <div style="margin-top:14px;"><span class="tag" style="background:var(--ink);color:var(--accent);">CRM · DATA LAYER · LOCAL CMS</span></div>
   </div>
-  <!-- merge into shell -->
-  <div style="position:absolute;left:300px;top:418px;font-size:22px;color:#1C3040;opacity:.3;">&#8600;</div>
-  <div style="position:absolute;left:865px;top:418px;font-size:22px;color:#1C3040;opacity:.3;">&#8601;</div>
-  <div class="box" style="position:absolute;left:330px;top:452px;width:540px;height:150px;background:#F5E800;color:#1C3040;">
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;">THE SHELL — one presentation layer</div>
-    <div style="font-size:12.5px;line-height:1.55;margin-top:8px;opacity:.85;">Renders both planes. Static build for editorial, on-demand regeneration for locals. <b>Auto-generates sitemaps &amp; schema.org for everything.</b></div>
+  <div style="position:absolute;left:300px;top:418px;font-size:22px;color:var(--ink);opacity:.3;">&#8600;</div>
+  <div style="position:absolute;left:865px;top:418px;font-size:22px;color:var(--ink);opacity:.3;">&#8601;</div>
+  <div class="box" style="position:absolute;left:330px;top:452px;width:540px;height:150px;background:var(--accent);color:var(--ink);">
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;" data-i18n="s2.shellH">THE SHELL — one presentation layer</div>
+    <div style="font-size:12.5px;line-height:1.55;margin-top:8px;opacity:.85;" data-i18n="s2.shellB">Renders both planes. Static build for editorial, on-demand regeneration for locals. <b>Auto-generates sitemaps &amp; schema.org for everything.</b></div>
   </div>
 </div>
 
 <!-- ============ S3 — PLANE A ============ -->
-<div class="slide" id="s3" style="background:#EDE8E0;">
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">PLANE A — EDITORIAL</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;">Content you push, like code</div>
-  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:#1C3040;opacity:.55;">A page is a text file with SEO baked into its header. The agency &amp; Claude Code author directly — review is the safety gate.</div>
+<div class="slide" id="s3" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s3.eye">PLANE A — EDITORIAL</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;" data-i18n="s3.h">Content you push, like code</div>
+  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:var(--ink);opacity:.55;" data-i18n="s3.lead">A page is a text file with SEO baked into its header. The agency &amp; Claude Code author directly — review is the safety gate.</div>
 
-  <!-- pipeline -->
   <div style="position:absolute;left:24px;right:24px;top:210px;display:flex;align-items:stretch;gap:0;">
-    <div class="box" style="flex:1;background:#1C3040;color:#fff;height:210px;display:flex;flex-direction:column;gap:8px;">
+    <div class="box" style="flex:1;background:var(--ink);color:#fff;height:210px;display:flex;flex-direction:column;gap:8px;">
       <div class="topbar"></div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">1 · AUTHOR</div>
-      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:#F5E800;line-height:1.2;">Claude Code<br>writes MDX</div>
-      <div style="font-size:11px;opacity:.7;line-height:1.5;">Front-matter holds title, meta, target keyword, schema type, internal links.</div>
-      <div style="margin-top:auto;background:rgba(245,232,0,.12);border-radius:6px;padding:6px 8px;font-size:10px;color:#F5E800;">/content/services/*.mdx</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s3.n1">1 · AUTHOR</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:var(--accent);line-height:1.2;" data-i18n="s3.t1">Claude Code<br>writes MDX</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s3.b1">Front-matter holds title, meta, target keyword, schema type, internal links.</div>
+      <div style="margin-top:auto;background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:6px;padding:6px 8px;font-size:10px;color:var(--accent);">/content/services/*.mdx</div>
     </div>
     <div class="arrowx" style="width:26px;">&rarr;</div>
-    <div class="box" style="flex:1;background:#fff;color:#1C3040;height:210px;display:flex;flex-direction:column;gap:8px;">
+    <div class="box" style="flex:1;background:var(--surface);color:var(--ink);height:210px;display:flex;flex-direction:column;gap:8px;">
       <div class="topbar"></div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">2 · PROPOSE</div>
-      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;">Pull Request<br>+ preview</div>
-      <div style="font-size:11px;opacity:.7;line-height:1.5;">Every change gets a live preview URL. Nothing touches production yet.</div>
-      <div style="margin-top:auto;background:rgba(28,48,64,.06);border-radius:6px;padding:6px 8px;font-size:10px;opacity:.6;">deploy preview per PR</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 40%,transparent);" data-i18n="s3.n2">2 · PROPOSE</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s3.t2">Pull Request<br>+ preview</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s3.b2">Every change gets a live preview URL. Nothing touches production yet.</div>
+      <div style="margin-top:auto;background:color-mix(in srgb,var(--ink) 6%,transparent);border-radius:6px;padding:6px 8px;font-size:10px;opacity:.6;">deploy preview per PR</div>
     </div>
     <div class="arrowx" style="width:26px;">&rarr;</div>
-    <div class="box" style="flex:1;background:#fff;color:#1C3040;height:210px;display:flex;flex-direction:column;gap:8px;">
+    <div class="box" style="flex:1;background:var(--surface);color:var(--ink);height:210px;display:flex;flex-direction:column;gap:8px;">
       <div class="topbar"></div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(28,48,64,.4);">3 · REVIEW</div>
-      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;">Human<br>approves</div>
-      <div style="font-size:11px;opacity:.7;line-height:1.5;">Marketing checks copy &amp; intent. Merge = the only gate, not group IT.</div>
-      <div style="margin-top:auto;background:rgba(28,48,64,.06);border-radius:6px;padding:6px 8px;font-size:10px;opacity:.6;">merge to main</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 40%,transparent);" data-i18n="s3.n3">3 · REVIEW</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s3.t3">Human<br>approves</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s3.b3">Marketing checks copy &amp; intent. Merge = the only gate, not group IT.</div>
+      <div style="margin-top:auto;background:color-mix(in srgb,var(--ink) 6%,transparent);border-radius:6px;padding:6px 8px;font-size:10px;opacity:.6;">merge to main</div>
     </div>
     <div class="arrowx" style="width:26px;">&rarr;</div>
-    <div class="box" style="flex:1;background:#F5E800;color:#1C3040;height:210px;display:flex;flex-direction:column;gap:8px;">
-      <div class="topbar" style="background:#1C3040;"></div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;">4 · SHIP</div>
-      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;">Auto build<br>&amp; deploy</div>
-      <div style="font-size:11px;opacity:.75;line-height:1.5;">Site rebuilds. Schema + sitemap regenerated automatically.</div>
-      <div style="margin-top:auto;background:rgba(28,48,64,.1);border-radius:6px;padding:6px 8px;font-size:10px;">live in minutes</div>
+    <div class="box" style="flex:1;background:var(--accent);color:var(--ink);height:210px;display:flex;flex-direction:column;gap:8px;">
+      <div class="topbar" style="background:var(--ink);"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;" data-i18n="s3.n4">4 · SHIP</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s3.t4">Auto build<br>&amp; deploy</div>
+      <div style="font-size:11px;opacity:.75;line-height:1.5;" data-i18n="s3.b4">Site rebuilds. Schema + sitemap regenerated automatically.</div>
+      <div style="margin-top:auto;background:color-mix(in srgb,var(--ink) 10%,transparent);border-radius:6px;padding:6px 8px;font-size:10px;">live in minutes</div>
     </div>
   </div>
-  <div style="position:absolute;left:60px;top:450px;right:60px;font-size:12.5px;color:#1C3040;opacity:.7;line-height:1.6;background:rgba(28,48,64,.05);border-radius:10px;padding:14px 18px;">
+  <div style="position:absolute;left:60px;top:450px;right:60px;font-size:12.5px;color:var(--ink);opacity:.7;line-height:1.6;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:14px 18px;" data-i18n="s3.why">
     <b>Why it matters:</b> the "recommend-only" bottleneck disappears for content. The agency and Claude Code ship at will; quality is guarded by review, not by a ticket queue.
   </div>
 </div>
 
 <!-- ============ S4 — PLANE B ============ -->
-<div class="slide" id="s4" style="background:#EDE8E0;">
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">PLANE B — LOCAL</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;">The franchisee lifecycle, automated</div>
-  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:#1C3040;opacity:.55;">Your existing flow, made into a clean architecture: one event fans out to the page, the listings, and the back-office.</div>
+<div class="slide" id="s4" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s4.eye">PLANE B — LOCAL</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;" data-i18n="s4.h">The franchisee lifecycle, automated</div>
+  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:var(--ink);opacity:.55;" data-i18n="s4.lead">Your existing flow, made into a clean architecture: one event fans out to the page, the listings, and the back-office.</div>
 
-  <!-- trigger -->
-  <div class="box" style="position:absolute;left:60px;top:212px;width:215px;height:120px;background:#1C3040;color:#fff;">
+  <div class="box" style="position:absolute;left:60px;top:212px;width:215px;height:120px;background:var(--ink);color:#fff;">
     <div class="topbar"></div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">TRIGGER</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:#F5E800;margin:5px 0 6px;line-height:1.2;">Franchisee opens</div>
-    <div style="font-size:11px;opacity:.7;line-height:1.5;">Franchisee CRM fires an event.</div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s4.trigTag">TRIGGER</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:var(--accent);margin:5px 0 6px;line-height:1.2;" data-i18n="s4.trigH">Franchisee opens</div>
+    <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s4.trigB">Franchisee CRM fires an event.</div>
   </div>
-  <div style="position:absolute;left:283px;top:262px;font-size:20px;color:#1C3040;opacity:.3;">&rarr;</div>
-  <!-- SSOT -->
-  <div class="box" style="position:absolute;left:320px;top:212px;width:240px;height:120px;background:#F5E800;color:#1C3040;">
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;">SINGLE SOURCE OF TRUTH</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:5px 0 6px;line-height:1.2;">Centre Data Layer</div>
-    <div style="font-size:11px;opacity:.8;line-height:1.5;">One record per centre: NAP, hours, services, photos.</div>
+  <div style="position:absolute;left:283px;top:262px;font-size:20px;color:var(--ink);opacity:.3;">&rarr;</div>
+  <div class="box" style="position:absolute;left:320px;top:212px;width:240px;height:120px;background:var(--accent);color:var(--ink);">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;" data-i18n="s4.ssotTag">SINGLE SOURCE OF TRUTH</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:5px 0 6px;line-height:1.2;" data-i18n="s4.ssotH">Centre Data Layer</div>
+    <div style="font-size:11px;opacity:.8;line-height:1.5;" data-i18n="s4.ssotB">One record per centre: NAP, hours, services, photos.</div>
   </div>
 
-  <!-- fan-out 3 -->
   <div style="position:absolute;left:600px;top:200px;width:540px;display:flex;flex-direction:column;gap:11px;">
-    <div class="box" style="background:#fff;color:#1C3040;display:flex;gap:12px;align-items:center;padding:12px 14px;">
-      <div style="font-size:20px;">🏪</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Local page generated</div><div style="font-size:11px;opacity:.65;">Templated, indexable, with LocalBusiness schema.</div></div>
+    <div class="box" style="background:var(--surface);color:var(--ink);display:flex;gap:12px;align-items:center;padding:12px 14px;">
+      <div style="font-size:20px;">🏪</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;" data-i18n="s4.f1h">Local page generated</div><div style="font-size:11px;opacity:.65;" data-i18n="s4.f1b">Templated, indexable, with LocalBusiness schema.</div></div>
     </div>
-    <div class="box" style="background:#fff;color:#1C3040;display:flex;gap:12px;align-items:center;padding:12px 14px;">
-      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;">Local content editor provisioned</div><div style="font-size:11px;opacity:.65;">Franchisee edits only the public page — photos, text &amp; hours.</div></div>
+    <div class="box" style="background:var(--surface);color:var(--ink);display:flex;gap:12px;align-items:center;padding:12px 14px;">
+      <div style="font-size:20px;">🔑</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;" data-i18n="s4.f2h">Local content editor provisioned</div><div style="font-size:11px;opacity:.65;" data-i18n="s4.f2b">Franchisee edits only the public page — photos, text &amp; hours.</div></div>
     </div>
   </div>
-  <div style="position:absolute;left:565px;top:255px;font-size:20px;color:#1C3040;opacity:.3;">&rarr;</div>
+  <div style="position:absolute;left:565px;top:255px;font-size:20px;color:var(--ink);opacity:.3;">&rarr;</div>
 
-  <!-- write-back loop -->
-  <div style="position:absolute;left:60px;top:392px;right:60px;background:rgba(28,48,64,.05);border-radius:10px;padding:14px 18px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1C3040;opacity:.55;margin-bottom:6px;">THE WRITE-BACK LOOP</div>
-    <div style="font-size:12.5px;color:#1C3040;line-height:1.6;">Franchisee <b>content edits</b> (photos, text, hours) &rarr; written back to the <b>Centre Data Layer</b> &rarr; the page re-renders. Franchisees never touch Git; corporate never hand-edits local pages. <b>Each side owns its own plane.</b></div>
+  <div style="position:absolute;left:60px;top:392px;right:60px;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:14px 18px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.55;margin-bottom:6px;" data-i18n="s4.wbTag">THE WRITE-BACK LOOP</div>
+    <div style="font-size:12.5px;color:var(--ink);line-height:1.6;" data-i18n="s4.wbB">Franchisee <b>content edits</b> (photos, text, hours) &rarr; written back to the <b>Centre Data Layer</b> &rarr; the page re-renders. Franchisees never touch Git; corporate never hand-edits local pages. <b>Each side owns its own plane.</b></div>
   </div>
-  <div style="position:absolute;left:60px;top:474px;right:60px;font-size:11px;color:#1C3040;opacity:.45;line-height:1.5;">Result: structured data &amp; an indexable local footprint are produced automatically — exactly the two things the audit found missing. <i>(Google Business listings are driven by the franchisee CRM on its own track — outside this architecture.)</i></div>
+  <div style="position:absolute;left:60px;top:474px;right:60px;font-size:11px;color:var(--ink);opacity:.45;line-height:1.5;" data-i18n="s4.foot">Result: structured data &amp; an indexable local footprint are produced automatically — exactly the two things the audit found missing. <i>(Google Business listings are driven by the franchisee CRM on its own track — outside this architecture.)</i></div>
 </div>
 
-<!-- ============ S5 — END-USER FIRST / DECOUPLE CONTRACTS ============ -->
-<div class="slide" id="s5" style="background:#1C3040;">
-  <div class="footer footer-y"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-yw" style="position:absolute;top:26px;right:28px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:28px;">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w">END-USER FIRST</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;color:#fff;">The site serves the visitor — nothing else</div>
-  <div style="position:absolute;left:60px;top:160px;width:1020px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;">Anything internal — contracts, enrollment, paperwork — has no place on the public website. Give it a clean track of its own.</div>
+<!-- ============ S5 — END-USER FIRST ============ -->
+<div class="slide" id="s5" style="background:var(--ink);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand brand-dark"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w" data-i18n="s5.eye">END-USER FIRST</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;color:#fff;" data-i18n="s5.h">The site serves the visitor — nothing else</div>
+  <div style="position:absolute;left:60px;top:160px;width:1020px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;" data-i18n="s5.lead">Anything internal — contracts, enrollment, paperwork — has no place on the public website. Give it a clean track of its own.</div>
 
-  <!-- LEFT: on the site (end-user) -->
-  <div style="position:absolute;left:60px;top:226px;width:520px;height:310px;background:rgba(245,232,0,.10);border-radius:12px;padding:22px 24px;border-left:5px solid #F5E800;">
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#F5E800;">ON THE SITE — END-USER</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;">Local content only</div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:14px;">The franchisee edits only what the visitor sees:</div>
+  <div style="position:absolute;left:60px;top:226px;width:520px;height:310px;background:color-mix(in srgb,var(--accent) 10%,transparent);border-radius:12px;padding:22px 24px;border-left:5px solid var(--accent);">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent);" data-i18n="s5.lTag">ON THE SITE — END-USER</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;" data-i18n="s5.lH">Local content only</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:14px;" data-i18n="s5.lB">The franchisee edits only what the visitor sees:</div>
     <div style="display:flex;gap:18px;margin-bottom:14px;">
-      <div style="color:rgba(255,255,255,.85);font-size:13px;">📷 Photos</div>
-      <div style="color:rgba(255,255,255,.85);font-size:13px;">✏️ Text</div>
-      <div style="color:rgba(255,255,255,.85);font-size:13px;">🕒 Opening hours</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;" data-i18n="s5.li1">📷 Photos</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;" data-i18n="s5.li2">✏️ Text</div>
+      <div style="color:rgba(255,255,255,.85);font-size:13px;" data-i18n="s5.li3">🕒 Opening hours</div>
     </div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6;">Written back to the <b style="color:#F5E800;">Centre Data Layer</b> → the public local page re-renders. Fast, indexable, visitor-centric.</div>
-    <div style="margin-top:14px;"><span class="tag" style="background:#F5E800;color:#1C3040;">SERVES THE VISITOR</span></div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6;" data-i18n="s5.lNote">Written back to the <b style="color:var(--accent);">Centre Data Layer</b> → the public local page re-renders. Fast, indexable, visitor-centric.</div>
+    <div style="margin-top:14px;"><span class="tag" style="background:var(--accent);color:var(--ink);" data-i18n="s5.lChip">SERVES THE VISITOR</span></div>
   </div>
 
-  <!-- RIGHT: off the site (internal ops) -->
   <div style="position:absolute;left:620px;top:226px;width:520px;height:310px;background:rgba(255,255,255,.05);border-radius:12px;padding:22px 24px;border-left:5px solid rgba(255,255,255,.18);">
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);">OFF THE SITE — INTERNAL OPS</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;">Franchisee operations</div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:12px;">Contracts (Safevalue, Auction…) run on dedicated tools — decoupled from the website:</div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);" data-i18n="s5.rTag">OFF THE SITE — INTERNAL OPS</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:20px;color:#fff;margin:8px 0 12px;" data-i18n="s5.rH">Franchisee operations</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:12px;" data-i18n="s5.rB">Contracts (Safevalue, Auction…) run on dedicated tools — decoupled from the website:</div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.35;">
-      <div>✍️ &nbsp;<b>Sign</b> — e-signature tool</div>
-      <div>🗄️ &nbsp;<b>Archive</b> — document vault / DMS</div>
-      <div>📇 &nbsp;<b>Track</b> — franchisee CRM <span style="opacity:.6;">(system of record)</span></div>
+      <div data-i18n="s5.ri1">✍️ &nbsp;<b>Sign</b> — e-signature tool</div>
+      <div data-i18n="s5.ri2">🗄️ &nbsp;<b>Archive</b> — document vault / DMS</div>
+      <div data-i18n="s5.ri3">📇 &nbsp;<b>Track</b> — franchisee CRM <span style="opacity:.6;">(system of record)</span></div>
     </div>
-    <div style="margin-top:14px;"><span class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);">ZERO COUPLING TO THE SITE</span></div>
+    <div style="margin-top:14px;"><span class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);" data-i18n="s5.rChip">ZERO COUPLING TO THE SITE</span></div>
   </div>
 
-  <div style="position:absolute;left:60px;top:558px;right:60px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6;">One rule keeps it clean: the website exists for the <b style="color:rgba(255,255,255,.85);">end user</b>; the business runs on its <b style="color:rgba(255,255,255,.85);">own rails</b>. No internal feature ever rides on the public site.</div>
+  <div style="position:absolute;left:60px;top:558px;right:60px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6;" data-i18n="s5.foot">One rule keeps it clean: the website exists for the <b style="color:rgba(255,255,255,.85);">end user</b>; the business runs on its <b style="color:rgba(255,255,255,.85);">own rails</b>. No internal feature ever rides on the public site.</div>
 </div>
 
 <!-- ============ S6 — THE SHELL STACK ============ -->
-<div class="slide" id="s6" style="background:#EDE8E0;">
-  <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:#F5E800;"></div>
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">THE SHELL</div></div>
-  <div class="h" style="position:absolute;left:60px;top:120px;font-size:44px;">An empty shell<br>that builds itself</div>
-  <div style="position:absolute;left:60px;top:258px;width:540px;font-size:14px;color:#1C3040;opacity:.6;line-height:1.55;">A headless / hybrid framework that handles both planes at once:</div>
+<div class="slide" id="s6" style="background:var(--bg);">
+  <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:var(--accent);"></div>
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s6.eye">THE SHELL</div></div>
+  <div class="h" style="position:absolute;left:60px;top:120px;font-size:44px;" data-i18n="s6.h">An empty shell<br>that builds itself</div>
+  <div style="position:absolute;left:60px;top:258px;width:540px;font-size:14px;color:var(--ink);opacity:.6;line-height:1.55;" data-i18n="s6.lead">A headless / hybrid framework that handles both planes at once:</div>
 
   <div style="position:absolute;left:60px;top:300px;width:540px;display:flex;flex-direction:column;gap:10px;">
-    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:#1C3040;flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:#1C3040;line-height:1.5;"><b>Next.js (App Router) on Vercel</b> — or Astro. Static build for editorial, ISR / on-demand regeneration for the thousands of local pages.</div></div>
-    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:#1C3040;flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:#1C3040;line-height:1.5;"><b>Auto multi-sitemap</b> at build/revalidate — FR / EN / services / centres / blog. The broken-sitemap blocker disappears structurally.</div></div>
-    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:#1C3040;flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:#1C3040;line-height:1.5;"><b>Schema.org generated from data</b> — Organization, LocalBusiness, Breadcrumb, Service, FAQ, Article. Never hand-written.</div></div>
-    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:#1C3040;flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:#1C3040;line-height:1.5;"><b>Built-in image pipeline</b> — AVIF/WebP, fixed dimensions, lazy-load. Targets mobile LCP &lt; 2.5s.</div></div>
-    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:#1C3040;flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:#1C3040;line-height:1.5;"><b>Preview deploy per PR</b> — the exact workflow Claude Code needs to ship safely.</div></div>
+    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i1"><b>Next.js (App Router) on Vercel</b> — or Astro. Static build for editorial, ISR / on-demand regeneration for the thousands of local pages.</div></div>
+    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i2"><b>Auto multi-sitemap</b> at build/revalidate — FR / EN / services / centres / blog. The broken-sitemap blocker disappears structurally.</div></div>
+    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i3"><b>Schema.org generated from data</b> — Organization, LocalBusiness, Breadcrumb, Service, FAQ, Article. Never hand-written.</div></div>
+    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i4"><b>Built-in image pipeline</b> — AVIF/WebP, fixed dimensions, lazy-load. Targets mobile LCP &lt; 2.5s.</div></div>
+    <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i5"><b>Preview deploy per PR</b> — the exact workflow Claude Code needs to ship safely.</div></div>
   </div>
-  <div style="position:absolute;right:34px;top:160px;width:270px;color:#1C3040;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:.5;margin-bottom:10px;">THE TRADE</div>
-    <div style="font-size:13.5px;line-height:1.6;">Group IT owns the <b>rails</b> — the platform, the CRM&nbsp;↔&nbsp;Data&nbsp;Layer integration, the back-office app.</div>
-    <div style="width:50px;height:3px;background:#1C3040;opacity:.25;margin:16px 0;"></div>
-    <div style="font-size:13.5px;line-height:1.6;">They no longer gate every word. We push content; they keep the engine running.</div>
+  <div style="position:absolute;right:34px;top:160px;width:270px;color:var(--ink);">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:.5;margin-bottom:10px;" data-i18n="s6.tradeTag">THE TRADE</div>
+    <div style="font-size:13.5px;line-height:1.6;" data-i18n="s6.trade1">Group IT owns the <b>rails</b> — the platform, the CRM&nbsp;↔&nbsp;Data&nbsp;Layer integration, the back-office app.</div>
+    <div style="width:50px;height:3px;background:var(--ink);opacity:.25;margin:16px 0;"></div>
+    <div style="font-size:13.5px;line-height:1.6;" data-i18n="s6.trade2">They no longer gate every word. We push content; they keep the engine running.</div>
   </div>
 </div>
 
 <!-- ============ S7 — BIG PICTURE ============ -->
-<div class="slide" id="s7" style="background:#EDE8E0;">
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">THE BIG PICTURE</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;">One system, end to end</div>
+<div class="slide" id="s7" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s7.eye">THE BIG PICTURE</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s7.h">One system, end to end</div>
 
-  <!-- LEFT: two inputs -->
-  <div class="box" style="position:absolute;left:50px;top:178px;width:250px;height:96px;background:#1C3040;color:#fff;">
+  <div class="box" style="position:absolute;left:50px;top:178px;width:250px;height:96px;background:var(--ink);color:#fff;">
     <div class="topbar"></div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">EDITORIAL INPUT</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:#F5E800;margin:5px 0 4px;">Claude Code · Agency</div>
-    <div style="font-size:10.5px;opacity:.7;line-height:1.4;">Git repo · MDX · PR review</div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s7.edTag">EDITORIAL INPUT</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--accent);margin:5px 0 4px;" data-i18n="s7.edH">Claude Code · Agency</div>
+    <div style="font-size:10.5px;opacity:.7;line-height:1.4;" data-i18n="s7.edB">Git repo · MDX · PR review</div>
   </div>
-  <div class="box" style="position:absolute;left:50px;top:300px;width:250px;height:96px;background:#1C3040;color:#fff;">
+  <div class="box" style="position:absolute;left:50px;top:300px;width:250px;height:96px;background:var(--ink);color:#fff;">
     <div class="topbar"></div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">LOCAL INPUT</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:#F5E800;margin:5px 0 4px;">Franchisee CRM</div>
-    <div style="font-size:10.5px;opacity:.7;line-height:1.4;">+ Mini back-office edits</div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s7.loTag">LOCAL INPUT</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--accent);margin:5px 0 4px;" data-i18n="s7.loH">Franchisee CRM</div>
+    <div style="font-size:10.5px;opacity:.7;line-height:1.4;" data-i18n="s7.loB">+ Mini back-office edits</div>
   </div>
 
-  <!-- arrows to center -->
-  <div style="position:absolute;left:308px;top:218px;font-size:18px;color:#1C3040;opacity:.3;">&rarr;</div>
-  <div style="position:absolute;left:308px;top:340px;font-size:18px;color:#1C3040;opacity:.3;">&rarr;</div>
+  <div style="position:absolute;left:308px;top:218px;font-size:18px;color:var(--ink);opacity:.3;">&rarr;</div>
+  <div style="position:absolute;left:308px;top:340px;font-size:18px;color:var(--ink);opacity:.3;">&rarr;</div>
 
-  <!-- CENTER: shell + data layer -->
-  <div class="box" style="position:absolute;left:345px;top:178px;width:300px;height:96px;background:#fff;color:#1C3040;">
+  <div class="box" style="position:absolute;left:345px;top:178px;width:300px;height:96px;background:var(--surface);color:var(--ink);">
     <div class="topbar"></div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.45;">BUILD-TIME</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:5px 0 4px;">The Shell (Next.js / Vercel)</div>
-    <div style="font-size:10.5px;opacity:.65;line-height:1.4;">SSG + ISR · auto sitemap + schema</div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.45;" data-i18n="s7.btTag">BUILD-TIME</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:5px 0 4px;" data-i18n="s7.btH">The Shell (Next.js / Vercel)</div>
+    <div style="font-size:10.5px;opacity:.65;line-height:1.4;" data-i18n="s7.btB">SSG + ISR · auto sitemap + schema</div>
   </div>
-  <div class="box" style="position:absolute;left:345px;top:300px;width:300px;height:96px;background:#F5E800;color:#1C3040;">
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;">SINGLE SOURCE OF TRUTH</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:5px 0 4px;">Centre Data Layer</div>
-    <div style="font-size:10.5px;opacity:.75;line-height:1.4;">Feeds the shell · receives write-backs</div>
+  <div class="box" style="position:absolute;left:345px;top:300px;width:300px;height:96px;background:var(--accent);color:var(--ink);">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;" data-i18n="s7.dlTag">SINGLE SOURCE OF TRUTH</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:5px 0 4px;" data-i18n="s7.dlH">Centre Data Layer</div>
+    <div style="font-size:10.5px;opacity:.75;line-height:1.4;" data-i18n="s7.dlB">Feeds the shell · receives write-backs</div>
   </div>
-  <div style="position:absolute;left:490px;top:280px;font-size:16px;color:#1C3040;opacity:.3;transform:rotate(90deg);">&#8646;</div>
+  <div style="position:absolute;left:490px;top:280px;font-size:16px;color:var(--ink);opacity:.3;transform:rotate(90deg);">&#8646;</div>
 
-  <!-- arrow to output -->
-  <div style="position:absolute;left:653px;top:218px;font-size:18px;color:#1C3040;opacity:.3;">&rarr;</div>
+  <div style="position:absolute;left:653px;top:218px;font-size:18px;color:var(--ink);opacity:.3;">&rarr;</div>
 
-  <!-- OUTPUT -->
-  <div class="box" style="position:absolute;left:690px;top:178px;width:230px;height:120px;background:#1C3040;color:#fff;">
+  <div class="box" style="position:absolute;left:690px;top:178px;width:230px;height:120px;background:var(--ink);color:#fff;">
     <div class="topbar"></div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(245,232,0,.6);">PUBLISHED SITE</div>
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:#F5E800;margin:5px 0 4px;">mbefrance.fr</div>
-    <div style="font-size:10.5px;opacity:.7;line-height:1.4;">Editorial + local pages — fast, structured, indexable</div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s7.pubTag">PUBLISHED SITE</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--accent);margin:5px 0 4px;">mbefrance.fr</div>
+    <div style="font-size:10.5px;opacity:.7;line-height:1.4;" data-i18n="s7.pubB">Editorial + local pages — fast, structured, indexable</div>
   </div>
-  <div style="position:absolute;left:928px;top:218px;font-size:18px;color:#1C3040;opacity:.3;">&rarr;</div>
-  <div class="box" style="position:absolute;left:965px;top:178px;width:175px;height:120px;background:#F5E800;color:#1C3040;">
-    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;line-height:1.2;">Google &amp;<br>AI search</div>
-    <div style="font-size:11px;opacity:.78;line-height:1.45;margin-top:8px;">Crawl · index · rich results · AI Overviews / GEO</div>
+  <div style="position:absolute;left:928px;top:218px;font-size:18px;color:var(--ink);opacity:.3;">&rarr;</div>
+  <div class="box" style="position:absolute;left:965px;top:178px;width:175px;height:120px;background:var(--accent);color:var(--ink);">
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;line-height:1.2;" data-i18n="s7.gH">Google &amp;<br>AI search</div>
+    <div style="font-size:11px;opacity:.78;line-height:1.45;margin-top:8px;" data-i18n="s7.gB">Crawl · index · rich results · AI Overviews / GEO</div>
   </div>
 
-  <div style="position:absolute;left:50px;top:430px;right:50px;background:rgba(28,48,64,.05);border-radius:10px;padding:13px 18px;font-size:12.5px;color:#1C3040;line-height:1.55;">
+  <div style="position:absolute;left:50px;top:430px;right:50px;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:13px 18px;font-size:12.5px;color:var(--ink);line-height:1.55;" data-i18n="s7.read">
     <b>Read it left-to-right:</b> two clean inputs → one shell + one source of truth → a single fast, structured site for Google &amp; AI search. The data is never duplicated by hand. <i>(Google Business listings run on the CRM's own track, outside this stack.)</i>
   </div>
 </div>
 
 <!-- ============ S8 — AUDIT BLOCKERS SOLVED ============ -->
-<div class="slide" id="s8" style="background:#EDE8E0;">
-  <div class="footer"><span>© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="logo-dk">Fortidia</div>
-  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt">WHY IT WORKS</div></div>
-  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;">Every audit blocker, solved by design</div>
+<div class="slide" id="s8" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s8.eye">WHY IT WORKS</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s8.h">Every audit blocker, solved by design</div>
 
   <div style="position:absolute;left:60px;top:178px;right:60px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-    <div class="box" style="background:#fff;padding:14px 16px;"><div style="font-size:13px;color:#1C3040;font-weight:900;font-family:Arial Black,Arial,sans-serif;">Broken sitemap</div><div style="font-size:11.5px;color:#1C3040;opacity:.7;margin-top:5px;line-height:1.5;">Auto-generated on every build &amp; data change. Can't drift.</div></div>
-    <div class="box" style="background:#fff;padding:14px 16px;"><div style="font-size:13px;color:#1C3040;font-weight:900;font-family:Arial Black,Arial,sans-serif;">No structured data</div><div style="font-size:11.5px;color:#1C3040;opacity:.7;margin-top:5px;line-height:1.5;">Generated from front-matter &amp; centre records — every page.</div></div>
-    <div class="box" style="background:#fff;padding:14px 16px;"><div style="font-size:13px;color:#1C3040;font-weight:900;font-family:Arial Black,Arial,sans-serif;">Local pages invisible</div><div style="font-size:11.5px;color:#1C3040;opacity:.7;margin-top:5px;line-height:1.5;">First-class ISR pages, in the sitemap, with LocalBusiness schema.</div></div>
-    <div class="box" style="background:#fff;padding:14px 16px;"><div style="font-size:13px;color:#1C3040;font-weight:900;font-family:Arial Black,Arial,sans-serif;">LCP &gt; 15s, no WebP</div><div style="font-size:11.5px;color:#1C3040;opacity:.7;margin-top:5px;line-height:1.5;">Framework image pipeline: AVIF/WebP + dimensions by default.</div></div>
-    <div class="box" style="background:#fff;padding:14px 16px;"><div style="font-size:13px;color:#1C3040;font-weight:900;font-family:Arial Black,Arial,sans-serif;">Thin content, no maillage</div><div style="font-size:11.5px;color:#1C3040;opacity:.7;margin-top:5px;line-height:1.5;">Content model enforces depth + internal-link fields; Claude Code scales it.</div></div>
-    <div class="box" style="background:#1C3040;padding:14px 16px;"><div style="font-size:13px;color:#F5E800;font-weight:900;font-family:Arial Black,Arial,sans-serif;">Recommend-only bottleneck</div><div style="font-size:11.5px;color:rgba(255,255,255,.8);margin-top:5px;line-height:1.5;">Git workflow gives direct authorship; review replaces the ticket queue.</div></div>
+    <div class="box" style="background:var(--surface);padding:14px 16px;"><div style="font-size:13px;color:var(--ink);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b1h">Broken sitemap</div><div style="font-size:11.5px;color:var(--ink);opacity:.7;margin-top:5px;line-height:1.5;" data-i18n="s8.b1b">Auto-generated on every build &amp; data change. Can't drift.</div></div>
+    <div class="box" style="background:var(--surface);padding:14px 16px;"><div style="font-size:13px;color:var(--ink);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b2h">No structured data</div><div style="font-size:11.5px;color:var(--ink);opacity:.7;margin-top:5px;line-height:1.5;" data-i18n="s8.b2b">Generated from front-matter &amp; centre records — every page.</div></div>
+    <div class="box" style="background:var(--surface);padding:14px 16px;"><div style="font-size:13px;color:var(--ink);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b3h">Local pages invisible</div><div style="font-size:11.5px;color:var(--ink);opacity:.7;margin-top:5px;line-height:1.5;" data-i18n="s8.b3b">First-class ISR pages, in the sitemap, with LocalBusiness schema.</div></div>
+    <div class="box" style="background:var(--surface);padding:14px 16px;"><div style="font-size:13px;color:var(--ink);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b4h">LCP &gt; 15s, no WebP</div><div style="font-size:11.5px;color:var(--ink);opacity:.7;margin-top:5px;line-height:1.5;" data-i18n="s8.b4b">Framework image pipeline: AVIF/WebP + dimensions by default.</div></div>
+    <div class="box" style="background:var(--surface);padding:14px 16px;"><div style="font-size:13px;color:var(--ink);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b5h">Thin content, no maillage</div><div style="font-size:11.5px;color:var(--ink);opacity:.7;margin-top:5px;line-height:1.5;" data-i18n="s8.b5b">Content model enforces depth + internal-link fields; Claude Code scales it.</div></div>
+    <div class="box" style="background:var(--ink);padding:14px 16px;"><div style="font-size:13px;color:var(--accent);font-weight:900;font-family:Arial Black,Arial,sans-serif;" data-i18n="s8.b6h">Recommend-only bottleneck</div><div style="font-size:11.5px;color:rgba(255,255,255,.8);margin-top:5px;line-height:1.5;" data-i18n="s8.b6b">Git workflow gives direct authorship; review replaces the ticket queue.</div></div>
   </div>
-  <div style="position:absolute;left:60px;bottom:54px;right:60px;font-size:12px;color:#1C3040;opacity:.55;text-align:center;">These weren't ten separate fixes. They were symptoms of one missing architecture.</div>
+  <div style="position:absolute;left:60px;bottom:54px;right:60px;font-size:12px;color:var(--ink);opacity:.55;text-align:center;" data-i18n="s8.foot">These weren't ten separate fixes. They were symptoms of one missing architecture.</div>
 </div>
 
 </div></div>
 <div id="nav">
-  <button onclick="go(-1)">← Prev</button>
+  <button onclick="go(-1)" data-i18n="nav.prev">← Prev</button>
   <span id="counter">1 / 9</span>
-  <button onclick="go(1)">Next →</button>
+  <button onclick="go(1)" data-i18n="nav.next">Next →</button>
+  <span class="sep"></span>
+  <button class="toggle theme" id="themeBtn" onclick="toggleTheme()">MBE</button>
+  <button class="toggle" id="langBtn" onclick="toggleLang()">FR</button>
   <button id="fullbtn" onclick="toggleFull()">⛶</button>
 </div>
 <script>
-const slides=document.querySelectorAll('.slide');
-const total=slides.length;
-let cur=0;
+const I18N={
+en:{
+"nav.prev":"← Prev","nav.next":"Next →",
+"footer.full":"© 2026 Fortidia / MBE France. Confidential — internal working document.","footer.short":"© 2026 Fortidia / MBE France. Confidential.",
+"s0.title":"The Next<br>MBE Website","s0.sub":"An empty shell you push<br>content to — with Claude Code &amp; Git.","s0.date":"June 2026","s0.kicker":"MBE FRANCE · DIGITAL INFRASTRUCTURE","s0.tag":"Target architecture — clean-slate proposal",
+"s1.eye":"STARTING POINT","s1.h":"The wall we<br>keep hitting","s1.lead":"The Nov-2025 audit wasn't a content problem first. It was a <b>system</b> problem — we can't reliably ship to our own site.","s1.p1":"<b>Recommend-only agency.</b> No CMS access → every change routes through group IT, with long, unpredictable delays.","s1.p2":"<b>Broken sitemap.</b> Google can't crawl properly — ~343 of ~1,400 URLs seen, ~227 indexed.","s1.p3":"<b>Local pages invisible.</b> The franchise network — our core asset — isn't indexed.","s1.p4":"<b>Zero structured data &amp; slow pages.</b> No schema.org; LCP &gt;15s; images not in WebP/AVIF.","s1.stat":"<b>no traffic</b> from 73.5% of indexable pages. Almost all clicks come from our own brand name.","s1.note":"The fix isn't \"write more\". It's an architecture we can actually operate.",
+"s2.eye":"THE PRINCIPLE","s2.h":"Two content planes, one shell","s2.lead":"Different content has different owners and rhythms. Stop forcing it through one pipe.","s2.aTag":"PLANE A","s2.aH":"Editorial / Corporate","s2.aB":"Services, hubs, landing pages, blog. Slow-changing, marketing-owned. Authored as <b>code</b> — pushed via Claude&nbsp;Code &amp; Git.","s2.bTag":"PLANE B","s2.bH":"Local / Centres","s2.bB":"One page per franchisee. Created &amp; edited from <b>data</b> — driven by the franchisee CRM and the centre's own mini back-office.","s2.shellH":"THE SHELL — one presentation layer","s2.shellB":"Renders both planes. Static build for editorial, on-demand regeneration for locals. <b>Auto-generates sitemaps &amp; schema.org for everything.</b>",
+"s3.eye":"PLANE A — EDITORIAL","s3.h":"Content you push, like code","s3.lead":"A page is a text file with SEO baked into its header. The agency &amp; Claude Code author directly — review is the safety gate.","s3.n1":"1 · AUTHOR","s3.t1":"Claude Code<br>writes MDX","s3.b1":"Front-matter holds title, meta, target keyword, schema type, internal links.","s3.n2":"2 · PROPOSE","s3.t2":"Pull Request<br>+ preview","s3.b2":"Every change gets a live preview URL. Nothing touches production yet.","s3.n3":"3 · REVIEW","s3.t3":"Human<br>approves","s3.b3":"Marketing checks copy &amp; intent. Merge = the only gate, not group IT.","s3.n4":"4 · SHIP","s3.t4":"Auto build<br>&amp; deploy","s3.b4":"Site rebuilds. Schema + sitemap regenerated automatically.","s3.why":"<b>Why it matters:</b> the \"recommend-only\" bottleneck disappears for content. The agency and Claude Code ship at will; quality is guarded by review, not by a ticket queue.",
+"s4.eye":"PLANE B — LOCAL","s4.h":"The franchisee lifecycle, automated","s4.lead":"Your existing flow, made into a clean architecture: one event fans out to the page, the listings, and the back-office.","s4.trigTag":"TRIGGER","s4.trigH":"Franchisee opens","s4.trigB":"Franchisee CRM fires an event.","s4.ssotTag":"SINGLE SOURCE OF TRUTH","s4.ssotH":"Centre Data Layer","s4.ssotB":"One record per centre: NAP, hours, services, photos.","s4.f1h":"Local page generated","s4.f1b":"Templated, indexable, with LocalBusiness schema.","s4.f2h":"Local content editor provisioned","s4.f2b":"Franchisee edits only the public page — photos, text &amp; hours.","s4.wbTag":"THE WRITE-BACK LOOP","s4.wbB":"Franchisee <b>content edits</b> (photos, text, hours) &rarr; written back to the <b>Centre Data Layer</b> &rarr; the page re-renders. Franchisees never touch Git; corporate never hand-edits local pages. <b>Each side owns its own plane.</b>","s4.foot":"Result: structured data &amp; an indexable local footprint are produced automatically — exactly the two things the audit found missing. <i>(Google Business listings are driven by the franchisee CRM on its own track — outside this architecture.)</i>",
+"s5.eye":"END-USER FIRST","s5.h":"The site serves the visitor — nothing else","s5.lead":"Anything internal — contracts, enrollment, paperwork — has no place on the public website. Give it a clean track of its own.","s5.lTag":"ON THE SITE — END-USER","s5.lH":"Local content only","s5.lB":"The franchisee edits only what the visitor sees:","s5.li1":"📷 Photos","s5.li2":"✏️ Text","s5.li3":"🕒 Opening hours","s5.lNote":"Written back to the <b style=\"color:var(--accent);\">Centre Data Layer</b> → the public local page re-renders. Fast, indexable, visitor-centric.","s5.lChip":"SERVES THE VISITOR","s5.rTag":"OFF THE SITE — INTERNAL OPS","s5.rH":"Franchisee operations","s5.rB":"Contracts (Safevalue, Auction…) run on dedicated tools — decoupled from the website:","s5.ri1":"✍️ &nbsp;<b>Sign</b> — e-signature tool","s5.ri2":"🗄️ &nbsp;<b>Archive</b> — document vault / DMS","s5.ri3":"📇 &nbsp;<b>Track</b> — franchisee CRM <span style=\"opacity:.6;\">(system of record)</span>","s5.rChip":"ZERO COUPLING TO THE SITE","s5.foot":"One rule keeps it clean: the website exists for the <b style=\"color:rgba(255,255,255,.85);\">end user</b>; the business runs on its <b style=\"color:rgba(255,255,255,.85);\">own rails</b>. No internal feature ever rides on the public site.",
+"s6.eye":"THE SHELL","s6.h":"An empty shell<br>that builds itself","s6.lead":"A headless / hybrid framework that handles both planes at once:","s6.i1":"<b>Next.js (App Router) on Vercel</b> — or Astro. Static build for editorial, ISR / on-demand regeneration for the thousands of local pages.","s6.i2":"<b>Auto multi-sitemap</b> at build/revalidate — FR / EN / services / centres / blog. The broken-sitemap blocker disappears structurally.","s6.i3":"<b>Schema.org generated from data</b> — Organization, LocalBusiness, Breadcrumb, Service, FAQ, Article. Never hand-written.","s6.i4":"<b>Built-in image pipeline</b> — AVIF/WebP, fixed dimensions, lazy-load. Targets mobile LCP &lt; 2.5s.","s6.i5":"<b>Preview deploy per PR</b> — the exact workflow Claude Code needs to ship safely.","s6.tradeTag":"THE TRADE","s6.trade1":"Group IT owns the <b>rails</b> — the platform, the CRM&nbsp;↔&nbsp;Data&nbsp;Layer integration, the back-office app.","s6.trade2":"They no longer gate every word. We push content; they keep the engine running.",
+"s7.eye":"THE BIG PICTURE","s7.h":"One system, end to end","s7.edTag":"EDITORIAL INPUT","s7.edH":"Claude Code · Agency","s7.edB":"Git repo · MDX · PR review","s7.loTag":"LOCAL INPUT","s7.loH":"Franchisee CRM","s7.loB":"+ Mini back-office edits","s7.btTag":"BUILD-TIME","s7.btH":"The Shell (Next.js / Vercel)","s7.btB":"SSG + ISR · auto sitemap + schema","s7.dlTag":"SINGLE SOURCE OF TRUTH","s7.dlH":"Centre Data Layer","s7.dlB":"Feeds the shell · receives write-backs","s7.pubTag":"PUBLISHED SITE","s7.pubB":"Editorial + local pages — fast, structured, indexable","s7.gH":"Google &amp;<br>AI search","s7.gB":"Crawl · index · rich results · AI Overviews / GEO","s7.read":"<b>Read it left-to-right:</b> two clean inputs → one shell + one source of truth → a single fast, structured site for Google &amp; AI search. The data is never duplicated by hand. <i>(Google Business listings run on the CRM's own track, outside this stack.)</i>",
+"s8.eye":"WHY IT WORKS","s8.h":"Every audit blocker, solved by design","s8.b1h":"Broken sitemap","s8.b1b":"Auto-generated on every build &amp; data change. Can't drift.","s8.b2h":"No structured data","s8.b2b":"Generated from front-matter &amp; centre records — every page.","s8.b3h":"Local pages invisible","s8.b3b":"First-class ISR pages, in the sitemap, with LocalBusiness schema.","s8.b4h":"LCP &gt; 15s, no WebP","s8.b4b":"Framework image pipeline: AVIF/WebP + dimensions by default.","s8.b5h":"Thin content, no maillage","s8.b5b":"Content model enforces depth + internal-link fields; Claude Code scales it.","s8.b6h":"Recommend-only bottleneck","s8.b6b":"Git workflow gives direct authorship; review replaces the ticket queue.","s8.foot":"These weren't ten separate fixes. They were symptoms of one missing architecture."
+},
+fr:{
+"nav.prev":"← Préc.","nav.next":"Suivant →",
+"footer.full":"© 2026 Fortidia / MBE France. Confidentiel — document de travail interne.","footer.short":"© 2026 Fortidia / MBE France. Confidentiel.",
+"s0.title":"Le prochain<br>site MBE","s0.sub":"Une coquille vide où l'on pousse<br>le contenu — avec Claude Code &amp; Git.","s0.date":"Juin 2026","s0.kicker":"MBE FRANCE · INFRASTRUCTURE DIGITALE","s0.tag":"Architecture cible — proposition page blanche",
+"s1.eye":"POINT DE DÉPART","s1.h":"Le mur qu'on<br>se prend sans cesse","s1.lead":"L'audit de nov. 2025 n'était pas d'abord un problème de contenu. C'était un problème de <b>système</b> — on ne peut pas publier de façon fiable sur notre propre site.","s1.p1":"<b>Agence en « recommandation seule ».</b> Aucun accès au CMS → chaque changement passe par l'IT groupe, avec des délais longs et imprévisibles.","s1.p2":"<b>Sitemap cassé.</b> Google ne peut pas crawler correctement — ~343 URLs vues sur ~1 400, ~227 indexées.","s1.p3":"<b>Pages locales invisibles.</b> Le réseau de franchise — notre actif central — n'est pas indexé.","s1.p4":"<b>Zéro donnée structurée &amp; pages lentes.</b> Pas de schema.org ; LCP &gt;15s ; images pas en WebP/AVIF.","s1.stat":"<b>aucun trafic</b> pour 73,5 % des pages indexables. Presque tous les clics viennent de notre propre nom de marque.","s1.note":"La solution n'est pas « écrire plus ». C'est une architecture qu'on peut réellement opérer.",
+"s2.eye":"LE PRINCIPE","s2.h":"Deux plans de contenu, une coquille","s2.lead":"Des contenus différents ont des propriétaires et des rythmes différents. Arrêtons de tout forcer dans un seul tuyau.","s2.aTag":"PLAN A","s2.aH":"Éditorial / Corporate","s2.aB":"Services, hubs, landing pages, blog. Peu évolutif, piloté par le marketing. Rédigé comme du <b>code</b> — poussé via Claude&nbsp;Code &amp; Git.","s2.bTag":"PLAN B","s2.bH":"Local / Centres","s2.bB":"Une page par franchisé. Créée &amp; éditée à partir de <b>données</b> — pilotée par le CRM franchisé et le mini back-office du centre.","s2.shellH":"LA COQUILLE — une couche de présentation","s2.shellB":"Affiche les deux plans. Build statique pour l'éditorial, régénération à la demande pour le local. <b>Génère automatiquement sitemaps &amp; schema.org pour tout.</b>",
+"s3.eye":"PLAN A — ÉDITORIAL","s3.h":"Du contenu qu'on pousse, comme du code","s3.lead":"Une page est un fichier texte avec le SEO intégré dans son en-tête. L'agence &amp; Claude Code rédigent directement — la revue est le garde-fou.","s3.n1":"1 · RÉDIGER","s3.t1":"Claude Code<br>écrit du MDX","s3.b1":"Le front-matter contient titre, meta, mot-clé cible, type de schema, liens internes.","s3.n2":"2 · PROPOSER","s3.t2":"Pull Request<br>+ preview","s3.b2":"Chaque changement obtient une URL de preview live. Rien ne touche encore la production.","s3.n3":"3 · RELIRE","s3.t3":"Validation<br>humaine","s3.b3":"Le marketing vérifie le texte &amp; l'intention. Le merge = le seul garde-fou, pas l'IT groupe.","s3.n4":"4 · PUBLIER","s3.t4":"Build &amp; déploi.<br>automatiques","s3.b4":"Le site se reconstruit. Schema + sitemap régénérés automatiquement.","s3.why":"<b>Pourquoi c'est clé :</b> le goulot « recommandation seule » disparaît pour le contenu. L'agence et Claude Code publient à volonté ; la qualité est garantie par la revue, pas par une file de tickets.",
+"s4.eye":"PLAN B — LOCAL","s4.h":"Le cycle de vie du franchisé, automatisé","s4.lead":"Votre flux existant, transformé en architecture propre : un événement se diffuse vers la page, les listings et le back-office.","s4.trigTag":"DÉCLENCHEUR","s4.trigH":"Ouverture d'un franchisé","s4.trigB":"Le CRM franchisé déclenche un événement.","s4.ssotTag":"SOURCE DE VÉRITÉ UNIQUE","s4.ssotH":"Centre Data Layer","s4.ssotB":"Un enregistrement par centre : NAP, horaires, services, photos.","s4.f1h":"Page locale générée","s4.f1b":"Templatée, indexable, avec schema LocalBusiness.","s4.f2h":"Éditeur de contenu local provisionné","s4.f2b":"Le franchisé n'édite que la page publique — photos, texte &amp; horaires.","s4.wbTag":"LA BOUCLE DE WRITE-BACK","s4.wbB":"Les <b>modifications de contenu</b> du franchisé (photos, texte, horaires) &rarr; réécrites dans le <b>Centre Data Layer</b> &rarr; la page se régénère. Les franchisés ne touchent jamais à Git ; le corporate n'édite jamais à la main les pages locales. <b>Chacun est propriétaire de son plan.</b>","s4.foot":"Résultat : la donnée structurée &amp; une empreinte locale indexable sont produites automatiquement — exactement les deux manques relevés par l'audit. <i>(Les fiches Google Business sont pilotées par le CRM franchisé sur sa propre voie — hors de cette architecture.)</i>",
+"s5.eye":"L'UTILISATEUR D'ABORD","s5.h":"Le site sert le visiteur — rien d'autre","s5.lead":"Tout ce qui est interne — contrats, adhésion, paperasse — n'a pas sa place sur le site public. Donnons-lui sa propre voie, au propre.","s5.lTag":"SUR LE SITE — UTILISATEUR","s5.lH":"Contenu local uniquement","s5.lB":"Le franchisé n'édite que ce que le visiteur voit :","s5.li1":"📷 Photos","s5.li2":"✏️ Texte","s5.li3":"🕒 Horaires d'ouverture","s5.lNote":"Réécrit dans le <b style=\"color:var(--accent);\">Centre Data Layer</b> → la page locale publique se régénère. Rapide, indexable, centrée visiteur.","s5.lChip":"SERT LE VISITEUR","s5.rTag":"HORS DU SITE — OPÉRATIONS INTERNES","s5.rH":"Opérations franchisé","s5.rB":"Les contrats (Safevalue, Auction…) tournent sur des outils dédiés — découplés du site :","s5.ri1":"✍️ &nbsp;<b>Signer</b> — outil de signature électronique","s5.ri2":"🗄️ &nbsp;<b>Archiver</b> — coffre documentaire / GED","s5.ri3":"📇 &nbsp;<b>Suivre</b> — CRM franchisé <span style=\"opacity:.6;\">(système de référence)</span>","s5.rChip":"ZÉRO COUPLAGE AU SITE","s5.foot":"Une règle garde tout au propre : le site existe pour l'<b style=\"color:rgba(255,255,255,.85);\">utilisateur final</b> ; l'activité tourne sur ses <b style=\"color:rgba(255,255,255,.85);\">propres rails</b>. Aucune fonction interne ne s'appuie sur le site public.",
+"s6.eye":"LA COQUILLE","s6.h":"Une coquille vide<br>qui se construit seule","s6.lead":"Un framework headless / hybride qui gère les deux plans en même temps :","s6.i1":"<b>Next.js (App Router) sur Vercel</b> — ou Astro. Build statique pour l'éditorial, ISR / régénération à la demande pour les milliers de pages locales.","s6.i2":"<b>Multi-sitemap automatique</b> au build/revalidate — FR / EN / services / centres / blog. Le blocage du sitemap cassé disparaît structurellement.","s6.i3":"<b>Schema.org généré depuis la donnée</b> — Organization, LocalBusiness, Breadcrumb, Service, FAQ, Article. Jamais écrit à la main.","s6.i4":"<b>Pipeline d'images intégré</b> — AVIF/WebP, dimensions fixes, lazy-load. Cible LCP mobile &lt; 2,5s.","s6.i5":"<b>Preview déployée par PR</b> — exactement le workflow dont Claude Code a besoin pour publier en sécurité.","s6.tradeTag":"LE DEAL","s6.trade1":"L'IT groupe possède les <b>rails</b> — la plateforme, l'intégration CRM&nbsp;↔&nbsp;Data&nbsp;Layer, l'app back-office.","s6.trade2":"Ils ne valident plus chaque mot. On pousse le contenu ; ils font tourner le moteur.",
+"s7.eye":"LA VUE D'ENSEMBLE","s7.h":"Un système, de bout en bout","s7.edTag":"ENTRÉE ÉDITORIALE","s7.edH":"Claude Code · Agence","s7.edB":"Repo Git · MDX · revue PR","s7.loTag":"ENTRÉE LOCALE","s7.loH":"CRM franchisé","s7.loB":"+ éditions mini back-office","s7.btTag":"AU BUILD","s7.btH":"La coquille (Next.js / Vercel)","s7.btB":"SSG + ISR · sitemap + schema auto","s7.dlTag":"SOURCE DE VÉRITÉ UNIQUE","s7.dlH":"Centre Data Layer","s7.dlB":"Alimente la coquille · reçoit les write-backs","s7.pubTag":"SITE PUBLIÉ","s7.pubB":"Éditorial + pages locales — rapide, structuré, indexable","s7.gH":"Google &amp;<br>recherche IA","s7.gB":"Crawl · index · rich results · AI Overviews / GEO","s7.read":"<b>À lire de gauche à droite :</b> deux entrées propres → une coquille + une source de vérité → un site unique, rapide et structuré pour Google &amp; la recherche IA. La donnée n'est jamais dupliquée à la main. <i>(Les fiches Google Business tournent sur la voie du CRM, hors de cette stack.)</i>",
+"s8.eye":"POURQUOI ÇA MARCHE","s8.h":"Chaque blocage de l'audit, résolu par design","s8.b1h":"Sitemap cassé","s8.b1b":"Généré automatiquement à chaque build &amp; changement de donnée. Ne peut pas dériver.","s8.b2h":"Pas de donnée structurée","s8.b2b":"Générée depuis le front-matter &amp; les fiches centres — chaque page.","s8.b3h":"Pages locales invisibles","s8.b3b":"Pages ISR de premier ordre, dans le sitemap, avec schema LocalBusiness.","s8.b4h":"LCP &gt; 15s, pas de WebP","s8.b4b":"Pipeline d'images du framework : AVIF/WebP + dimensions par défaut.","s8.b5h":"Contenu pauvre, pas de maillage","s8.b5b":"Le modèle de contenu impose profondeur + champs de liens internes ; Claude Code passe à l'échelle.","s8.b6h":"Goulot « recommandation seule »","s8.b6b":"Le workflow Git donne une rédaction directe ; la revue remplace la file de tickets.","s8.foot":"Ce n'étaient pas dix correctifs séparés. C'étaient les symptômes d'une seule architecture manquante."
+}
+};
+const slides=document.querySelectorAll('.slide');const total=slides.length;let cur=0,lang='en',theme='fortidia';
 function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
 function go(d){show(cur+d);}
+function applyLang(l){lang=l;const d=I18N[l];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!==undefined)el.innerHTML=d[k];});document.documentElement.lang=l;document.getElementById('langBtn').textContent=(l==='en')?'FR':'EN';}
+function toggleLang(){applyLang(lang==='en'?'fr':'en');}
+function applyTheme(t){theme=t;document.documentElement.dataset.theme=t;document.getElementById('themeBtn').textContent=(t==='fortidia')?'MBE':'Fortidia';}
+function toggleTheme(){applyTheme(theme==='fortidia'?'mbe':'fortidia');}
 document.addEventListener('keydown',e=>{
   if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
   if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
   if(e.key.toLowerCase()==='f')toggleFull();
+  if(e.key.toLowerCase()==='t')toggleTheme();
+  if(e.key.toLowerCase()==='l')toggleLang();
 });
 function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
 const stage=document.getElementById('stage');
 function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
-window.addEventListener('resize',resize);resize();
-show(0);
+window.addEventListener('resize',resize);
+applyLang('en');applyTheme('fortidia');resize();show(0);
 </script></body></html>

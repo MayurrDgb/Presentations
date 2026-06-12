@@ -162,6 +162,40 @@ table.cheat td{color:var(--muted);}
 .slide.haspic .dv-ttl{right:600px;}
 .slide.haspic .dv-sub{right:620px;}
 
+/* ===================== ANIMATIONS (subtle) ===================== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+@keyframes popIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1}100%{opacity:1;transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){
+  .slide.active .head,.slide.active .lead,.slide.active .kpi,.slide.active .ag,
+  .slide.active .panel,.slide.active .post,.slide.active .gold,.slide.active .cs,
+  .slide.active .dv-eye,.slide.active .dv-ttl,.slide.active .dv-sub,.slide.active .thx{animation:fadeUp .55s cubic-bezier(.22,.7,.3,1) both}
+  /* stagger */
+  .slide.active .kpi:nth-child(2),.slide.active .ag:nth-child(2),.slide.active .post:nth-child(2),.slide.active .panel:nth-child(2){animation-delay:.09s}
+  .slide.active .kpi:nth-child(3),.slide.active .ag:nth-child(3){animation-delay:.18s}
+  .slide.active .kpi:nth-child(4),.slide.active .ag:nth-child(4){animation-delay:.27s}
+  .slide.active .ag:nth-child(5){animation-delay:.36s}
+  .slide.active .ag:nth-child(6){animation-delay:.45s}
+  .slide.active .dv-ttl{animation-delay:.06s}.slide.active .dv-sub{animation-delay:.14s}
+  /* bars draw left→right */
+  .slide.active .bar-row i{transform-origin:left center;animation:growX .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:.25s}
+  .slide.active .bar-row .bv{animation:fadeIn .5s ease .65s both}
+  /* line chart draws */
+  .slide.active polyline{stroke-dasharray:2400;stroke-dashoffset:2400;animation:drawLine 1.4s ease .15s forwards}
+  .slide.active svg polygon{animation:fadeIn 1s ease .5s both}
+  .slide.active svg circle{animation:popIn .45s ease both}
+  .slide.active svg circle:nth-of-type(2){animation-delay:.25s}
+  .slide.active svg circle:nth-of-type(3){animation-delay:.4s}
+  .slide.active svg circle:nth-of-type(4){animation-delay:.55s}
+  .slide.active svg circle:nth-of-type(5){animation-delay:.7s}
+  .slide.active svg circle:nth-of-type(6){animation-delay:.85s}
+  .slide.active svg circle:nth-of-type(7){animation-delay:1s}
+  /* photos ease in */
+  .slide.active .dv-photo,.slide.active .bg-photo{animation:fadeIn .9s ease both}
+}
+
 /* ===================== NAV ===================== */
 #nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
 #nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;}
