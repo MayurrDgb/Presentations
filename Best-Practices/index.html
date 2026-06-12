@@ -17,6 +17,9 @@
   --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
   --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
 }
+[data-theme="mbe"] [style*="background:var(--accent)"]{color:#fff;}
+[data-theme="mbe"] [style*="background:var(--accent)"] *{color:#fff!important;}
+[data-theme="mbe"] .acc-text,[data-theme="mbe"] .acc-text *{color:#fff!important;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
 #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}

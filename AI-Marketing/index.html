@@ -9,6 +9,9 @@
 <style>
 :root,[data-theme="fortidia"]{--bg:#EDE8E0;--ink:#1C3040;--accent:#F5E800;--surface:#FFFFFF;--on-dark:#EDE8E0;--footer-tx:#8FA0AD;}
 [data-theme="mbe"]{--bg:#FFFFFF;--ink:#221E1F;--accent:#E2001A;--surface:#F4F4F5;--on-dark:#F4F4F5;--footer-tx:#FFFFFF;--logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");--logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");}
+[data-theme="mbe"] [style*="background:var(--accent)"]{color:#fff;}
+[data-theme="mbe"] [style*="background:var(--accent)"] *{color:#fff!important;}
+[data-theme="mbe"] .acc-text,[data-theme="mbe"] .acc-text *{color:#fff!important;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
 #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
@@ -101,7 +104,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <!-- Fortidia logo on yellow -->
 <div class="logo-dk" style="position:absolute;top:32px;right:36px;font-family:Arial Black,Arial,sans-serif;font-weight:900;color:var(--ink);font-size:34px;letter-spacing:-.5px;">Fortidia</div>
 <!-- Title — safely inside the yellow zone, starts at 660px -->
-<div style="position:absolute;top:130px;left:790px;right:36px;">
+<div class="acc-text" style="position:absolute;top:130px;left:790px;right:36px;">
 <div data-i18n="t002" style="font-family:Arial,sans-serif;font-size:50px;color:var(--ink);line-height:1.08;font-weight:300;">Leveraging AI<br/>in Marketing</div>
 <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:22px 0 16px;border-radius:2px;"></div>
 <div data-i18n="t003" style="font-size:16px;color:var(--ink);opacity:.6;">June 10, 2026</div>
@@ -139,7 +142,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div data-i18n="t017" style="font-size:11px;line-height:1.6;margin-top:9px;opacity:.5;">Standardise editorial production.<br/>Improve organic visibility.</div>
 <div data-i18n="t018" style="display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:16px;background:var(--ink);color:var(--accent);">SEO · Content</div>
 </div>
-<div style="position:absolute;right:0;top:0;width:380px;height:100%;">
+<div class="acc-text" style="position:absolute;right:0;top:0;width:380px;height:100%;">
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;">
 <div data-i18n="t019" style="font-size:68px;font-weight:900;color:var(--ink);opacity:.07;font-family:Arial Black,Arial,sans-serif;line-height:1;">AI</div>
 <div style="margin-top:-20px;">

@@ -1,70 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="fortidia">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Presentations — Fortidia</title>
+<title>Presentations — Fortidia / MBE</title>
 <style>
+:root,[data-theme="fortidia"]{
+  --bg:#1C3040; --accent:#F5E800; --h1:#fff;
+  --label:rgba(245,232,0,.7); --card-fg:#1C3040; --card-bar:#1C3040; --card-p:rgba(28,48,64,.78);
+  --credit:rgba(255,255,255,.42); --credit-d:rgba(255,255,255,.28); --conf:rgba(255,255,255,.20);
+}
+[data-theme="mbe"]{
+  --bg:#221E1F; --accent:#E2001A; --h1:#fff;
+  --label:rgba(226,0,26,.95); --card-fg:#fff; --card-bar:#fff; --card-p:rgba(255,255,255,.85);
+  --credit:rgba(255,255,255,.42); --credit-d:rgba(255,255,255,.28); --conf:rgba(255,255,255,.20);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{min-height:100%;background:#1C3040;font-family:Arial,sans-serif;color:#EDE8E0;}
+html,body{min-height:100%;background:var(--bg);font-family:Arial,sans-serif;color:#EDE8E0;}
 body{display:flex;align-items:center;justify-content:center;padding:48px 24px;}
 .wrap{width:100%;max-width:880px;}
-.logo{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:#F5E800;font-size:30px;letter-spacing:-.5px;margin-bottom:40px;}
-.label{font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(245,232,0,.7);margin-bottom:14px;}
-h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color:#fff;line-height:1.08;margin-bottom:40px;}
+/* brand */
+.logo-ft{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:var(--accent);font-size:30px;letter-spacing:-.5px;margin-bottom:40px;display:block;}
+.logo-mbe{display:none;height:62px;width:auto;margin-bottom:36px;}
+[data-theme="mbe"] .logo-ft{display:none;}
+[data-theme="mbe"] .logo-mbe{display:block;}
+.label{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--label);margin-bottom:14px;}
+h1{font-family:Arial Black,Arial,sans-serif;font-size:46px;font-weight:900;color:var(--h1);line-height:1.08;margin-bottom:40px;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.card{display:block;text-decoration:none;border-radius:14px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease;}
+.card{display:block;text-decoration:none;border-radius:14px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease;background:var(--accent);}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.35);}
-.card .bar{position:absolute;top:0;left:0;right:0;height:5px;}
-.card .arrow{position:absolute;top:22px;right:24px;font-size:22px;}
-.card .tag{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:10px;}
-.card h2{font-family:Arial Black,Arial,sans-serif;font-size:24px;font-weight:900;margin-bottom:8px;line-height:1.15;}
-.card p{font-size:13px;line-height:1.6;}
-.c-live{background:#F5E800;}
-.c-live .bar{background:#1C3040;}.c-live .arrow,.c-live .tag,.c-live h2{color:#1C3040;}.c-live p{color:rgba(28,48,64,.78);}
-.credit{position:fixed;bottom:16px;right:22px;font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.3px;}
-.credit .by{font-weight:700;color:rgba(255,255,255,.42);}
-.conf{position:fixed;bottom:16px;left:22px;font-size:10px;color:rgba(255,255,255,.20);}
-@media(max-width:640px){.grid{grid-template-columns:1fr;}h1{font-size:34px;}}
+.card .bar{position:absolute;top:0;left:0;right:0;height:5px;background:var(--card-bar);}
+.card .arrow{position:absolute;top:22px;right:24px;font-size:22px;color:var(--card-fg);}
+.card .tag{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:10px;color:var(--card-fg);}
+.card h2{font-family:Arial Black,Arial,sans-serif;font-size:24px;font-weight:900;margin-bottom:8px;line-height:1.15;color:var(--card-fg);}
+.card p{font-size:13px;line-height:1.6;color:var(--card-p);}
+/* toggles */
+#ctrl{position:fixed;top:18px;right:20px;display:flex;align-items:center;gap:8px;z-index:100;}
+#ctrl button{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.32);color:#fff;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;font-weight:700;transition:background .15s;min-width:74px;}
+#ctrl button:hover{background:rgba(255,255,255,.18);}
+#ctrl .theme{color:var(--accent);}
+.credit{position:fixed;bottom:16px;right:22px;font-size:11px;color:var(--credit-d);letter-spacing:.3px;}
+.credit .by{font-weight:700;color:var(--credit);}
+.conf{position:fixed;bottom:16px;left:22px;font-size:10px;color:var(--conf);}
+@media(max-width:640px){.grid{grid-template-columns:1fr;}h1{font-size:34px;}#ctrl{top:12px;right:12px;}}
 </style>
 </head>
 <body>
+<div id="ctrl">
+  <button class="theme" id="themeBtn" onclick="toggleTheme()">MBE</button>
+  <button id="langBtn" onclick="toggleLang()">FR</button>
+</div>
 <div class="wrap">
-  <div class="logo">Fortidia</div>
-  <div class="label">PRESENTATIONS</div>
-  <h1>Decks &amp; resources</h1>
+  <span class="logo-ft">Fortidia</span>
+  <img class="logo-mbe" alt="Mail Boxes Etc." src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png">
+  <div class="label" data-i18n="label">PRESENTATIONS</div>
+  <h1 data-i18n="h1">Decks &amp; resources</h1>
   <div class="grid">
-    <a class="card c-live" href="AI-Marketing/">
-      <div class="bar"></div>
-      <div class="arrow">&rarr;</div>
-      <div class="tag">LIVE</div>
-      <h2>Leveraging AI<br>in Marketing</h2>
-      <p>The AI spectrum, marketing use cases, cost &amp; setup, and the workshop roadmap.</p>
+    <a class="card" href="AI-Marketing/">
+      <div class="bar"></div><div class="arrow">&rarr;</div>
+      <div class="tag" data-i18n="tag">LIVE · FR/EN · MBE/FORTIDIA</div>
+      <h2 data-i18n="c1t">Leveraging AI<br>in Marketing</h2>
+      <p data-i18n="c1p">The AI spectrum, marketing use cases, cost &amp; setup, and the workshop roadmap.</p>
     </a>
-    <a class="card c-live" href="Best-Practices/">
-      <div class="bar"></div>
-      <div class="arrow">&rarr;</div>
-      <div class="tag">LIVE</div>
-      <h2>Best<br>Practice</h2>
-      <p>A replicable go-to-market package — the MBE Fulfillment / Logistics offer.</p>
+    <a class="card" href="Best-Practices/">
+      <div class="bar"></div><div class="arrow">&rarr;</div>
+      <div class="tag" data-i18n="tag">LIVE · FR/EN · MBE/FORTIDIA</div>
+      <h2 data-i18n="c2t">Best<br>Practice</h2>
+      <p data-i18n="c2p">A replicable go-to-market package — the MBE Fulfillment / Logistics offer.</p>
     </a>
-    <a class="card c-live" href="Content-Infrastructure/">
-      <div class="bar"></div>
-      <div class="arrow">&rarr;</div>
-      <div class="tag">LIVE</div>
-      <h2>The Next<br>MBE Website</h2>
-      <p>Target digital architecture for MBE France — Git-driven editorial + CRM-driven local pages, one platform.</p>
+    <a class="card" href="Content-Infrastructure/">
+      <div class="bar"></div><div class="arrow">&rarr;</div>
+      <div class="tag" data-i18n="tag">LIVE · FR/EN · MBE/FORTIDIA</div>
+      <h2 data-i18n="c3t">The Next<br>MBE Website</h2>
+      <p data-i18n="c3p">Target digital architecture for MBE France — Git-driven editorial + CRM-driven local pages, one platform.</p>
     </a>
-    <a class="card c-live" href="Formation-Reseaux-Sociaux/">
-      <div class="bar"></div>
-      <div class="arrow">&rarr;</div>
-      <div class="tag">LIVE · FR/EN · MBE/FORTIDIA</div>
-      <h2>Social Media<br>Training</h2>
-      <p>Franchisee onboarding deck — global market, META, LinkedIn, post examples &amp; cheat sheet. Toggle theme &amp; language.</p>
+    <a class="card" href="Formation-Reseaux-Sociaux/">
+      <div class="bar"></div><div class="arrow">&rarr;</div>
+      <div class="tag" data-i18n="tag">LIVE · FR/EN · MBE/FORTIDIA</div>
+      <h2 data-i18n="c4t">Social Media<br>Training</h2>
+      <p data-i18n="c4p">Franchisee onboarding deck — global market, META, LinkedIn, post examples &amp; cheat sheet.</p>
     </a>
   </div>
 </div>
-<div class="conf">© 2026 Fortidia · Confidential</div>
+<div class="conf" data-i18n="conf">© 2026 Fortidia · Confidential</div>
 <div class="credit">Crafted by <span class="by">Mayurr</span></div>
+<script>
+const I18N={
+en:{
+"label":"PRESENTATIONS","h1":"Decks &amp; resources","tag":"LIVE · FR/EN · MBE/FORTIDIA",
+"c1t":"Leveraging AI<br>in Marketing","c1p":"The AI spectrum, marketing use cases, cost &amp; setup, and the workshop roadmap.",
+"c2t":"Best<br>Practice","c2p":"A replicable go-to-market package — the MBE Fulfillment / Logistics offer.",
+"c3t":"The Next<br>MBE Website","c3p":"Target digital architecture for MBE France — Git-driven editorial + CRM-driven local pages, one platform.",
+"c4t":"Social Media<br>Training","c4p":"Franchisee onboarding deck — global market, META, LinkedIn, post examples &amp; cheat sheet.",
+"conf":"© 2026 Fortidia · Confidential"
+},
+fr:{
+"label":"PRÉSENTATIONS","h1":"Decks &amp; ressources","tag":"LIVE · FR/EN · MBE/FORTIDIA",
+"c1t":"L'IA au service<br>du marketing","c1p":"Le spectre de l'IA, les cas d'usage marketing, le coût &amp; le setup, et la roadmap de l'atelier.",
+"c2t":"Bonne<br>pratique","c2p":"Un package go-to-market réplicable — l'offre MBE Fulfillment / Logistique.",
+"c3t":"Le prochain<br>site MBE","c3p":"Architecture digitale cible pour MBE France — éditorial piloté par Git + pages locales pilotées par le CRM, une seule plateforme.",
+"c4t":"Formation<br>Réseaux Sociaux","c4p":"Deck d'onboarding franchisés — marché global, META, LinkedIn, exemples de posts &amp; cheat sheet.",
+"conf":"© 2026 Fortidia · Confidentiel"
+}
+};
+let lang="en",theme="fortidia";
+function applyLang(l){lang=l;var d=I18N[l];document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(d[k]!==undefined)el.innerHTML=d[k];});document.documentElement.lang=l;document.getElementById("langBtn").textContent=(l==="en")?"FR":"EN";}
+function toggleLang(){applyLang(lang==="en"?"fr":"en");}
+function applyTheme(t){theme=t;document.documentElement.dataset.theme=t;document.getElementById("themeBtn").textContent=(t==="fortidia")?"MBE":"Fortidia";}
+function toggleTheme(){applyTheme(theme==="fortidia"?"mbe":"fortidia");}
+document.addEventListener("keydown",function(e){var k=e.key.toLowerCase();if(k==="t")toggleTheme();if(k==="l")toggleLang();});
+applyLang("en");applyTheme("fortidia");
+</script>
 </body>
 </html>

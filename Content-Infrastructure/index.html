@@ -16,6 +16,9 @@
   --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
   --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
 }
+[data-theme="mbe"] [style*="background:var(--accent)"]{color:#fff;}
+[data-theme="mbe"] [style*="background:var(--accent)"] *{color:#fff!important;}
+[data-theme="mbe"] .acc-text,[data-theme="mbe"] .acc-text *{color:#fff!important;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
 #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
@@ -84,7 +87,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="230" font-weight="900" fill="var(--accent)" opacity="0.05">{ }</text>
   </svg>
   <div class="brand"><span class="brand-ft">Fortidia</span></div>
-  <div style="position:absolute;top:118px;left:805px;right:34px;">
+  <div class="acc-text" style="position:absolute;top:118px;left:805px;right:34px;">
     <div style="font-family:Arial,sans-serif;font-size:42px;color:var(--ink);line-height:1.1;font-weight:300;" data-i18n="s0.title">The Next<br>MBE Website</div>
     <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
     <div style="font-size:15px;color:var(--ink);opacity:.7;line-height:1.5;" data-i18n="s0.sub">An empty shell you push<br>content to — with Claude Code &amp; Git.</div>
@@ -111,7 +114,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">03</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p3"><b>Local pages invisible.</b> The franchise network — our core asset — isn't indexed.</div></div>
     <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">04</div><div style="font-size:13.5px;color:var(--ink);line-height:1.5;" data-i18n="s1.p4"><b>Zero structured data &amp; slow pages.</b> No schema.org; LCP &gt;15s; images not in WebP/AVIF.</div></div>
   </div>
-  <div style="position:absolute;right:34px;top:150px;width:268px;color:var(--ink);">
+  <div class="acc-text" style="position:absolute;right:34px;top:150px;width:268px;color:var(--ink);">
     <div style="font-family:Arial Black,Arial,sans-serif;font-size:60px;line-height:1;">73.5%</div>
     <div style="font-size:13px;margin-top:8px;opacity:.8;line-height:1.5;" data-i18n="s1.stat"><b>no traffic</b> from 73.5% of indexable pages. Almost all clicks come from our own brand name.</div>
     <div style="width:50px;height:3px;background:var(--ink);opacity:.25;margin:18px 0;"></div>
@@ -285,7 +288,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i4"><b>Built-in image pipeline</b> — AVIF/WebP, fixed dimensions, lazy-load. Targets mobile LCP &lt; 2.5s.</div></div>
     <div style="display:flex;gap:11px;align-items:flex-start;"><div style="color:var(--ink);flex-shrink:0;font-size:14px;">▸</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s6.i5"><b>Preview deploy per PR</b> — the exact workflow Claude Code needs to ship safely.</div></div>
   </div>
-  <div style="position:absolute;right:34px;top:160px;width:270px;color:var(--ink);">
+  <div class="acc-text" style="position:absolute;right:34px;top:160px;width:270px;color:var(--ink);">
     <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:.5;margin-bottom:10px;" data-i18n="s6.tradeTag">THE TRADE</div>
     <div style="font-size:13.5px;line-height:1.6;" data-i18n="s6.trade1">Group IT owns the <b>rails</b> — the platform, the CRM&nbsp;↔&nbsp;Data&nbsp;Layer integration, the back-office app.</div>
     <div style="width:50px;height:3px;background:var(--ink);opacity:.25;margin:16px 0;"></div>
