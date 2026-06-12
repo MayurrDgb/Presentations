@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="fortidia">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shared Digital Infrastructure — MBE Network · Fortidia</title>
+<style>
+:root,[data-theme="fortidia"]{
+  --bg:#EDE8E0; --ink:#1C3040; --accent:#F5E800; --surface:#FFFFFF;
+  --on-dark:#EDE8E0; --footer-bg:#1C3040; --footer-tx:#8FA0AD;
+}
+[data-theme="mbe"]{
+  --bg:#FFFFFF; --ink:#221E1F; --accent:#E2001A; --surface:#F4F4F5;
+  --on-dark:#F4F4F5; --footer-bg:#E2001A; --footer-tx:#FFFFFF;
+  --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+  --logo-white:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png");
+}
+[data-theme="mbe"] [style*="background:var(--accent)"]{color:#fff;}
+[data-theme="mbe"] [style*="background:var(--accent)"] *{color:#fff!important;}
+[data-theme="mbe"] .acc-text,[data-theme="mbe"] .acc-text *{color:#fff!important;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Arial,sans-serif;color-scheme:light;}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;color-scheme:light;background:var(--bg);}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:999;transition:width .3s ease;pointer-events:none;}
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.16);}
+#nav .toggle{border-color:rgba(255,255,255,.45);font-weight:700;min-width:72px;}
+#nav .toggle.theme{color:#F5E800;}
+[data-theme="mbe"] #nav .toggle.theme{color:#E2001A;}
+#nav .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 2px;}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:50px;text-align:center;}
+#fullbtn{background:none;border:none!important;color:rgba(255,255,255,.55);cursor:pointer;font-size:17px;line-height:1;padding:2px 6px!important;}
+#fullbtn:hover{color:#fff;}
+.slide{position:absolute;inset:0;display:none;}
+.slide.active{display:block;}
+.footer{position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--footer-bg);display:flex;align-items:center;justify-content:center;}
+.footer span{font-size:9.5px;color:var(--footer-tx);}
+.brand{position:absolute;top:24px;right:28px;width:100px;height:54px;z-index:6;}
+.brand-ft{font-family:Arial Black,Arial,sans-serif;font-weight:900;font-size:28px;letter-spacing:-.5px;line-height:54px;display:block;text-align:right;}
+[data-theme="fortidia"] .brand .brand-ft{color:var(--ink);}
+[data-theme="fortidia"] .brand.brand-dark .brand-ft{color:var(--accent);}
+[data-theme="mbe"] .brand{background:var(--logo) right center/contain no-repeat;}
+[data-theme="mbe"] .brand.brand-dark{background-image:var(--logo-neg);}
+[data-theme="mbe"] .brand.logo-red{background-image:var(--logo-white)!important;}
+[data-theme="mbe"] .brand .brand-ft{display:none;}
+.tl{width:90px;height:3px;background:var(--accent);margin-bottom:6px;}
+.tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--ink);}
+.tt-w{color:rgba(255,255,255,.45);}
+.al{position:absolute;left:0;top:0;width:8px;height:100%;background:var(--accent);}
+.h{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:var(--ink);line-height:1.1;}
+.box{border-radius:10px;padding:16px 16px;position:relative;}
+.box .topbar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);border-radius:10px 10px 0 0;}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 10px;border-radius:14px;}
+.arrowx{display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;color:var(--ink);opacity:.3;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){.slide.active{animation:fadeIn .45s ease both}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="deck"><div id="stage">
+
+<!-- ============ S0 — TITLE ============ -->
+<div class="slide active" id="s0" style="background:var(--ink);overflow:hidden;">
+  <div class="footer"><span data-i18n="footer.full">© 2026 Fortidia / MBE France. Confidential — internal working document.</span></div>
+  <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="620,0 1200,0 1200,675 820,675" fill="var(--accent)"/>
+    <g stroke="var(--accent)" stroke-width="1" opacity="0.18">
+      <line x1="80" y1="0" x2="80" y2="630"/><line x1="200" y1="0" x2="200" y2="630"/>
+      <line x1="320" y1="0" x2="320" y2="630"/><line x1="460" y1="0" x2="460" y2="630"/>
+      <line x1="0" y1="110" x2="580" y2="110"/><line x1="0" y1="230" x2="580" y2="230"/>
+      <line x1="0" y1="350" x2="580" y2="350"/><line x1="0" y1="470" x2="580" y2="470"/>
+      <line x1="0" y1="580" x2="580" y2="580"/>
+    </g>
+    <g fill="var(--accent)" opacity="0.55">
+      <circle cx="80" cy="110" r="3.5"/><circle cx="200" cy="230" r="3.5"/><circle cx="320" cy="110" r="3.5"/>
+      <circle cx="460" cy="350" r="5"/><circle cx="80" cy="350" r="3.5"/><circle cx="200" cy="470" r="3.5"/>
+      <circle cx="320" cy="350" r="3.5"/><circle cx="460" cy="230" r="3.5"/><circle cx="200" cy="110" r="3.5"/>
+    </g>
+    <g stroke="var(--accent)" stroke-width="1.2" opacity="0.22">
+      <line x1="80" y1="110" x2="200" y2="230"/><line x1="200" y1="230" x2="320" y2="110"/>
+      <line x1="320" y1="110" x2="460" y2="350"/><line x1="80" y1="350" x2="200" y2="470"/>
+      <line x1="200" y1="470" x2="320" y2="350"/><line x1="460" y1="230" x2="460" y2="350"/>
+    </g>
+    <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="200" font-weight="900" fill="var(--accent)" opacity="0.05">&#9737;</text>
+  </svg>
+  <div class="brand logo-red"><span class="brand-ft">Fortidia</span></div>
+  <div class="acc-text" style="position:absolute;top:110px;left:805px;right:34px;">
+    <div style="font-family:Arial,sans-serif;font-size:42px;color:var(--ink);line-height:1.1;font-weight:300;" data-i18n="s0.title">One platform.<br>Every country.</div>
+    <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
+    <div style="font-size:15px;color:var(--ink);opacity:.7;line-height:1.5;" data-i18n="s0.sub">A shared digital backbone for<br>the MBE network — hosted by Fortidia.</div>
+    <div style="font-size:13px;color:var(--ink);opacity:.45;margin-top:14px;" data-i18n="s0.date">June 2026</div>
+  </div>
+  <div style="position:absolute;left:60px;bottom:90px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:color-mix(in srgb,var(--accent) 55%,transparent);margin-bottom:8px;" data-i18n="s0.kicker">MBE NETWORK · SHARED DIGITAL INFRASTRUCTURE</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.4);" data-i18n="s0.tag">Business case — for Fortidia IT Infrastructure</div>
+  </div>
+</div>
+
+<!-- ============ S1 — EXECUTIVE SUMMARY ============ -->
+<div class="slide" id="s1" style="background:var(--bg);">
+  <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:var(--accent);"></div>
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand logo-red"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s1.eye">EXECUTIVE SUMMARY</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:42px;" data-i18n="s1.h">The strategic vision</div>
+  <div style="position:absolute;left:60px;top:172px;width:560px;font-size:13.5px;color:var(--ink);opacity:.62;line-height:1.55;" data-i18n="s1.lead">MBE France wants to build a centralized digital infrastructure, <b>hosted by Fortidia</b> — first as a test environment for MBE France, then rolled out to other DOCs across Europe.</div>
+
+  <div style="position:absolute;left:60px;top:248px;width:560px;display:flex;flex-direction:column;gap:11px;">
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">01</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s1.p1"><b>Not a local project.</b> It's the foundation for a multi-brand, multi-country digital platform — built once, proven in France, then shared.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">02</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s1.p2"><b>It hosts a few high-value tools.</b> A brand-guidelines hub, an AI brief &amp; content generator, and a franchise-development landing page.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">03</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s1.p3"><b>Multilingual, country-agnostic.</b> Any DOC can use each tool in its own language — without rebuilding it.</div></div>
+    <div style="display:flex;gap:12px;align-items:flex-start;"><div style="color:var(--ink);font-weight:900;font-size:14px;flex-shrink:0;width:18px;">04</div><div style="font-size:13px;color:var(--ink);line-height:1.5;" data-i18n="s1.p4"><b>The ask is modest.</b> Three standard building blocks: a small server, an automated deploy pipeline, and secure domain routing.</div></div>
+  </div>
+  <div class="acc-text" style="position:absolute;right:34px;top:150px;width:268px;color:var(--ink);">
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:34px;line-height:1.1;" data-i18n="s1.bigH">Build once.<br>Share across<br>Europe.</div>
+    <div style="width:50px;height:3px;background:var(--ink);opacity:.25;margin:18px 0;"></div>
+    <div style="font-size:12.5px;opacity:.8;line-height:1.55;" data-i18n="s1.bigB">Instead of every country reinventing the same tools, MBE France tests at small scale — and the network inherits what works.</div>
+  </div>
+</div>
+
+<!-- ============ S2 — USE CASES AT A GLANCE ============ -->
+<div class="slide" id="s2" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s2.eye">WHAT IT HOSTS</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;" data-i18n="s2.h">Four use cases, one infrastructure</div>
+  <div style="position:absolute;left:60px;top:160px;font-size:14px;color:var(--ink);opacity:.55;" data-i18n="s2.lead">A small set of tools, each useful on its own — and far more useful shared across countries.</div>
+
+  <div style="position:absolute;left:60px;top:212px;right:60px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div class="box" style="background:var(--ink);color:#fff;height:140px;">
+      <div class="topbar"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s2.n1">USE CASE 01</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;color:var(--accent);margin:6px 0 8px;line-height:1.15;" data-i18n="s2.t1">Brand Guidelines Platform</div>
+      <div style="font-size:12px;opacity:.78;line-height:1.5;" data-i18n="s2.b1">A secure, multilingual single source of truth for brand assets, rules, tone of voice and templates.</div>
+    </div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:140px;">
+      <div class="topbar"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 45%,transparent);" data-i18n="s2.n2">USE CASE 02</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;margin:6px 0 8px;line-height:1.15;" data-i18n="s2.t2">Brief &amp; Content Generator</div>
+      <div style="font-size:12px;opacity:.72;line-height:1.5;" data-i18n="s2.b2">An AI tool: enter a brief, get on-brand briefs, visuals, HTML emails and landing pages.</div>
+    </div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:140px;">
+      <div class="topbar"></div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 45%,transparent);" data-i18n="s2.n3">USE CASE 03</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;margin:6px 0 8px;line-height:1.15;" data-i18n="s2.t3">Partner Landing Page</div>
+      <div style="font-size:12px;opacity:.72;line-height:1.5;" data-i18n="s2.b3">A dedicated page for franchise-development partners — a different audience and message.</div>
+    </div>
+    <div class="box" style="background:var(--accent);color:var(--ink);height:140px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;opacity:.6;" data-i18n="s2.n4">USE CASE 04</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:18px;margin:6px 0 8px;line-height:1.15;" data-i18n="s2.t4">Test &amp; Roll-out Environment</div>
+      <div style="font-size:12px;opacity:.82;line-height:1.5;" data-i18n="s2.b4">A safe place to build, test and validate at small scale before rolling out to other countries.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ S3 — UC1 BRAND GUIDELINES ============ -->
+<div class="slide" id="s3" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s3.eye">USE CASE 01 — BRAND GUIDELINES PLATFORM</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s3.h">A single source of truth for the brand</div>
+  <div style="position:absolute;left:60px;top:158px;width:1040px;font-size:14px;color:var(--ink);opacity:.55;line-height:1.5;" data-i18n="s3.lead">A secure, password-protected website that holds everything the brand needs to stay consistent — everywhere, in every language.</div>
+
+  <div style="position:absolute;left:60px;top:226px;width:560px;display:flex;flex-direction:column;gap:10px;">
+    <div class="box" style="background:var(--surface);display:flex;gap:12px;align-items:center;padding:12px 14px;"><div style="font-size:20px;">🎨</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s3.i1h">Brand assets &amp; logos</div><div style="font-size:11px;color:var(--ink);opacity:.65;" data-i18n="s3.i1b">Always the current, approved versions.</div></div></div>
+    <div class="box" style="background:var(--surface);display:flex;gap:12px;align-items:center;padding:12px 14px;"><div style="font-size:20px;">📐</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s3.i2h">Guidelines &amp; rules</div><div style="font-size:11px;color:var(--ink);opacity:.65;" data-i18n="s3.i2b">How the brand is used — colours, spacing, do's &amp; don'ts.</div></div></div>
+    <div class="box" style="background:var(--surface);display:flex;gap:12px;align-items:center;padding:12px 14px;"><div style="font-size:20px;">💬</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s3.i3h">Tone of voice</div><div style="font-size:11px;color:var(--ink);opacity:.65;" data-i18n="s3.i3b">How MBE speaks — across markets and channels.</div></div></div>
+    <div class="box" style="background:var(--surface);display:flex;gap:12px;align-items:center;padding:12px 14px;"><div style="font-size:20px;">📄</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s3.i4h">Ready-to-use templates</div><div style="font-size:11px;color:var(--ink);opacity:.65;" data-i18n="s3.i4b">Downloadable, on-brand starting points.</div></div></div>
+  </div>
+
+  <div class="box" style="position:absolute;left:648px;top:226px;width:472px;background:var(--ink);color:#fff;padding:18px 20px;">
+    <div class="topbar"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s3.howTag">HOW IT WORKS</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px;font-size:12.5px;line-height:1.45;">
+      <div data-i18n="s3.h1">🔒 &nbsp;<b>Secure &amp; password-protected</b> — internal access only.</div>
+      <div data-i18n="s3.h2">🌍 &nbsp;<b>Multilingual</b> — one hub, every DOC's language.</div>
+      <div data-i18n="s3.h3">🏛️ &nbsp;<b>Maintained centrally</b> — updated once, current everywhere.</div>
+      <div data-i18n="s3.h4">🤝 &nbsp;<b>Accessible to all DOCs</b> — the same brand truth for everyone.</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:648px;top:430px;width:472px;font-size:12px;color:var(--ink);opacity:.7;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:13px 16px;" data-i18n="s3.why"><b>Why it matters:</b> today each country keeps its own copies and they drift. One central hub means every DOC works from the same, always-current brand.</div>
+</div>
+
+<!-- ============ S4 — UC2 CONTENT GENERATOR ============ -->
+<div class="slide" id="s4" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s4.eye">USE CASE 02 — BRIEF &amp; CONTENT GENERATOR</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s4.h">Brief in, on-brand content out</div>
+  <div style="position:absolute;left:60px;top:158px;width:1040px;font-size:14px;color:var(--ink);opacity:.55;line-height:1.5;" data-i18n="s4.lead">An AI-powered internal tool. A user enters a product or campaign brief; the tool respects MBE brand guidelines &amp; tone of voice and returns ready-to-use outputs.</div>
+
+  <!-- input -->
+  <div class="box" style="position:absolute;left:60px;top:228px;width:230px;height:250px;background:var(--ink);color:#fff;display:flex;flex-direction:column;">
+    <div class="topbar"></div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s4.inTag">INPUT</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;color:var(--accent);margin:6px 0 8px;line-height:1.2;" data-i18n="s4.inH">A simple brief</div>
+    <div style="font-size:11.5px;opacity:.75;line-height:1.5;" data-i18n="s4.inB">The user describes a product or campaign in plain words.</div>
+    <div style="margin-top:auto;background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:6px;padding:8px 10px;font-size:10.5px;color:var(--accent);line-height:1.4;" data-i18n="s4.inNote">Guided by MBE brand guidelines + tone of voice</div>
+  </div>
+  <div class="arrowx" style="position:absolute;left:300px;top:345px;width:30px;">&rarr;</div>
+
+  <!-- engine -->
+  <div class="box" style="position:absolute;left:340px;top:228px;width:190px;height:250px;background:var(--accent);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div style="font-size:34px;">🤖</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:10px 0 6px;line-height:1.2;" data-i18n="s4.engH">AI generator</div>
+    <div style="font-size:11.5px;opacity:.82;line-height:1.45;" data-i18n="s4.engB">On-brand by design — never off-message.</div>
+  </div>
+  <div class="arrowx" style="position:absolute;left:540px;top:345px;width:30px;">&rarr;</div>
+
+  <!-- outputs -->
+  <div style="position:absolute;left:582px;top:228px;width:538px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div class="box" style="background:var(--surface);color:var(--ink);height:120px;"><div style="font-size:20px;">📝</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:7px 0 5px;" data-i18n="s4.o1h">Product / campaign briefs</div><div style="font-size:11px;opacity:.65;line-height:1.45;" data-i18n="s4.o1b">Structured, ready to brief a team or agency.</div></div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:120px;"><div style="font-size:20px;">🖼️</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:7px 0 5px;" data-i18n="s4.o2h">Visuals</div><div style="font-size:11px;opacity:.65;line-height:1.45;" data-i18n="s4.o2b">Generated via API integrations (e.g. Bannerbear).</div></div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:120px;"><div style="font-size:20px;">✉️</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:7px 0 5px;" data-i18n="s4.o3h">HTML emails</div><div style="font-size:11px;opacity:.65;line-height:1.45;" data-i18n="s4.o3b">Ready to drop into the email tool.</div></div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:120px;"><div style="font-size:20px;">🖥️</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;margin:7px 0 5px;" data-i18n="s4.o4h">Landing pages</div><div style="font-size:11px;opacity:.65;line-height:1.45;" data-i18n="s4.o4b">Publish-ready, on the shared infrastructure.</div></div>
+  </div>
+
+  <div style="position:absolute;left:60px;top:494px;right:60px;font-size:12px;color:var(--ink);opacity:.7;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:12px 16px;" data-i18n="s4.foot"><b>Usable by any DOC country</b>, in its own language — production speeds up, everything stays on-brand, and there are no agency round-trips for routine content.</div>
+</div>
+
+<!-- ============ S5 — UC3 PARTNER LANDING PAGE ============ -->
+<div class="slide" id="s5" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s5.eye">USE CASE 03 — PARTNER LANDING PAGE</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s5.h">A page built for franchise-development partners</div>
+  <div style="position:absolute;left:60px;top:158px;width:1040px;font-size:14px;color:var(--ink);opacity:.55;line-height:1.5;" data-i18n="s5.lead">A dedicated landing page targeting the partners who refer franchise candidates — a different audience, with a different message.</div>
+
+  <div style="position:absolute;left:60px;top:226px;width:520px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:12px;" data-i18n="s5.audTag">THE AUDIENCE</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="box" style="background:var(--surface);display:flex;gap:10px;align-items:center;padding:14px;"><div style="font-size:22px;">🏦</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s5.a1">Banks</div></div>
+      <div class="box" style="background:var(--surface);display:flex;gap:10px;align-items:center;padding:14px;"><div style="font-size:22px;">🏠</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s5.a2">Real-estate agents</div></div>
+      <div class="box" style="background:var(--surface);display:flex;gap:10px;align-items:center;padding:14px;"><div style="font-size:22px;">🏛️</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s5.a3">Chambers of commerce</div></div>
+      <div class="box" style="background:var(--surface);display:flex;gap:10px;align-items:center;padding:14px;"><div style="font-size:22px;">🤝</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:13px;color:var(--ink);" data-i18n="s5.a4">Business brokers</div></div>
+    </div>
+  </div>
+
+  <div class="box" style="position:absolute;left:608px;top:226px;width:512px;background:var(--ink);color:#fff;padding:18px 20px;">
+    <div class="topbar"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s5.whyTag">WHY IT CAN'T LIVE ON mbe-franchising.fr</div>
+    <div style="font-size:12.5px;line-height:1.6;opacity:.9;margin-top:12px;" data-i18n="s5.whyB">This is a <b>different audience and message</b> from the existing franchising site. Building it there would mean complex agency involvement and additional budget.</div>
+    <div style="margin-top:14px;height:1px;background:rgba(255,255,255,.14);"></div>
+    <div style="font-size:12.5px;line-height:1.6;color:var(--accent);margin-top:14px;" data-i18n="s5.whyB2">On our own shared infrastructure, we ship it directly — and any DOC can spin up its own partner page the same way.</div>
+  </div>
+
+  <div style="position:absolute;left:60px;top:486px;right:60px;font-size:12px;color:var(--ink);opacity:.7;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:12px 16px;" data-i18n="s5.foot"><b>Why it matters:</b> franchise development needs its own front door for referral partners. The shared infrastructure gives it one — fast, cheap, and replicable per country.</div>
+</div>
+
+<!-- ============ S6 — UC4 TEST & ROLL-OUT ============ -->
+<div class="slide" id="s6" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s6.eye">USE CASE 04 — TEST &amp; ROLL-OUT ENVIRONMENT</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s6.h">Test small, then roll out with confidence</div>
+  <div style="position:absolute;left:60px;top:158px;width:1040px;font-size:14px;color:var(--ink);opacity:.55;line-height:1.5;" data-i18n="s6.lead">A lightweight environment where MBE France can develop, test and validate digital tools at small scale — before rolling them out to other countries.</div>
+
+  <!-- 4-step flow -->
+  <div style="position:absolute;left:60px;top:236px;right:60px;display:flex;align-items:stretch;gap:0;">
+    <div class="box" style="flex:1;background:var(--ink);color:#fff;height:170px;display:flex;flex-direction:column;gap:8px;">
+      <div class="topbar"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s6.n1">1 · BUILD</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:var(--accent);line-height:1.2;" data-i18n="s6.t1">MBE France<br>builds</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s6.b1">A new tool is developed on the shared infrastructure.</div>
+    </div>
+    <div class="arrowx" style="width:26px;">&rarr;</div>
+    <div class="box" style="flex:1;background:var(--surface);color:var(--ink);height:170px;display:flex;flex-direction:column;gap:8px;">
+      <div class="topbar"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 40%,transparent);" data-i18n="s6.n2">2 · TEST</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s6.t2">Run a<br>small POC</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s6.b2">Used for real, at small scale, with real users.</div>
+    </div>
+    <div class="arrowx" style="width:26px;">&rarr;</div>
+    <div class="box" style="flex:1;background:var(--surface);color:var(--ink);height:170px;display:flex;flex-direction:column;gap:8px;">
+      <div class="topbar"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--ink) 40%,transparent);" data-i18n="s6.n3">3 · VALIDATE</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s6.t3">Measure<br>&amp; refine</div>
+      <div style="font-size:11px;opacity:.7;line-height:1.5;" data-i18n="s6.b3">Keep what works, drop what doesn't — before spending more.</div>
+    </div>
+    <div class="arrowx" style="width:26px;">&rarr;</div>
+    <div class="box" style="flex:1;background:var(--accent);color:var(--ink);height:170px;display:flex;flex-direction:column;gap:8px;">
+      <div class="topbar" style="background:var(--ink);"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.55;" data-i18n="s6.n4">4 · ROLL OUT</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;line-height:1.2;" data-i18n="s6.t4">Share with<br>other DOCs</div>
+      <div style="font-size:11px;opacity:.75;line-height:1.5;" data-i18n="s6.b4">Proven tools roll out to other countries.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:60px;top:436px;right:60px;font-size:12.5px;color:var(--ink);opacity:.7;line-height:1.6;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:14px 18px;" data-i18n="s6.why"><b>Why it matters:</b> it's POC-driven. We only scale what's proven, and other DOCs inherit working tools instead of starting from zero. Small risk, small cost, real evidence before any commitment.</div>
+</div>
+
+<!-- ============ S7 — ARCHITECTURE ============ -->
+<div class="slide" id="s7" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s7.eye">HOW IT CONNECTS</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s7.h">How the pieces connect</div>
+
+  <!-- source -->
+  <div class="box" style="position:absolute;left:50px;top:184px;width:215px;height:108px;background:var(--ink);color:#fff;">
+    <div class="topbar"></div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s7.gitTag">SOURCE</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:var(--accent);margin:5px 0 4px;" data-i18n="s7.gitH">GitHub</div>
+    <div style="font-size:10.5px;opacity:.7;line-height:1.4;" data-i18n="s7.gitB">All tools live as code in one place.</div>
+  </div>
+  <div class="arrowx" style="position:absolute;left:272px;top:228px;width:26px;">&rarr;</div>
+
+  <!-- ci/cd -->
+  <div class="box" style="position:absolute;left:306px;top:184px;width:215px;height:108px;background:var(--surface);color:var(--ink);">
+    <div class="topbar"></div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.45;" data-i18n="s7.ciTag">PIPELINE</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;margin:5px 0 4px;" data-i18n="s7.ciH">CI/CD</div>
+    <div style="font-size:10.5px;opacity:.65;line-height:1.4;" data-i18n="s7.ciB">Auto-deploys every update to the server.</div>
+  </div>
+  <div class="arrowx" style="position:absolute;left:528px;top:228px;width:26px;">&rarr;</div>
+
+  <!-- VPS with apps -->
+  <div class="box" style="position:absolute;left:562px;top:166px;width:340px;height:300px;background:color-mix(in srgb,var(--ink) 6%,transparent);border:1.5px dashed color-mix(in srgb,var(--ink) 25%,transparent);">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;" data-i18n="s7.vpsTag">THE VPS — ONE SMALL, SCALABLE SERVER</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:14px;">
+      <div class="box" style="background:var(--surface);color:var(--ink);padding:11px 13px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:12.5px;" data-i18n="s7.app1">🎨 Brand Guidelines Platform</div></div>
+      <div class="box" style="background:var(--surface);color:var(--ink);padding:11px 13px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:12.5px;" data-i18n="s7.app2">🤖 Brief &amp; Content Generator</div></div>
+      <div class="box" style="background:var(--surface);color:var(--ink);padding:11px 13px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:12.5px;" data-i18n="s7.app3">🤝 Partner Landing Page</div></div>
+      <div class="box" style="background:var(--accent);color:var(--ink);padding:11px 13px;"><div style="font-family:Arial Black,Arial,sans-serif;font-size:12.5px;" data-i18n="s7.app4">🧪 Test environment for what's next</div></div>
+    </div>
+  </div>
+
+  <!-- reverse proxy -->
+  <div class="box" style="position:absolute;left:930px;top:166px;width:215px;height:140px;background:var(--ink);color:#fff;">
+    <div class="topbar"></div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);" data-i18n="s7.rpTag">FRONT DOOR</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:var(--accent);margin:5px 0 6px;line-height:1.2;" data-i18n="s7.rpH">Reverse proxy<br>+ SSL</div>
+    <div style="font-size:10.5px;opacity:.72;line-height:1.45;" data-i18n="s7.rpB">Routes each address to the right tool. Automatic HTTPS on every one.</div>
+  </div>
+  <!-- users -->
+  <div class="box" style="position:absolute;left:930px;top:326px;width:215px;height:140px;background:var(--accent);color:var(--ink);">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.6;" data-i18n="s7.usrTag">WHO USES IT</div>
+    <div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;margin:5px 0 6px;line-height:1.2;" data-i18n="s7.usrH">MBE France<br>→ then other DOCs</div>
+    <div style="font-size:10.5px;opacity:.82;line-height:1.45;" data-i18n="s7.usrB">brand.… · generator.… · partners.… — one subdomain per tool, per country.</div>
+  </div>
+
+  <div style="position:absolute;left:50px;top:330px;width:470px;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:13px 16px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:6px;" data-i18n="s7.readTag">READ IT LEFT-TO-RIGHT</div>
+    <div style="font-size:12px;color:var(--ink);opacity:.75;line-height:1.55;" data-i18n="s7.readB">Code in GitHub → auto-deployed by the pipeline → runs on one small server → served securely under clean subdomains to MBE France first, then the wider network.</div>
+  </div>
+  <div style="position:absolute;left:50px;top:430px;width:470px;font-size:11px;color:var(--ink);opacity:.45;line-height:1.5;" data-i18n="s7.note">Everything starts small. As more countries come on board, the same server scales up — no re-architecture.</div>
+</div>
+
+<!-- ============ S8 — TECHNICAL REQUIREMENTS ============ -->
+<div class="slide" id="s8" style="background:var(--bg);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s8.eye">WHAT WE NEED FROM FORTIDIA</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:38px;" data-i18n="s8.h">Three standard building blocks</div>
+  <div style="position:absolute;left:60px;top:158px;width:1040px;font-size:14px;color:var(--ink);opacity:.55;line-height:1.5;" data-i18n="s8.lead">All three are common, well-understood infrastructure. Nothing exotic — and everything starts small.</div>
+
+  <div style="position:absolute;left:60px;top:222px;right:60px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+    <div class="box" style="background:var(--surface);color:var(--ink);height:288px;display:flex;flex-direction:column;">
+      <div class="topbar"></div>
+      <div style="font-size:30px;">🖥️</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.45;margin-top:8px;" data-i18n="s8.r1tag">REQUIREMENT 01</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:5px 0 8px;line-height:1.2;" data-i18n="s8.r1h">A VPS</div>
+      <div style="font-size:11.5px;opacity:.7;line-height:1.5;" data-i18n="s8.r1tech">A small instance to start, scalable.</div>
+      <div style="margin-top:auto;font-size:11.5px;line-height:1.5;color:var(--ink);background:color-mix(in srgb,var(--accent) 16%,transparent);border-radius:8px;padding:10px 12px;" data-i18n="s8.r1why"><b>In plain English:</b> a small private server to run the tools. We start tiny and add power only as more countries come on board — we pay for what we use.</div>
+    </div>
+    <div class="box" style="background:var(--surface);color:var(--ink);height:288px;display:flex;flex-direction:column;">
+      <div class="topbar"></div>
+      <div style="font-size:30px;">🔄</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;opacity:.45;margin-top:8px;" data-i18n="s8.r2tag">REQUIREMENT 02</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;margin:5px 0 8px;line-height:1.2;" data-i18n="s8.r2h">A CI/CD pipeline</div>
+      <div style="font-size:11.5px;opacity:.7;line-height:1.5;" data-i18n="s8.r2tech">GitHub → auto-deploy to the server.</div>
+      <div style="margin-top:auto;font-size:11.5px;line-height:1.5;color:var(--ink);background:color-mix(in srgb,var(--accent) 16%,transparent);border-radius:8px;padding:10px 12px;" data-i18n="s8.r2why"><b>In plain English:</b> when we update a tool, it deploys to the server automatically and safely — no manual file copying, fewer mistakes, faster fixes.</div>
+    </div>
+    <div class="box" style="background:var(--ink);color:#fff;height:288px;display:flex;flex-direction:column;">
+      <div class="topbar"></div>
+      <div style="font-size:30px;">🔐</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 60%,transparent);margin-top:8px;" data-i18n="s8.r3tag">REQUIREMENT 03</div>
+      <div style="font-family:Arial Black,Arial,sans-serif;font-size:16px;color:var(--accent);margin:5px 0 8px;line-height:1.2;" data-i18n="s8.r3h">Reverse proxy + SSL</div>
+      <div style="font-size:11.5px;opacity:.7;line-height:1.5;" data-i18n="s8.r3tech">Multiple domains/subdomains, automatic HTTPS.</div>
+      <div style="margin-top:auto;font-size:11.5px;line-height:1.5;color:#fff;background:rgba(255,255,255,.08);border-radius:8px;padding:10px 12px;" data-i18n="s8.r3why"><b>In plain English:</b> one front door that sends each address (brand.…, partners.…) to the right tool, and keeps every one secure with automatic HTTPS.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ S9 — NEXT STEPS ============ -->
+<div class="slide" id="s9" style="background:var(--ink);">
+  <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
+  <div class="brand brand-dark"><span class="brand-ft">Fortidia</span></div>
+  <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt tt-w" data-i18n="s9.eye">NEXT STEPS</div></div>
+  <div class="h" style="position:absolute;left:60px;top:104px;font-size:40px;color:#fff;" data-i18n="s9.h">Proposed next steps</div>
+  <div style="position:absolute;left:60px;top:162px;width:1040px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.5;" data-i18n="s9.lead">Low risk, low cost to start. The infrastructure is small, standard, and scales only as adoption grows.</div>
+
+  <div style="position:absolute;left:60px;top:224px;width:1080px;display:flex;flex-direction:column;gap:12px;">
+    <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:12px 18px;border-left:4px solid var(--accent);"><div style="font-family:Arial Black,Arial,sans-serif;font-size:22px;color:var(--accent);width:30px;flex-shrink:0;">1</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:#fff;" data-i18n="s9.s1h">Align with Fortidia IT</div><div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;" data-i18n="s9.s1b">Confirm hosting, sizing and security expectations together.</div></div></div>
+    <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:12px 18px;border-left:4px solid var(--accent);"><div style="font-family:Arial Black,Arial,sans-serif;font-size:22px;color:var(--accent);width:30px;flex-shrink:0;">2</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:#fff;" data-i18n="s9.s2h">Provision the building blocks</div><div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;" data-i18n="s9.s2b">A small VPS + CI/CD pipeline + reverse proxy / SSL.</div></div></div>
+    <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:12px 18px;border-left:4px solid var(--accent);"><div style="font-family:Arial Black,Arial,sans-serif;font-size:22px;color:var(--accent);width:30px;flex-shrink:0;">3</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:#fff;" data-i18n="s9.s3h">Stand up the first use case</div><div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;" data-i18n="s9.s3b">The Brand Guidelines Platform as the pilot.</div></div></div>
+    <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:12px 18px;border-left:4px solid var(--accent);"><div style="font-family:Arial Black,Arial,sans-serif;font-size:22px;color:var(--accent);width:30px;flex-shrink:0;">4</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:#fff;" data-i18n="s9.s4h">Run the POC with MBE France</div><div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;" data-i18n="s9.s4b">Measure, refine and document what works.</div></div></div>
+    <div style="display:flex;gap:16px;align-items:center;background:color-mix(in srgb,var(--accent) 16%,transparent);border-radius:10px;padding:12px 18px;border-left:4px solid var(--accent);"><div style="font-family:Arial Black,Arial,sans-serif;font-size:22px;color:var(--accent);width:30px;flex-shrink:0;">5</div><div><div style="font-family:Arial Black,Arial,sans-serif;font-size:14px;color:#fff;" data-i18n="s9.s5h">Plan the roll-out</div><div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:2px;" data-i18n="s9.s5b">Open it to other DOCs, based on the results.</div></div></div>
+  </div>
+</div>
+
+</div></div>
+<div id="nav">
+  <button onclick="go(-1)" data-i18n="nav.prev">← Prev</button>
+  <span id="counter">1 / 10</span>
+  <button onclick="go(1)" data-i18n="nav.next">Next →</button>
+  <span class="sep"></span>
+  <button class="toggle theme" id="themeBtn" onclick="toggleTheme()">MBE</button>
+  <button class="toggle" id="langBtn" onclick="toggleLang()">FR</button>
+  <button id="fullbtn" onclick="toggleFull()">⛶</button>
+</div>
+<script>
+const I18N={
+en:{
+"nav.prev":"← Prev","nav.next":"Next →",
+"footer.full":"© 2026 Fortidia / MBE France. Confidential — internal working document.","footer.short":"© 2026 Fortidia / MBE France. Confidential.",
+"s0.title":"One platform.<br>Every country.","s0.sub":"A shared digital backbone for<br>the MBE network — hosted by Fortidia.","s0.date":"June 2026","s0.kicker":"MBE NETWORK · SHARED DIGITAL INFRASTRUCTURE","s0.tag":"Business case — for Fortidia IT Infrastructure",
+"s1.eye":"EXECUTIVE SUMMARY","s1.h":"The strategic vision","s1.lead":"MBE France wants to build a centralized digital infrastructure, <b>hosted by Fortidia</b> — first as a test environment for MBE France, then rolled out to other DOCs across Europe.","s1.p1":"<b>Not a local project.</b> It's the foundation for a multi-brand, multi-country digital platform — built once, proven in France, then shared.","s1.p2":"<b>It hosts a few high-value tools.</b> A brand-guidelines hub, an AI brief &amp; content generator, and a franchise-development landing page.","s1.p3":"<b>Multilingual, country-agnostic.</b> Any DOC can use each tool in its own language — without rebuilding it.","s1.p4":"<b>The ask is modest.</b> Three standard building blocks: a small server, an automated deploy pipeline, and secure domain routing.","s1.bigH":"Build once.<br>Share across<br>Europe.","s1.bigB":"Instead of every country reinventing the same tools, MBE France tests at small scale — and the network inherits what works.",
+"s2.eye":"WHAT IT HOSTS","s2.h":"Four use cases, one infrastructure","s2.lead":"A small set of tools, each useful on its own — and far more useful shared across countries.","s2.n1":"USE CASE 01","s2.t1":"Brand Guidelines Platform","s2.b1":"A secure, multilingual single source of truth for brand assets, rules, tone of voice and templates.","s2.n2":"USE CASE 02","s2.t2":"Brief &amp; Content Generator","s2.b2":"An AI tool: enter a brief, get on-brand briefs, visuals, HTML emails and landing pages.","s2.n3":"USE CASE 03","s2.t3":"Partner Landing Page","s2.b3":"A dedicated page for franchise-development partners — a different audience and message.","s2.n4":"USE CASE 04","s2.t4":"Test &amp; Roll-out Environment","s2.b4":"A safe place to build, test and validate at small scale before rolling out to other countries.",
+"s3.eye":"USE CASE 01 — BRAND GUIDELINES PLATFORM","s3.h":"A single source of truth for the brand","s3.lead":"A secure, password-protected website that holds everything the brand needs to stay consistent — everywhere, in every language.","s3.i1h":"Brand assets &amp; logos","s3.i1b":"Always the current, approved versions.","s3.i2h":"Guidelines &amp; rules","s3.i2b":"How the brand is used — colours, spacing, do's &amp; don'ts.","s3.i3h":"Tone of voice","s3.i3b":"How MBE speaks — across markets and channels.","s3.i4h":"Ready-to-use templates","s3.i4b":"Downloadable, on-brand starting points.","s3.howTag":"HOW IT WORKS","s3.h1":"🔒 &nbsp;<b>Secure &amp; password-protected</b> — internal access only.","s3.h2":"🌍 &nbsp;<b>Multilingual</b> — one hub, every DOC's language.","s3.h3":"🏛️ &nbsp;<b>Maintained centrally</b> — updated once, current everywhere.","s3.h4":"🤝 &nbsp;<b>Accessible to all DOCs</b> — the same brand truth for everyone.","s3.why":"<b>Why it matters:</b> today each country keeps its own copies and they drift. One central hub means every DOC works from the same, always-current brand.",
+"s4.eye":"USE CASE 02 — BRIEF &amp; CONTENT GENERATOR","s4.h":"Brief in, on-brand content out","s4.lead":"An AI-powered internal tool. A user enters a product or campaign brief; the tool respects MBE brand guidelines &amp; tone of voice and returns ready-to-use outputs.","s4.inTag":"INPUT","s4.inH":"A simple brief","s4.inB":"The user describes a product or campaign in plain words.","s4.inNote":"Guided by MBE brand guidelines + tone of voice","s4.engH":"AI generator","s4.engB":"On-brand by design — never off-message.","s4.o1h":"Product / campaign briefs","s4.o1b":"Structured, ready to brief a team or agency.","s4.o2h":"Visuals","s4.o2b":"Generated via API integrations (e.g. Bannerbear).","s4.o3h":"HTML emails","s4.o3b":"Ready to drop into the email tool.","s4.o4h":"Landing pages","s4.o4b":"Publish-ready, on the shared infrastructure.","s4.foot":"<b>Usable by any DOC country</b>, in its own language — production speeds up, everything stays on-brand, and there are no agency round-trips for routine content.",
+"s5.eye":"USE CASE 03 — PARTNER LANDING PAGE","s5.h":"A page built for franchise-development partners","s5.lead":"A dedicated landing page targeting the partners who refer franchise candidates — a different audience, with a different message.","s5.audTag":"THE AUDIENCE","s5.a1":"Banks","s5.a2":"Real-estate agents","s5.a3":"Chambers of commerce","s5.a4":"Business brokers","s5.whyTag":"WHY IT CAN'T LIVE ON mbe-franchising.fr","s5.whyB":"This is a <b>different audience and message</b> from the existing franchising site. Building it there would mean complex agency involvement and additional budget.","s5.whyB2":"On our own shared infrastructure, we ship it directly — and any DOC can spin up its own partner page the same way.","s5.foot":"<b>Why it matters:</b> franchise development needs its own front door for referral partners. The shared infrastructure gives it one — fast, cheap, and replicable per country.",
+"s6.eye":"USE CASE 04 — TEST &amp; ROLL-OUT ENVIRONMENT","s6.h":"Test small, then roll out with confidence","s6.lead":"A lightweight environment where MBE France can develop, test and validate digital tools at small scale — before rolling them out to other countries.","s6.n1":"1 · BUILD","s6.t1":"MBE France<br>builds","s6.b1":"A new tool is developed on the shared infrastructure.","s6.n2":"2 · TEST","s6.t2":"Run a<br>small POC","s6.b2":"Used for real, at small scale, with real users.","s6.n3":"3 · VALIDATE","s6.t3":"Measure<br>&amp; refine","s6.b3":"Keep what works, drop what doesn't — before spending more.","s6.n4":"4 · ROLL OUT","s6.t4":"Share with<br>other DOCs","s6.b4":"Proven tools roll out to other countries.","s6.why":"<b>Why it matters:</b> it's POC-driven. We only scale what's proven, and other DOCs inherit working tools instead of starting from zero. Small risk, small cost, real evidence before any commitment.",
+"s7.eye":"HOW IT CONNECTS","s7.h":"How the pieces connect","s7.gitTag":"SOURCE","s7.gitH":"GitHub","s7.gitB":"All tools live as code in one place.","s7.ciTag":"PIPELINE","s7.ciH":"CI/CD","s7.ciB":"Auto-deploys every update to the server.","s7.vpsTag":"THE VPS — ONE SMALL, SCALABLE SERVER","s7.app1":"🎨 Brand Guidelines Platform","s7.app2":"🤖 Brief &amp; Content Generator","s7.app3":"🤝 Partner Landing Page","s7.app4":"🧪 Test environment for what's next","s7.rpTag":"FRONT DOOR","s7.rpH":"Reverse proxy<br>+ SSL","s7.rpB":"Routes each address to the right tool. Automatic HTTPS on every one.","s7.usrTag":"WHO USES IT","s7.usrH":"MBE France<br>→ then other DOCs","s7.usrB":"brand.… · generator.… · partners.… — one subdomain per tool, per country.","s7.readTag":"READ IT LEFT-TO-RIGHT","s7.readB":"Code in GitHub → auto-deployed by the pipeline → runs on one small server → served securely under clean subdomains to MBE France first, then the wider network.","s7.note":"Everything starts small. As more countries come on board, the same server scales up — no re-architecture.",
+"s8.eye":"WHAT WE NEED FROM FORTIDIA","s8.h":"Three standard building blocks","s8.lead":"All three are common, well-understood infrastructure. Nothing exotic — and everything starts small.","s8.r1tag":"REQUIREMENT 01","s8.r1h":"A VPS","s8.r1tech":"A small instance to start, scalable.","s8.r1why":"<b>In plain English:</b> a small private server to run the tools. We start tiny and add power only as more countries come on board — we pay for what we use.","s8.r2tag":"REQUIREMENT 02","s8.r2h":"A CI/CD pipeline","s8.r2tech":"GitHub → auto-deploy to the server.","s8.r2why":"<b>In plain English:</b> when we update a tool, it deploys to the server automatically and safely — no manual file copying, fewer mistakes, faster fixes.","s8.r3tag":"REQUIREMENT 03","s8.r3h":"Reverse proxy + SSL","s8.r3tech":"Multiple domains/subdomains, automatic HTTPS.","s8.r3why":"<b>In plain English:</b> one front door that sends each address (brand.…, partners.…) to the right tool, and keeps every one secure with automatic HTTPS.",
+"s9.eye":"NEXT STEPS","s9.h":"Proposed next steps","s9.lead":"Low risk, low cost to start. The infrastructure is small, standard, and scales only as adoption grows.","s9.s1h":"Align with Fortidia IT","s9.s1b":"Confirm hosting, sizing and security expectations together.","s9.s2h":"Provision the building blocks","s9.s2b":"A small VPS + CI/CD pipeline + reverse proxy / SSL.","s9.s3h":"Stand up the first use case","s9.s3b":"The Brand Guidelines Platform as the pilot.","s9.s4h":"Run the POC with MBE France","s9.s4b":"Measure, refine and document what works.","s9.s5h":"Plan the roll-out","s9.s5b":"Open it to other DOCs, based on the results."
+},
+fr:{
+"nav.prev":"← Préc.","nav.next":"Suivant →",
+"footer.full":"© 2026 Fortidia / MBE France. Confidentiel — document de travail interne.","footer.short":"© 2026 Fortidia / MBE France. Confidentiel.",
+"s0.title":"Une plateforme.<br>Chaque pays.","s0.sub":"Une colonne vertébrale digitale partagée pour<br>le réseau MBE — hébergée par Fortidia.","s0.date":"Juin 2026","s0.kicker":"RÉSEAU MBE · INFRASTRUCTURE DIGITALE PARTAGÉE","s0.tag":"Business case — pour l'infrastructure IT de Fortidia",
+"s1.eye":"RÉSUMÉ EXÉCUTIF","s1.h":"La vision stratégique","s1.lead":"MBE France veut construire une infrastructure digitale centralisée, <b>hébergée par Fortidia</b> — d'abord comme environnement de test pour MBE France, puis déployée vers d'autres DOCs en Europe.","s1.p1":"<b>Pas un projet local.</b> C'est la fondation d'une plateforme digitale multi-marque, multi-pays — construite une fois, prouvée en France, puis partagée.","s1.p2":"<b>Elle héberge quelques outils à forte valeur.</b> Un hub de charte de marque, un générateur IA de briefs &amp; contenus, et une landing page de développement franchise.","s1.p3":"<b>Multilingue, indépendante du pays.</b> Chaque DOC peut utiliser chaque outil dans sa propre langue — sans le reconstruire.","s1.p4":"<b>La demande est modeste.</b> Trois briques standard : un petit serveur, un pipeline de déploiement automatique, et un routage de domaines sécurisé.","s1.bigH":"Construire une fois.<br>Partager dans<br>toute l'Europe.","s1.bigB":"Plutôt que chaque pays réinvente les mêmes outils, MBE France teste à petite échelle — et le réseau hérite de ce qui marche.",
+"s2.eye":"CE QU'ELLE HÉBERGE","s2.h":"Quatre cas d'usage, une infrastructure","s2.lead":"Un petit ensemble d'outils, chacun utile en soi — et bien plus utile partagé entre les pays.","s2.n1":"CAS D'USAGE 01","s2.t1":"Plateforme de charte de marque","s2.b1":"Une source de vérité unique, sécurisée et multilingue : assets, règles, tone of voice et templates.","s2.n2":"CAS D'USAGE 02","s2.t2":"Générateur de briefs &amp; contenus","s2.b2":"Un outil IA : on saisit un brief, on obtient briefs, visuels, emails HTML et landing pages on-brand.","s2.n3":"CAS D'USAGE 03","s2.t3":"Landing page partenaires","s2.b3":"Une page dédiée aux partenaires du développement franchise — une autre cible, un autre message.","s2.n4":"CAS D'USAGE 04","s2.t4":"Environnement de test &amp; déploiement","s2.b4":"Un lieu sûr pour construire, tester et valider à petite échelle avant de déployer vers d'autres pays.",
+"s3.eye":"CAS D'USAGE 01 — PLATEFORME DE CHARTE DE MARQUE","s3.h":"Une source de vérité unique pour la marque","s3.lead":"Un site web sécurisé et protégé par mot de passe qui réunit tout ce dont la marque a besoin pour rester cohérente — partout, dans chaque langue.","s3.i1h":"Assets &amp; logos de marque","s3.i1b":"Toujours les versions actuelles et approuvées.","s3.i2h":"Guidelines &amp; règles","s3.i2b":"Comment la marque s'utilise — couleurs, espacements, do's &amp; don'ts.","s3.i3h":"Tone of voice","s3.i3b":"Comment MBE s'exprime — selon les marchés et les canaux.","s3.i4h":"Templates prêts à l'emploi","s3.i4b":"Des points de départ on-brand, téléchargeables.","s3.howTag":"COMMENT ÇA MARCHE","s3.h1":"🔒 &nbsp;<b>Sécurisé &amp; protégé par mot de passe</b> — accès interne uniquement.","s3.h2":"🌍 &nbsp;<b>Multilingue</b> — un seul hub, la langue de chaque DOC.","s3.h3":"🏛️ &nbsp;<b>Maintenu centralement</b> — mis à jour une fois, à jour partout.","s3.h4":"🤝 &nbsp;<b>Accessible à tous les DOCs</b> — la même vérité de marque pour tous.","s3.why":"<b>Pourquoi c'est clé :</b> aujourd'hui chaque pays garde ses propres copies et elles divergent. Un hub central, c'est chaque DOC qui travaille à partir de la même marque, toujours à jour.",
+"s4.eye":"CAS D'USAGE 02 — GÉNÉRATEUR DE BRIEFS &amp; CONTENUS","s4.h":"Un brief en entrée, du contenu on-brand en sortie","s4.lead":"Un outil interne propulsé par l'IA. L'utilisateur saisit un brief produit ou campagne ; l'outil respecte la charte &amp; le tone of voice MBE et renvoie des livrables prêts à l'emploi.","s4.inTag":"ENTRÉE","s4.inH":"Un simple brief","s4.inB":"L'utilisateur décrit un produit ou une campagne en mots simples.","s4.inNote":"Guidé par la charte MBE + le tone of voice","s4.engH":"Générateur IA","s4.engB":"On-brand par conception — jamais hors-message.","s4.o1h":"Briefs produit / campagne","s4.o1b":"Structurés, prêts à briefer une équipe ou une agence.","s4.o2h":"Visuels","s4.o2b":"Générés via des intégrations API (ex. Bannerbear).","s4.o3h":"Emails HTML","s4.o3b":"Prêts à coller dans l'outil d'emailing.","s4.o4h":"Landing pages","s4.o4b":"Prêtes à publier, sur l'infrastructure partagée.","s4.foot":"<b>Utilisable par tout pays DOC</b>, dans sa propre langue — la production accélère, tout reste on-brand, et plus d'allers-retours agence pour le contenu courant.",
+"s5.eye":"CAS D'USAGE 03 — LANDING PAGE PARTENAIRES","s5.h":"Une page pensée pour les partenaires du développement franchise","s5.lead":"Une landing page dédiée ciblant les partenaires qui recommandent des candidats à la franchise — une autre cible, un autre message.","s5.audTag":"LA CIBLE","s5.a1":"Banques","s5.a2":"Agents immobiliers","s5.a3":"Chambres de commerce","s5.a4":"Cabinets de cession d'entreprise","s5.whyTag":"POURQUOI PAS SUR mbe-franchising.fr","s5.whyB":"C'est une <b>autre cible et un autre message</b> que le site de franchise existant. La construire là-bas impliquerait une intervention agence complexe et un budget supplémentaire.","s5.whyB2":"Sur notre propre infrastructure partagée, on la publie directement — et chaque DOC peut créer sa propre page partenaires de la même façon.","s5.foot":"<b>Pourquoi c'est clé :</b> le développement franchise a besoin de sa propre porte d'entrée pour les partenaires prescripteurs. L'infrastructure partagée la lui donne — rapide, peu coûteuse et réplicable par pays.",
+"s6.eye":"CAS D'USAGE 04 — ENVIRONNEMENT DE TEST &amp; DÉPLOIEMENT","s6.h":"Tester petit, puis déployer en confiance","s6.lead":"Un environnement léger où MBE France peut développer, tester et valider des outils digitaux à petite échelle — avant de les déployer vers d'autres pays.","s6.n1":"1 · CONSTRUIRE","s6.t1":"MBE France<br>construit","s6.b1":"Un nouvel outil est développé sur l'infrastructure partagée.","s6.n2":"2 · TESTER","s6.t2":"Lancer un<br>petit POC","s6.b2":"Utilisé pour de vrai, à petite échelle, avec de vrais utilisateurs.","s6.n3":"3 · VALIDER","s6.t3":"Mesurer<br>&amp; affiner","s6.b3":"Garder ce qui marche, abandonner le reste — avant de dépenser plus.","s6.n4":"4 · DÉPLOYER","s6.t4":"Partager avec<br>les autres DOCs","s6.b4":"Les outils prouvés se déploient vers d'autres pays.","s6.why":"<b>Pourquoi c'est clé :</b> c'est piloté par le POC. On ne passe à l'échelle que ce qui est prouvé, et les autres DOCs héritent d'outils qui marchent au lieu de repartir de zéro. Peu de risque, peu de coût, des preuves réelles avant tout engagement.",
+"s7.eye":"COMMENT ÇA S'ASSEMBLE","s7.h":"Comment les pièces s'assemblent","s7.gitTag":"SOURCE","s7.gitH":"GitHub","s7.gitB":"Tous les outils vivent sous forme de code, au même endroit.","s7.ciTag":"PIPELINE","s7.ciH":"CI/CD","s7.ciB":"Déploie automatiquement chaque mise à jour sur le serveur.","s7.vpsTag":"LE VPS — UN PETIT SERVEUR, ÉVOLUTIF","s7.app1":"🎨 Plateforme de charte de marque","s7.app2":"🤖 Générateur de briefs &amp; contenus","s7.app3":"🤝 Landing page partenaires","s7.app4":"🧪 Environnement de test pour la suite","s7.rpTag":"PORTE D'ENTRÉE","s7.rpH":"Reverse proxy<br>+ SSL","s7.rpB":"Route chaque adresse vers le bon outil. HTTPS automatique sur chacune.","s7.usrTag":"QUI L'UTILISE","s7.usrH":"MBE France<br>→ puis les autres DOCs","s7.usrB":"brand.… · generator.… · partners.… — un sous-domaine par outil, par pays.","s7.readTag":"À LIRE DE GAUCHE À DROITE","s7.readB":"Le code dans GitHub → déployé automatiquement par le pipeline → tourne sur un petit serveur → servi en sécurité sous des sous-domaines propres, à MBE France d'abord, puis au reste du réseau.","s7.note":"Tout démarre petit. À mesure que des pays arrivent, le même serveur monte en puissance — sans ré-architecture.",
+"s8.eye":"CE DONT NOUS AVONS BESOIN DE FORTIDIA","s8.h":"Trois briques standard","s8.lead":"Les trois sont des infrastructures courantes et bien comprises. Rien d'exotique — et tout démarre petit.","s8.r1tag":"BESOIN 01","s8.r1h":"Un VPS","s8.r1tech":"Une petite instance pour démarrer, évolutive.","s8.r1why":"<b>En clair :</b> un petit serveur privé pour faire tourner les outils. On démarre tout petit et on n'ajoute de la puissance qu'à mesure que des pays arrivent — on paie ce qu'on utilise.","s8.r2tag":"BESOIN 02","s8.r2h":"Un pipeline CI/CD","s8.r2tech":"GitHub → déploiement automatique sur le serveur.","s8.r2why":"<b>En clair :</b> quand on met à jour un outil, il se déploie sur le serveur automatiquement et en sécurité — pas de copie de fichiers à la main, moins d'erreurs, des corrections plus rapides.","s8.r3tag":"BESOIN 03","s8.r3h":"Reverse proxy + SSL","s8.r3tech":"Plusieurs domaines/sous-domaines, HTTPS automatique.","s8.r3why":"<b>En clair :</b> une seule porte d'entrée qui envoie chaque adresse (brand.…, partners.…) vers le bon outil, et garde chacune sécurisée avec un HTTPS automatique.",
+"s9.eye":"PROCHAINES ÉTAPES","s9.h":"Prochaines étapes proposées","s9.lead":"Peu de risque, peu de coût pour démarrer. L'infrastructure est petite, standard, et ne grandit qu'avec l'adoption.","s9.s1h":"S'aligner avec l'IT Fortidia","s9.s1b":"Confirmer ensemble l'hébergement, le dimensionnement et les attentes de sécurité.","s9.s2h":"Provisionner les briques","s9.s2b":"Un petit VPS + un pipeline CI/CD + reverse proxy / SSL.","s9.s3h":"Mettre en place le premier cas d'usage","s9.s3b":"La plateforme de charte de marque comme pilote.","s9.s4h":"Lancer le POC avec MBE France","s9.s4b":"Mesurer, affiner et documenter ce qui marche.","s9.s5h":"Planifier le déploiement","s9.s5b":"L'ouvrir aux autres DOCs, selon les résultats."
+}
+};
+const slides=document.querySelectorAll('.slide');const total=slides.length;let cur=0,lang='en',theme='fortidia';
+function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
+function go(d){show(cur+d);}
+function applyLang(l){lang=l;const d=I18N[l];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!==undefined)el.innerHTML=d[k];});document.documentElement.lang=l;document.getElementById('langBtn').textContent=(l==='en')?'FR':'EN';}
+function toggleLang(){applyLang(lang==='en'?'fr':'en');}
+function applyTheme(t){theme=t;document.documentElement.dataset.theme=t;document.getElementById('themeBtn').textContent=(t==='fortidia')?'MBE':'Fortidia';}
+function toggleTheme(){applyTheme(theme==='fortidia'?'mbe':'fortidia');}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key.toLowerCase()==='f')toggleFull();
+  if(e.key.toLowerCase()==='t')toggleTheme();
+  if(e.key.toLowerCase()==='l')toggleLang();
+});
+function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
+const stage=document.getElementById('stage');
+function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
+window.addEventListener('resize',resize);
+applyLang('en');applyTheme('fortidia');resize();show(0);
+(function(){try{var t=localStorage.getItem('mbe_theme'),l=localStorage.getItem('mbe_lang');if(t)applyTheme(t);if(l)applyLang(l);}catch(e){}var a=toggleTheme,b=toggleLang;toggleTheme=function(){a();try{localStorage.setItem('mbe_theme',theme);}catch(e){}};toggleLang=function(){b();try{localStorage.setItem('mbe_lang',lang);}catch(e){}};})();
+</script></body></html>
