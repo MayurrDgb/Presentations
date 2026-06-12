@@ -102,6 +102,7 @@ function applyTheme(t){theme=t;document.documentElement.dataset.theme=t;document
 function toggleTheme(){applyTheme(theme==="fortidia"?"mbe":"fortidia");}
 document.addEventListener("keydown",function(e){var k=e.key.toLowerCase();if(k==="t")toggleTheme();if(k==="l")toggleLang();});
 applyLang("en");applyTheme("fortidia");
+(function(){try{var t=localStorage.getItem('mbe_theme'),l=localStorage.getItem('mbe_lang');if(t)applyTheme(t);if(l)applyLang(l);}catch(e){}var a=toggleTheme,b=toggleLang;toggleTheme=function(){a();try{localStorage.setItem('mbe_theme',theme);}catch(e){}};toggleLang=function(){b();try{localStorage.setItem('mbe_lang',lang);}catch(e){}};})();
 </script>
 </body>
 </html>

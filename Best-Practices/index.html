@@ -312,4 +312,5 @@ const stage=document.getElementById('stage');
 function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
 window.addEventListener('resize',resize);
 applyLang('en');applyTheme('fortidia');resize();show(0);
+(function(){try{var t=localStorage.getItem('mbe_theme'),l=localStorage.getItem('mbe_lang');if(t)applyTheme(t);if(l)applyLang(l);}catch(e){}var a=toggleTheme,b=toggleLang;toggleTheme=function(){a();try{localStorage.setItem('mbe_theme',theme);}catch(e){}};toggleLang=function(){b();try{localStorage.setItem('mbe_lang',lang);}catch(e){}};})();
 </script></body></html>

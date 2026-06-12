@@ -15,6 +15,7 @@
   --on-dark:#F4F4F5; --footer-bg:#E2001A; --footer-tx:#FFFFFF;
   --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
   --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+  --logo-white:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png");
 }
 [data-theme="mbe"] [style*="background:var(--accent)"]{color:#fff;}
 [data-theme="mbe"] [style*="background:var(--accent)"] *{color:#fff!important;}
@@ -44,6 +45,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 [data-theme="fortidia"] .brand.brand-dark .brand-ft{color:var(--accent);}
 [data-theme="mbe"] .brand{background:var(--logo) right center/contain no-repeat;}
 [data-theme="mbe"] .brand.brand-dark{background-image:var(--logo-neg);}
+[data-theme="mbe"] .logo-red{background-image:var(--logo-white)!important;}
 [data-theme="mbe"] .brand .brand-ft{display:none;}
 .tl{width:90px;height:3px;background:var(--accent);margin-bottom:6px;}
 .tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--ink);}
@@ -86,7 +88,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     </g>
     <text x="290" y="430" text-anchor="middle" font-family="Arial Black, Arial" font-size="230" font-weight="900" fill="var(--accent)" opacity="0.05">{ }</text>
   </svg>
-  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div class="brand logo-red"><span class="brand-ft">Fortidia</span></div>
   <div class="acc-text" style="position:absolute;top:118px;left:805px;right:34px;">
     <div style="font-family:Arial,sans-serif;font-size:42px;color:var(--ink);line-height:1.1;font-weight:300;" data-i18n="s0.title">The Next<br>MBE Website</div>
     <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
@@ -103,7 +105,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div class="slide" id="s1" style="background:var(--bg);">
   <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:var(--accent);"></div>
   <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div class="brand logo-red"><span class="brand-ft">Fortidia</span></div>
   <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s1.eye">STARTING POINT</div></div>
   <div class="h" style="position:absolute;left:60px;top:120px;font-size:46px;" data-i18n="s1.h">The wall we<br>keep hitting</div>
   <div style="position:absolute;left:60px;top:248px;width:560px;font-size:14px;color:var(--ink);opacity:.6;line-height:1.55;" data-i18n="s1.lead">The Nov-2025 audit wasn't a content problem first. It was a <b>system</b> problem — we can't reliably ship to our own site.</div>
@@ -276,7 +278,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div class="slide" id="s6" style="background:var(--bg);">
   <div style="position:absolute;right:0;top:0;width:340px;height:100%;background:var(--accent);"></div>
   <div class="footer"><span data-i18n="footer.short">© 2026 Fortidia / MBE France. Confidential.</span></div>
-  <div class="brand"><span class="brand-ft">Fortidia</span></div>
+  <div class="brand logo-red"><span class="brand-ft">Fortidia</span></div>
   <div style="position:absolute;left:60px;top:52px;"><div class="tl"></div><div class="tt" data-i18n="s6.eye">THE SHELL</div></div>
   <div class="h" style="position:absolute;left:60px;top:120px;font-size:44px;" data-i18n="s6.h">An empty shell<br>that builds itself</div>
   <div style="position:absolute;left:60px;top:258px;width:540px;font-size:14px;color:var(--ink);opacity:.6;line-height:1.55;" data-i18n="s6.lead">A headless / hybrid framework that handles both planes at once:</div>
@@ -427,4 +429,5 @@ const stage=document.getElementById('stage');
 function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
 window.addEventListener('resize',resize);
 applyLang('en');applyTheme('fortidia');resize();show(0);
+(function(){try{var t=localStorage.getItem('mbe_theme'),l=localStorage.getItem('mbe_lang');if(t)applyTheme(t);if(l)applyLang(l);}catch(e){}var a=toggleTheme,b=toggleLang;toggleTheme=function(){a();try{localStorage.setItem('mbe_theme',theme);}catch(e){}};toggleLang=function(){b();try{localStorage.setItem('mbe_lang',lang);}catch(e){}};})();
 </script></body></html>

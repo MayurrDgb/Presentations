@@ -858,6 +858,7 @@ window.addEventListener('resize',resize);
 
 /* init */
 applyLang('fr');applyTheme('mbe');resize();show(0);
+(function(){try{var t=localStorage.getItem('mbe_theme'),l=localStorage.getItem('mbe_lang');if(t)applyTheme(t);if(l)applyLang(l);}catch(e){}var a=toggleTheme,b=toggleLang;toggleTheme=function(){a();try{localStorage.setItem('mbe_theme',theme);}catch(e){}};toggleLang=function(){b();try{localStorage.setItem('mbe_lang',lang);}catch(e){}};})();
 </script>
 </body>
 </html>
