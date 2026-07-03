@@ -1,0 +1,23 @@
+name: Keep backend warm
+
+# Le gate des présentations interroge mbe-backend (hébergement gratuit Render),
+# qui s'endort après ~15 min d'inactivité → 1re requête ~60s (« Vérification… » figé).
+# Ce ping régulier maintient le serveur éveillé pour supprimer le cold start.
+# NB : les crons GitHub Actions sont « best-effort » (peuvent glisser de quelques min)
+# et se désactivent après 60 j sans activité sur le repo. Pour une fiabilité maximale,
+# doubler avec un moniteur externe (ex. UptimeRobot, ping toutes les 5 min).
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # toutes les 10 minutes
+  workflow_dispatch:          # déclenchement manuel possible
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping mbe-backend
+        run: |
+          curl -sS -m 90 -o /dev/null \
+            -w "HTTP %{http_code} en %{time_total}s\n" \
+            "https://mbe-backend-5ehb.onrender.com/api/access/check?resource=presentations" || true

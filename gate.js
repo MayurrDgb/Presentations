@@ -41,11 +41,31 @@
   }
   function spin(text) { var s = document.getElementById('mbe-gate-spin'); if (s) s.textContent = text || ''; }
 
-  function checkAccess(token, onFail) {
+  // Réveille le backend (hébergement gratuit : ~1 min de démarrage à froid).
+  // Requête sans auth (401 rapide une fois chaud) lancée dès l'affichage du gate,
+  // pour que le serveur soit prêt quand l'utilisateur se connecte.
+  function warmUp() {
+    try {
+      fetch(API_BASE + '/api/access/check?resource=' + encodeURIComponent(RESOURCE), {
+        cache: 'no-store',
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function checkAccess(token, onFail, attempt) {
+    attempt = attempt || 1;
     spin('Vérification…');
+    // Si le backend dort, la réponse tarde : on l'annonce au lieu de laisser un hang muet.
+    var slow = setTimeout(function () {
+      spin('Réveil du serveur (~1 min), merci de patienter…');
+    }, 4000);
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 75000);
     fetch(API_BASE + '/api/access/check?resource=' + encodeURIComponent(RESOURCE), {
       headers: { Authorization: 'Bearer ' + token },
+      signal: ctrl ? ctrl.signal : undefined,
     }).then(function (r) {
+      clearTimeout(slow); clearTimeout(timer);
       if (r.status === 401) { sessionStorage.removeItem(TOKEN_KEY); spin(''); if (onFail) onFail(); return null; }
       return r.json();
     }).then(function (j) {
@@ -54,6 +74,9 @@
       if (j.allowed) { sessionStorage.setItem(TOKEN_KEY, token); reveal(); }
       else { msg('Accès non autorisé pour ce compte — contacte Mayurr Digumber.'); if (onFail) onFail(); }
     }).catch(function () {
+      clearTimeout(slow); clearTimeout(timer);
+      // 1re tentative interrompue par le timeout : le serveur finissait sûrement de démarrer, on réessaie une fois.
+      if (attempt < 2) { spin('Le serveur se réveille, nouvelle tentative…'); checkAccess(token, onFail, attempt + 1); return; }
       spin(''); msg('Connexion au serveur impossible. Réessaie dans ~1 min (réveil du serveur).'); if (onFail) onFail();
     });
   }
@@ -79,6 +102,7 @@
   function start() {
     if (PUBLIC) { reveal(); return; }
     buildOverlay();
+    warmUp(); // réveille le backend en tâche de fond pendant que l'utilisateur se connecte
     var cached = sessionStorage.getItem(TOKEN_KEY);
     if (cached) checkAccess(cached, loadGis);
     else loadGis();
