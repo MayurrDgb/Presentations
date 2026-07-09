@@ -54,7 +54,6 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 [data-theme="mbe"] .brand .brand-ft{display:none;}
 .tl{width:90px;height:3px;background:var(--accent);margin-bottom:6px;}
 .tt{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--ink);}
-.tt-w{color:rgba(255,255,255,.45);}
 .h{font-family:Arial Black,Arial,sans-serif;font-weight:900;color:var(--ink);line-height:1.1;}
 .box{border-radius:10px;padding:14px 15px;position:relative;}
 .box .topbar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);border-radius:10px 10px 0 0;}
@@ -63,16 +62,18 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 .c-blue{background:#4C86B6;}
 .c-amber{background:#E0A33E;}
 .c-green{background:#7BA05B;}
+.c-mauve{background:#A8788C;}
+.c-tv{background:#C9812A;}
 .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;z-index:2;}
-.col .seg{width:60%;max-width:46px;}
+.col .seg{width:64%;max-width:40px;}
 .col .seg:first-of-type{border-radius:3px 3px 0 0;}
-.col .tot{font-size:9.5px;font-weight:700;color:var(--ink);opacity:.55;margin-bottom:3px;white-space:nowrap;}
+.col .tot{font-size:9px;font-weight:700;color:var(--ink);opacity:.55;margin-bottom:3px;white-space:nowrap;}
 .col.fc .seg{opacity:.5;}
 .col.fc .tot{opacity:.4;font-style:italic;}
 .mlabel{flex:1;text-align:center;font-size:9.5px;color:var(--ink);opacity:.6;}
 .fcbg{position:absolute;top:0;right:0;width:50%;height:100%;background:repeating-linear-gradient(45deg,rgba(120,120,120,.10) 0 5px,transparent 5px 11px);pointer-events:none;z-index:1;}
 .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;vertical-align:middle;margin-right:5px;}
-.leg{display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;color:var(--ink);opacity:.78;font-weight:700;}
+.leg{display:flex;flex-wrap:wrap;gap:13px;font-size:10.5px;color:var(--ink);opacity:.78;font-weight:700;}
 .rf{font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--ink);opacity:.5;}
 .gl{position:absolute;left:0;right:0;border-top:1px solid rgba(0,0,0,.07);}
 .gl span{position:absolute;left:-42px;top:-7px;font-size:9px;color:var(--ink);opacity:.4;}
@@ -101,12 +102,12 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div class="acc-text" style="position:absolute;top:120px;left:800px;right:34px;">
     <div style="font-family:Arial,sans-serif;font-size:36px;color:var(--ink);line-height:1.12;font-weight:300;" data-i18n="s0.title">Products &amp; Services<br><b style="font-weight:900;">Media Plan &amp; Investment</b></div>
     <div style="width:70px;height:3px;background:var(--ink);opacity:.2;margin:20px 0 16px;border-radius:2px;"></div>
-    <div style="font-size:15px;color:var(--ink);opacity:.7;line-height:1.5;" data-i18n="s0.sub">Portefeuille média 2026 — 570 964 €<br>Awareness · B2B · B2C</div>
+    <div style="font-size:15px;color:var(--ink);opacity:.7;line-height:1.5;" data-i18n="s0.sub">Portefeuille média 2026 — 590 964 €<br>Awareness · B2B · B2C</div>
     <div style="font-size:13px;color:var(--ink);opacity:.45;margin-top:14px;" data-i18n="s0.date">Juillet 2026</div>
   </div>
   <div style="position:absolute;left:60px;bottom:92px;">
     <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:color-mix(in srgb,var(--accent) 55%,transparent);margin-bottom:8px;" data-i18n="s0.kicker">NMF FRANCE · PLAN MÉDIA 2026</div>
-    <div style="font-size:14px;color:rgba(255,255,255,.4);" data-i18n="s0.tag">L'investissement média, par bloc et mois par mois</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.4);" data-i18n="s0.tag">Par bloc, par canal, mois par mois</div>
   </div>
 </div>
 
@@ -117,29 +118,25 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div style="position:absolute;left:60px;top:44px;"><div class="tl"></div><div class="tt" data-i18n="s1.eye">INVESTISSEMENT MÉDIA 2026</div></div>
   <div class="h" style="position:absolute;left:60px;top:88px;font-size:34px;" data-i18n="s1.h">Répartition de l'investissement</div>
 
-  <!-- KPI chips : les 3 blocs -->
   <div style="position:absolute;left:60px;top:140px;right:60px;display:flex;gap:9px;">
-    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">AWARENESS · 48%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kAw">276 323 €</div></div>
-    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">B2B · 29%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kB2B">163 916 €</div></div>
-    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">B2C · 23%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kB2C">130 725 €</div></div>
-    <div style="flex:1;background:var(--ink);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s1.kTotLbl">TOTAL PORTEFEUILLE</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:#fff;margin-top:2px;" data-i18n="s1.kTot">570 964 €</div></div>
+    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">AWARENESS · 50%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kAw">296 323 €</div></div>
+    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">B2B · 28%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kB2B">163 916 €</div></div>
+    <div style="flex:1;background:var(--surface);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--ink);opacity:.55;">B2C · 22%</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:var(--ink);margin-top:2px;" data-i18n="s1.kB2C">130 725 €</div></div>
+    <div style="flex:1;background:var(--ink);border-radius:9px;padding:8px 12px;"><div style="font-size:9px;font-weight:700;letter-spacing:.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);" data-i18n="s1.kTotLbl">TOTAL PORTEFEUILLE</div><div style="font-family:Arial Black,Arial,sans-serif;font-size:17px;color:#fff;margin-top:2px;" data-i18n="s1.kTot">590 964 €</div></div>
   </div>
 
-  <!-- legend types + realized/engaged -->
-  <div style="position:absolute;left:106px;top:198px;display:flex;align-items:center;gap:16px;" class="leg">
-    <span><span class="swatch c-blue"></span><span data-i18n="s1.lgOn">Online</span> <span style="font-weight:400;opacity:.6;" data-i18n="s1.onVal">305 036 € · 53%</span></span>
-    <span><span class="swatch c-amber"></span><span data-i18n="s1.lgOff">Offline</span> <span style="font-weight:400;opacity:.6;" data-i18n="s1.offVal">206 323 € · 36%</span></span>
+  <div style="position:absolute;left:106px;top:198px;display:flex;align-items:center;gap:15px;" class="leg">
+    <span><span class="swatch c-blue"></span><span data-i18n="s1.lgOn">Online</span> <span style="font-weight:400;opacity:.6;" data-i18n="s1.onVal">325 036 € · 55%</span></span>
+    <span><span class="swatch c-amber"></span><span data-i18n="s1.lgOff">Offline</span> <span style="font-weight:400;opacity:.6;" data-i18n="s1.offVal">206 323 € · 35%</span></span>
     <span><span class="swatch c-green"></span><span data-i18n="s1.lgDir">Direct (Data + Télémarketing)</span> <span style="font-weight:400;opacity:.6;" data-i18n="s1.dirVal">59 605 € · 10%</span></span>
   </div>
   <div style="position:absolute;right:60px;top:198px;" class="rf"><span data-i18n="real">RÉALISÉ ——</span> &nbsp; <span style="opacity:.8;" data-i18n="eng">ENGAGÉ − − −</span></div>
 
-  <!-- chart : Online / Offline / Direct, 3 lignes -->
   <div style="position:absolute;left:60px;top:224px;right:60px;">
     <div style="position:relative;margin-left:46px;height:200px;">
       <div class="fcbg"></div>
       <div class="gl" style="bottom:200px;"><span>50k</span></div>
-      <div class="gl" style="bottom:160px;"><span>40k</span></div>
-      <div class="gl" style="bottom:80px;"><span>20k</span></div>
+      <div class="gl" style="bottom:100px;"><span>25k</span></div>
       <div class="gl" style="bottom:0;border-top:1.5px solid rgba(0,0,0,.25);"><span>0</span></div>
       <div style="position:absolute;left:50%;top:0;height:200px;border-left:1.5px dashed rgba(0,0,0,.22);"></div>
       <svg style="position:absolute;left:0;top:0;width:100%;height:200px;overflow:visible;" viewBox="0 0 1000 200" preserveAspectRatio="none">
@@ -147,9 +144,9 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
         <polyline fill="none" stroke="#E0A33E" stroke-width="2.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke" points="458,92 542,200 625,200 708,24 792,24 875,200 958,200"/>
         <polyline fill="none" stroke="#7BA05B" stroke-width="2.5" vector-effect="non-scaling-stroke" points="42,189.4 125,195.6 208,185 292,156.4 375,200 458,185"/>
         <polyline fill="none" stroke="#7BA05B" stroke-width="2.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke" points="458,185 542,185.5 625,185.5 708,142.6 792,175.5 875,175.5 958,185.5"/>
-        <polyline fill="none" stroke="#4C86B6" stroke-width="2.5" vector-effect="non-scaling-stroke" points="42,92.9 125,120.8 208,119.4 292,49.2 375,138.4 458,121.3"/>
-        <polyline fill="none" stroke="#4C86B6" stroke-width="2.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke" points="458,121.3 542,77 625,117 708,80 792,80 875,80 958,104"/>
-        <g fill="#4C86B6"><circle cx="42" cy="92.9" r="3"/><circle cx="125" cy="120.8" r="3"/><circle cx="208" cy="119.4" r="3"/><circle cx="292" cy="49.2" r="3"/><circle cx="375" cy="138.4" r="3"/><circle cx="458" cy="121.3" r="3"/><circle cx="542" cy="77" r="3"/><circle cx="625" cy="117" r="3"/><circle cx="708" cy="80" r="3"/><circle cx="792" cy="80" r="3"/><circle cx="875" cy="80" r="3"/><circle cx="958" cy="104" r="3"/></g>
+        <polyline fill="none" stroke="#4C86B6" stroke-width="2.5" vector-effect="non-scaling-stroke" points="42,92.9 125,120.8 208,119.4 292,49.1 375,132.5 458,47.2"/>
+        <polyline fill="none" stroke="#4C86B6" stroke-width="2.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke" points="458,47.2 542,77 625,117 708,80 792,80 875,80 958,104"/>
+        <g fill="#4C86B6"><circle cx="42" cy="92.9" r="3"/><circle cx="125" cy="120.8" r="3"/><circle cx="208" cy="119.4" r="3"/><circle cx="292" cy="49.1" r="3"/><circle cx="375" cy="132.5" r="3"/><circle cx="458" cy="47.2" r="3"/><circle cx="542" cy="77" r="3"/><circle cx="625" cy="117" r="3"/><circle cx="708" cy="80" r="3"/><circle cx="792" cy="80" r="3"/><circle cx="875" cy="80" r="3"/><circle cx="958" cy="104" r="3"/></g>
         <g fill="#E0A33E"><circle cx="208" cy="100.7" r="3"/><circle cx="292" cy="20" r="3"/><circle cx="375" cy="114" r="3"/><circle cx="458" cy="92" r="3"/><circle cx="708" cy="24" r="3"/><circle cx="792" cy="24" r="3"/></g>
       </svg>
       <div style="display:flex;margin-top:5px;">
@@ -158,7 +155,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     </div>
   </div>
 
-  <div style="position:absolute;left:60px;bottom:52px;right:60px;font-size:12.5px;color:var(--ink);opacity:.72;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:12px 16px;" data-i18n="s1.insight">L'investissement se répartit en trois types de média : <b>Online (54%)</b> en présence continue, <b>Offline (36%)</b> sur les grands temps forts de marque, et <b>Direct (10%)</b>. Le second semestre n'est pas une prévision : c'est un plan média <b>déjà arrêté avec l'agence</b>, au même niveau d'engagement que le réel.</div>
+  <div style="position:absolute;left:60px;bottom:52px;right:60px;font-size:12.5px;color:var(--ink);opacity:.72;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:12px 16px;" data-i18n="s1.insight">L'investissement se répartit en trois types de média : <b>Online (55%)</b> en présence continue, <b>Offline (35%)</b> sur les grands temps forts de marque, et <b>Direct (10%)</b>. Le second semestre n'est pas une prévision : c'est un plan média <b>déjà arrêté avec l'agence</b>, au même niveau d'engagement que le réel.</div>
 </div>
 
 <!-- ============ S2 — FOCUS B2B ============ -->
@@ -166,18 +163,18 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div class="footer"><span data-i18n="footer.short">© 2026 NMF France — Document interne, ne pas diffuser sans autorisation.</span></div>
   <div class="brand"><span class="brand-ft">Fortidia</span></div>
   <div style="position:absolute;left:60px;top:44px;"><div class="tl"></div><div class="tt" data-i18n="s2.eye">INVESTISSEMENT B2B · 163 916 €</div></div>
-  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s2.h">Focus B2B</div>
+  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s2.h">Focus B2B — par canal</div>
 
-  <!-- legend + realized/engaged -->
   <div style="position:absolute;left:102px;top:140px;" class="leg">
-    <span><span class="swatch c-navy"></span><span data-i18n="s2.lg1">Fil Rouge (part B2B)</span></span>
-    <span><span class="swatch c-amber"></span><span data-i18n="s2.lg2">Télémarketing</span></span>
-    <span><span class="swatch c-green"></span><span data-i18n="s2.lg3">Data providers</span></span>
+    <span><span class="swatch c-navy"></span>SEA</span>
+    <span><span class="swatch c-blue"></span>PMax</span>
+    <span><span class="swatch c-amber"></span>IAB / Native</span>
+    <span><span class="swatch c-green"></span><span data-i18n="s2.lgTel">Télémarketing</span></span>
+    <span><span class="swatch c-mauve"></span><span data-i18n="s2.lgData">Data providers</span></span>
   </div>
   <div style="position:absolute;right:60px;top:140px;" class="rf"><span data-i18n="real">RÉALISÉ ——</span> &nbsp; <span style="opacity:.8;" data-i18n="eng">ENGAGÉ − − −</span></div>
 
-  <!-- chart -->
-  <div style="position:absolute;left:56px;top:176px;width:620px;">
+  <div style="position:absolute;left:56px;top:176px;width:640px;">
     <div style="position:relative;margin-left:46px;height:200px;">
       <div class="fcbg"></div>
       <div class="gl" style="bottom:160px;"><span>20k</span></div>
@@ -185,18 +182,18 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
       <div class="gl" style="bottom:0;border-top:1.5px solid rgba(0,0,0,.25);"><span>0</span></div>
       <div style="position:absolute;left:50%;top:0;height:200px;border-left:1.5px dashed rgba(0,0,0,.22);"></div>
       <div style="display:flex;height:200px;align-items:flex-end;position:relative;">
-        <div class="col"><div class="tot">14</div><div class="seg c-navy" style="height:93px"></div><div class="seg c-amber" style="height:21px"></div></div>
-        <div class="col"><div class="tot">11</div><div class="seg c-navy" style="height:79px"></div><div class="seg c-amber" style="height:9px"></div></div>
-        <div class="col"><div class="tot">14</div><div class="seg c-navy" style="height:81px"></div><div class="seg c-amber" style="height:30px"></div></div>
-        <div class="col"><div class="tot">21</div><div class="seg c-navy" style="height:80px"></div><div class="seg c-amber" style="height:34px"></div><div class="seg c-green" style="height:53px"></div></div>
-        <div class="col"><div class="tot">6</div><div class="seg c-navy" style="height:51px"></div></div>
-        <div class="col"><div class="tot">13</div><div class="seg c-navy" style="height:70px"></div><div class="seg c-amber" style="height:30px"></div></div>
-        <div class="col fc"><div class="tot">9</div><div class="seg c-navy" style="height:46px"></div><div class="seg c-amber" style="height:29px"></div></div>
-        <div class="col fc"><div class="tot">9</div><div class="seg c-navy" style="height:46px"></div><div class="seg c-amber" style="height:29px"></div></div>
-        <div class="col fc"><div class="tot">24</div><div class="seg c-navy" style="height:80px"></div><div class="seg c-amber" style="height:49px"></div><div class="seg c-green" style="height:66px"></div></div>
-        <div class="col fc"><div class="tot">16</div><div class="seg c-navy" style="height:80px"></div><div class="seg c-amber" style="height:49px"></div></div>
-        <div class="col fc"><div class="tot">16</div><div class="seg c-navy" style="height:80px"></div><div class="seg c-amber" style="height:49px"></div></div>
-        <div class="col fc"><div class="tot">10</div><div class="seg c-navy" style="height:48px"></div><div class="seg c-amber" style="height:29px"></div></div>
+        <div class="col"><div class="tot">14</div><div class="seg c-green" style="height:21px"></div><div class="seg c-amber" style="height:28px"></div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:31px"></div></div>
+        <div class="col"><div class="tot">11</div><div class="seg c-green" style="height:9px"></div><div class="seg c-amber" style="height:19px"></div><div class="seg c-blue" style="height:32px"></div><div class="seg c-navy" style="height:28px"></div></div>
+        <div class="col"><div class="tot">14</div><div class="seg c-green" style="height:30px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:29px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col"><div class="tot">21</div><div class="seg c-mauve" style="height:53px"></div><div class="seg c-green" style="height:34px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:27px"></div><div class="seg c-navy" style="height:34px"></div></div>
+        <div class="col"><div class="tot">6</div><div class="seg c-amber" style="height:16px"></div><div class="seg c-blue" style="height:17px"></div><div class="seg c-navy" style="height:18px"></div></div>
+        <div class="col"><div class="tot">13</div><div class="seg c-green" style="height:30px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:27px"></div><div class="seg c-navy" style="height:23px"></div></div>
+        <div class="col fc"><div class="tot">9</div><div class="seg c-green" style="height:29px"></div><div class="seg c-amber" style="height:12px"></div><div class="seg c-blue" style="height:18px"></div><div class="seg c-navy" style="height:16px"></div></div>
+        <div class="col fc"><div class="tot">9</div><div class="seg c-green" style="height:29px"></div><div class="seg c-amber" style="height:12px"></div><div class="seg c-blue" style="height:18px"></div><div class="seg c-navy" style="height:16px"></div></div>
+        <div class="col fc"><div class="tot">24</div><div class="seg c-mauve" style="height:66px"></div><div class="seg c-green" style="height:49px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:32px"></div><div class="seg c-navy" style="height:28px"></div></div>
+        <div class="col fc"><div class="tot">16</div><div class="seg c-green" style="height:49px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:32px"></div><div class="seg c-navy" style="height:28px"></div></div>
+        <div class="col fc"><div class="tot">16</div><div class="seg c-green" style="height:49px"></div><div class="seg c-amber" style="height:20px"></div><div class="seg c-blue" style="height:32px"></div><div class="seg c-navy" style="height:28px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-green" style="height:29px"></div><div class="seg c-amber" style="height:12px"></div><div class="seg c-blue" style="height:20px"></div><div class="seg c-navy" style="height:16px"></div></div>
       </div>
       <div style="display:flex;margin-top:5px;">
         <div class="mlabel">Jan</div><div class="mlabel">Feb</div><div class="mlabel">Mar</div><div class="mlabel">Apr</div><div class="mlabel">May</div><div class="mlabel">Jun</div><div class="mlabel">Jul</div><div class="mlabel">Aug</div><div class="mlabel">Sep</div><div class="mlabel">Oct</div><div class="mlabel">Nov</div><div class="mlabel">Dec</div>
@@ -204,26 +201,19 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     </div>
   </div>
 
-  <!-- composition -->
   <div style="position:absolute;left:700px;top:176px;right:60px;">
     <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:8px;" data-i18n="s2.compTag">RÉPARTITION PAR CANAL</div>
-    <div style="display:flex;flex-direction:column;gap:8px;font-size:11.5px;color:var(--ink);">
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-navy"></span><span data-i18n="s2.lg1b">Fil Rouge (B2B)</span></span><b style="white-space:nowrap;">104 311 € · 64%</b></div>
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-amber"></span><span data-i18n="s2.lg2b">Télémarketing</span></span><b style="white-space:nowrap;">44 724 € · 27%</b></div>
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-green"></span><span data-i18n="s2.lg3b">Data providers</span></span><b style="white-space:nowrap;">14 881 € · 9%</b></div>
+    <div style="display:flex;flex-direction:column;gap:7px;font-size:11.5px;color:var(--ink);">
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-green"></span><span data-i18n="s2.lgTel">Télémarketing</span></span><b style="white-space:nowrap;">44 724 € · 27%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-blue"></span>PMax</span><b style="white-space:nowrap;">39 558 € · 24%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-navy"></span>SEA</span><b style="white-space:nowrap;">37 331 € · 23%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-amber"></span>IAB / Native</span><b style="white-space:nowrap;">27 422 € · 17%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-mauve"></span><span data-i18n="s2.lgData">Data providers</span></span><b style="white-space:nowrap;">14 881 € · 9%</b></div>
     </div>
-    <div style="font-size:9.5px;color:var(--ink);opacity:.5;line-height:1.4;margin-top:8px;" data-i18n="s2.compNote">Télémarketing inclut la nouvelle agence boost-centres (montée en charge à la rentrée).</div>
-  </div>
-
-  <!-- e-commerce strategy, aéré -->
-  <div class="box" style="position:absolute;left:56px;bottom:46px;right:60px;background:var(--ink);color:#fff;padding:15px 20px;">
-    <div class="topbar"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);margin-bottom:4px;" data-i18n="s2.stratTag">STRATÉGIE E-COMMERCE</div>
-    <div style="font-size:12.5px;opacity:.85;line-height:1.5;margin-bottom:11px;" data-i18n="s2.stratIntro">L'e-commerce ne fait pas l'objet d'une campagne isolée : il s'intègre au dispositif média déjà en place.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:12px;color:var(--accent);margin-bottom:3px;">01</div><div style="font-size:11.5px;opacity:.82;line-height:1.45;" data-i18n="s2.strat1"><b>Même audience cible.</b> On capitalise sur l'audience déjà construite, sans repartir de zéro.</div></div>
-      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:12px;color:var(--accent);margin-bottom:3px;">02</div><div style="font-size:11.5px;opacity:.82;line-height:1.45;" data-i18n="s2.strat2"><b>Le message évolue.</b> On adapte le discours à l'offre e-commerce ; le dispositif média, lui, ne change pas.</div></div>
-      <div><div style="font-family:Arial Black,Arial,sans-serif;font-size:12px;color:var(--accent);margin-bottom:3px;">03</div><div style="font-size:11.5px;opacity:.82;line-height:1.45;" data-i18n="s2.strat3"><b>Continuité.</b> Performance et apprentissage se cumulent au lieu d'être remis à zéro.</div></div>
+    <div class="box" style="background:var(--ink);color:#fff;margin-top:12px;padding:12px 14px;">
+      <div class="topbar"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:color-mix(in srgb,var(--accent) 65%,transparent);margin-bottom:5px;" data-i18n="s2.stratTag">STRATÉGIE E-COMMERCE</div>
+      <div style="font-size:11px;opacity:.85;line-height:1.45;" data-i18n="s2.strat">L'e-commerce s'intègre au dispositif existant : même audience cible, le message évolue mais les canaux (SEA / PMax / IAB) restent — pas de remise à zéro, la performance se cumule.</div>
     </div>
   </div>
 </div>
@@ -232,37 +222,55 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
 <div class="slide" id="s3" style="background:var(--bg);">
   <div class="footer"><span data-i18n="footer.short">© 2026 NMF France — Document interne, ne pas diffuser sans autorisation.</span></div>
   <div class="brand"><span class="brand-ft">Fortidia</span></div>
-  <div style="position:absolute;left:60px;top:44px;"><div class="tl"></div><div class="tt" data-i18n="s3.eye">AWARENESS · 276 323 €</div></div>
-  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s3.h">Notoriété de marque</div>
+  <div style="position:absolute;left:60px;top:44px;"><div class="tl"></div><div class="tt" data-i18n="s3.eye">AWARENESS · 296 323 €</div></div>
+  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s3.h">Notoriété de marque — par canal</div>
 
-  <!-- split chips -->
-  <div style="position:absolute;right:60px;top:92px;display:flex;gap:9px;">
-    <div style="background:var(--surface);border-radius:9px;padding:7px 13px;text-align:right;"><div style="font-size:9px;font-weight:700;color:var(--ink);opacity:.55;"><span class="swatch c-amber"></span><span data-i18n="s3.splitRTlbl">RADIO &amp; TV · 75%</span></div><div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:var(--ink);" data-i18n="s3.splitRTval">206 323 €</div></div>
-    <div style="background:var(--surface);border-radius:9px;padding:7px 13px;text-align:right;"><div style="font-size:9px;font-weight:700;color:var(--ink);opacity:.55;"><span class="swatch c-blue"></span><span data-i18n="s3.splitBrlbl">BRANDING · 25%</span></div><div style="font-family:Arial Black,Arial,sans-serif;font-size:15px;color:var(--ink);" data-i18n="s3.splitBrval">70 000 €</div></div>
+  <div style="position:absolute;left:102px;top:140px;" class="leg">
+    <span><span class="swatch c-amber"></span>Radio</span>
+    <span><span class="swatch c-tv"></span>TV</span>
+    <span><span class="swatch c-blue"></span><span data-i18n="s3.lgBr">Branding IAB</span></span>
+  </div>
+  <div style="position:absolute;right:60px;top:140px;" class="rf"><span data-i18n="real">RÉALISÉ ——</span> &nbsp; <span style="opacity:.8;" data-i18n="eng">ENGAGÉ − − −</span></div>
+
+  <div style="position:absolute;left:56px;top:176px;width:640px;">
+    <div style="position:relative;margin-left:46px;height:200px;">
+      <div class="fcbg"></div>
+      <div class="gl" style="bottom:200px;"><span>60k</span></div>
+      <div class="gl" style="bottom:133px;"><span>40k</span></div>
+      <div class="gl" style="bottom:67px;"><span>20k</span></div>
+      <div class="gl" style="bottom:0;border-top:1.5px solid rgba(0,0,0,.25);"><span>0</span></div>
+      <div style="position:absolute;left:50%;top:0;height:200px;border-left:1.5px dashed rgba(0,0,0,.22);"></div>
+      <div style="display:flex;height:200px;align-items:flex-end;position:relative;">
+        <div class="col"><div class="tot">0</div></div>
+        <div class="col"><div class="tot">0</div></div>
+        <div class="col"><div class="tot">25</div><div class="seg c-amber" style="height:83px"></div></div>
+        <div class="col"><div class="tot">45</div><div class="seg c-amber" style="height:150px"></div></div>
+        <div class="col"><div class="tot">23</div><div class="seg c-blue" style="height:5px"></div><div class="seg c-tv" style="height:72px"></div></div>
+        <div class="col"><div class="tot">46</div><div class="seg c-blue" style="height:62px"></div><div class="seg c-tv" style="height:90px"></div></div>
+        <div class="col fc"><div class="tot">20</div><div class="seg c-blue" style="height:67px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div></div>
+        <div class="col fc"><div class="tot">54</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-amber" style="height:147px"></div></div>
+        <div class="col fc"><div class="tot">54</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-amber" style="height:147px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div></div>
+      </div>
+      <div style="display:flex;margin-top:5px;">
+        <div class="mlabel">Jan</div><div class="mlabel">Feb</div><div class="mlabel">Mar</div><div class="mlabel">Apr</div><div class="mlabel">May</div><div class="mlabel">Jun</div><div class="mlabel">Jul</div><div class="mlabel">Aug</div><div class="mlabel">Sep</div><div class="mlabel">Oct</div><div class="mlabel">Nov</div><div class="mlabel">Dec</div>
+      </div>
+    </div>
   </div>
 
-  <!-- campaign calendar -->
-  <div style="position:absolute;left:60px;top:158px;right:60px;">
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:10px;" data-i18n="s3.calTag">CALENDRIER DES CAMPAGNES DE MARQUE</div>
-    <div style="position:relative;height:150px;border-left:1.5px solid rgba(0,0,0,.12);border-bottom:1.5px solid rgba(0,0,0,.12);">
-      <div style="position:absolute;left:16.67%;top:6px;width:8.0%;height:40px;background:#E0A33E;border-radius:5px;padding:5px 6px;color:#3a2a08;overflow:hidden;"><div style="font-size:10px;font-weight:700;" data-i18n="s3.c1">Radio · 24,8 k€</div><div style="font-size:8.5px;opacity:.75;" data-i18n="s3.c1d">18–30 mars</div></div>
-      <div style="position:absolute;left:25%;top:6px;width:8.0%;height:40px;background:#E0A33E;border-radius:5px;padding:5px 6px;color:#3a2a08;overflow:hidden;"><div style="font-size:10px;font-weight:700;" data-i18n="s3.c2">Radio · 45 k€</div><div style="font-size:8.5px;opacity:.75;" data-i18n="s3.c2d">1–24 avril</div></div>
-      <div style="position:absolute;left:33.33%;top:56px;width:8.0%;height:40px;background:#C9812A;border-radius:5px;padding:5px 6px;color:#fff;overflow:hidden;"><div style="font-size:10px;font-weight:700;" data-i18n="s3.c3">TV · 21,5 k€</div><div style="font-size:8.5px;opacity:.8;" data-i18n="s3.c3d">Champions League · 30 mai</div></div>
-      <div style="position:absolute;left:41.67%;top:6px;width:8.0%;height:40px;background:#C9812A;border-radius:5px;padding:5px 6px;color:#fff;overflow:hidden;"><div style="font-size:10px;font-weight:700;" data-i18n="s3.c4">TV · 27 k€</div><div style="font-size:8.5px;opacity:.8;" data-i18n="s3.c4d">France–Norvège · 26 juin</div></div>
-      <div style="position:absolute;left:70.83%;top:6px;width:12.5%;height:40px;background:#E0A33E;border:1.5px dashed #8a6210;border-radius:5px;padding:5px 6px;color:#3a2a08;overflow:hidden;opacity:.85;"><div style="font-size:10px;font-weight:700;" data-i18n="s3.c5">Radio · 88 k€</div><div style="font-size:8.5px;opacity:.75;" data-i18n="s3.c5d">mi-sept. → mi-oct. · engagé</div></div>
-      <div style="position:absolute;left:33.33%;top:110px;width:66.67%;height:30px;background:#4C86B6;border-radius:5px;padding:6px 10px;color:#fff;display:flex;align-items:center;gap:8px;overflow:hidden;"><span style="font-size:10px;font-weight:700;" data-i18n="s3.cb">Branding digital · 70 k€</span><span style="font-size:8.5px;opacity:.8;" data-i18n="s3.cbd">continu · mai → déc.</span></div>
+  <div style="position:absolute;left:700px;top:176px;right:60px;">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:8px;" data-i18n="s3.compTag">RÉPARTITION PAR CANAL</div>
+    <div style="display:flex;flex-direction:column;gap:7px;font-size:11.5px;color:var(--ink);">
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-amber"></span>Radio</span><b style="white-space:nowrap;">157 823 € · 53%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-blue"></span><span data-i18n="s3.lgBr">Branding IAB</span></span><b style="white-space:nowrap;">90 000 € · 30%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-tv"></span>TV</span><b style="white-space:nowrap;">48 500 € · 16%</b></div>
     </div>
-    <div style="display:flex;margin-top:5px;">
-      <div class="mlabel">Jan</div><div class="mlabel">Feb</div><div class="mlabel">Mar</div><div class="mlabel">Apr</div><div class="mlabel">May</div><div class="mlabel">Jun</div><div class="mlabel">Jul</div><div class="mlabel">Aug</div><div class="mlabel">Sep</div><div class="mlabel">Oct</div><div class="mlabel">Nov</div><div class="mlabel">Dec</div>
-    </div>
-  </div>
-
-  <!-- one message, two audiences -->
-  <div style="position:absolute;left:60px;bottom:46px;right:60px;">
-    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:8px;" data-i18n="s3.msgTag">UN MESSAGE, DEUX PUBLICS — PROFESSIONNELS &amp; PARTICULIERS</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="box" style="background:var(--surface);padding:11px 14px;font-size:11.5px;color:var(--ink);opacity:.85;line-height:1.45;font-style:italic;" data-i18n="s3.q1">« Professionnels comme particuliers, on vous simplifie la vie. » — Radio</div>
-      <div class="box" style="background:var(--surface);padding:11px 14px;font-size:11.5px;color:var(--ink);opacity:.85;line-height:1.45;font-style:italic;" data-i18n="s3.q2">« Des solutions logistiques pour commerçants et e-commerçants. » — TV</div>
+    <div class="box" style="background:var(--surface);margin-top:12px;padding:12px 14px;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--ink);opacity:.5;margin-bottom:6px;" data-i18n="s3.msgTag">UN MESSAGE, DEUX PUBLICS</div>
+      <div style="font-size:11px;color:var(--ink);opacity:.82;line-height:1.45;font-style:italic;" data-i18n="s3.q1">« Professionnels comme particuliers, on vous simplifie la vie. » — Radio</div>
+      <div style="font-size:11px;color:var(--ink);opacity:.82;line-height:1.45;font-style:italic;margin-top:6px;" data-i18n="s3.q2">« Des solutions pour commerçants et e-commerçants. » — TV</div>
     </div>
   </div>
 </div>
@@ -272,18 +280,17 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
   <div class="footer"><span data-i18n="footer.short">© 2026 NMF France — Document interne, ne pas diffuser sans autorisation.</span></div>
   <div class="brand"><span class="brand-ft">Fortidia</span></div>
   <div style="position:absolute;left:60px;top:44px;"><div class="tl"></div><div class="tt" data-i18n="s4.eye">INVESTISSEMENT B2C · 130 725 €</div></div>
-  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s4.h">Focus B2C</div>
+  <div class="h" style="position:absolute;left:60px;top:88px;font-size:32px;" data-i18n="s4.h">Focus B2C — par canal</div>
 
-  <!-- legend + realized/engaged -->
   <div style="position:absolute;left:102px;top:140px;" class="leg">
-    <span><span class="swatch c-blue"></span><span data-i18n="s4.lg1">Fil Rouge (part B2C)</span></span>
-    <span><span class="swatch c-green"></span><span data-i18n="s4.lg2">Bright Bear</span></span>
-    <span><span class="swatch c-amber"></span><span data-i18n="s4.lg3">Google / Facebook Ads direct</span></span>
+    <span><span class="swatch c-navy"></span>SEA</span>
+    <span><span class="swatch c-blue"></span>PMax</span>
+    <span><span class="swatch c-green"></span>SEO</span>
+    <span><span class="swatch c-amber"></span><span data-i18n="s4.lgSoc">Social &amp; Display</span></span>
   </div>
   <div style="position:absolute;right:60px;top:140px;" class="rf"><span data-i18n="real">RÉALISÉ ——</span> &nbsp; <span style="opacity:.8;" data-i18n="eng">ENGAGÉ − − −</span></div>
 
-  <!-- chart -->
-  <div style="position:absolute;left:56px;top:176px;width:620px;">
+  <div style="position:absolute;left:56px;top:176px;width:640px;">
     <div style="position:relative;margin-left:46px;height:200px;">
       <div class="fcbg"></div>
       <div class="gl" style="bottom:200px;"><span>30k</span></div>
@@ -292,18 +299,18 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
       <div class="gl" style="bottom:0;border-top:1.5px solid rgba(0,0,0,.25);"><span>0</span></div>
       <div style="position:absolute;left:50%;top:0;height:200px;border-left:1.5px dashed rgba(0,0,0,.22);"></div>
       <div style="display:flex;height:200px;align-items:flex-end;position:relative;">
-        <div class="col"><div class="tot">15</div><div class="seg c-blue" style="height:62px"></div><div class="seg c-green" style="height:40px"></div></div>
-        <div class="col"><div class="tot">10</div><div class="seg c-blue" style="height:66px"></div></div>
-        <div class="col"><div class="tot">10</div><div class="seg c-blue" style="height:67px"></div></div>
-        <div class="col"><div class="tot">28</div><div class="seg c-blue" style="height:67px"></div><div class="seg c-green" style="height:67px"></div><div class="seg c-amber" style="height:51px"></div></div>
-        <div class="col"><div class="tot">9</div><div class="seg c-blue" style="height:53px"></div><div class="seg c-green" style="height:7px"></div></div>
-        <div class="col"><div class="tot">11</div><div class="seg c-blue" style="height:63px"></div><div class="seg c-green" style="height:9px"></div></div>
-        <div class="col fc"><div class="tot">5</div><div class="seg c-blue" style="height:33px"></div></div>
-        <div class="col fc"><div class="tot">5</div><div class="seg c-blue" style="height:33px"></div></div>
-        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:67px"></div></div>
-        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:67px"></div></div>
-        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:67px"></div></div>
-        <div class="col fc"><div class="tot">8</div><div class="seg c-blue" style="height:53px"></div></div>
+        <div class="col"><div class="tot">15</div><div class="seg c-amber" style="height:24px"></div><div class="seg c-green" style="height:16px"></div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:29px"></div></div>
+        <div class="col"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col"><div class="tot">28</div><div class="seg c-amber" style="height:96px"></div><div class="seg c-green" style="height:22px"></div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col"><div class="tot">9</div><div class="seg c-green" style="height:7px"></div><div class="seg c-blue" style="height:27px"></div><div class="seg c-navy" style="height:27px"></div></div>
+        <div class="col"><div class="tot">11</div><div class="seg c-amber" style="height:2px"></div><div class="seg c-green" style="height:7px"></div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:30px"></div></div>
+        <div class="col fc"><div class="tot">5</div><div class="seg c-blue" style="height:17px"></div><div class="seg c-navy" style="height:17px"></div></div>
+        <div class="col fc"><div class="tot">5</div><div class="seg c-blue" style="height:17px"></div><div class="seg c-navy" style="height:17px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col fc"><div class="tot">10</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:33px"></div></div>
+        <div class="col fc"><div class="tot">8</div><div class="seg c-blue" style="height:33px"></div><div class="seg c-navy" style="height:20px"></div></div>
       </div>
       <div style="display:flex;margin-top:5px;">
         <div class="mlabel">Jan</div><div class="mlabel">Feb</div><div class="mlabel">Mar</div><div class="mlabel">Apr</div><div class="mlabel">May</div><div class="mlabel">Jun</div><div class="mlabel">Jul</div><div class="mlabel">Aug</div><div class="mlabel">Sep</div><div class="mlabel">Oct</div><div class="mlabel">Nov</div><div class="mlabel">Dec</div>
@@ -311,17 +318,16 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:Ari
     </div>
   </div>
 
-  <!-- composition + reading -->
   <div style="position:absolute;left:700px;top:176px;right:60px;">
     <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--ink);opacity:.5;margin-bottom:8px;" data-i18n="s4.compTag">RÉPARTITION PAR CANAL</div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:11.5px;color:var(--ink);">
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-blue"></span><span data-i18n="s4.lg1b">Fil Rouge (B2C)</span></span><b style="white-space:nowrap;">104 624 € · 80%</b></div>
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-green"></span><span data-i18n="s4.lg2b">Bright Bear</span></span><b style="white-space:nowrap;">18 506 € · 14%</b></div>
-      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-amber"></span><span data-i18n="s4.lg3b">Google / Facebook direct</span></span><b style="white-space:nowrap;">7 595 € · 6%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-blue"></span>PMax</span><b style="white-space:nowrap;">53 844 € · 41%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-navy"></span>SEA</span><b style="white-space:nowrap;">50 780 € · 39%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-amber"></span><span data-i18n="s4.lgSoc">Social &amp; Display</span></span><b style="white-space:nowrap;">18 314 € · 14%</b></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;"><span><span class="swatch c-green"></span>SEO</span><b style="white-space:nowrap;">7 787 € · 6%</b></div>
     </div>
+    <div style="font-size:9.5px;color:var(--ink);opacity:.5;line-height:1.4;margin-top:10px;" data-i18n="s4.note">Le B2C est porté à 80% par SEA + PMax. « Social &amp; Display » regroupe le paid Meta/Google piloté et les campagnes directes.</div>
   </div>
-
-  <div style="position:absolute;left:56px;bottom:46px;right:60px;font-size:12.5px;color:var(--ink);opacity:.72;line-height:1.55;background:color-mix(in srgb,var(--ink) 5%,transparent);border-radius:10px;padding:12px 16px;" data-i18n="s4.read">Le B2C reste porté à <b>80% par le Fil Rouge</b>, avec un premier semestre chargé (pic d'avril) puis un rythme régulier sur le second. Bright Bear et la publicité Google / Facebook viennent en appoint.</div>
 </div>
 
 </div></div>
@@ -339,20 +345,20 @@ const I18N={
 fr:{
 "nav.prev":"← Préc.","nav.next":"Suivant →","real":"RÉALISÉ ——","eng":"ENGAGÉ − − −",
 "footer.full":"© 2026 NMF France — Document interne, ne pas diffuser sans autorisation.","footer.short":"© 2026 NMF France — Document interne, ne pas diffuser sans autorisation.",
-"s0.title":"Products &amp; Services<br><b style=\"font-weight:900;\">Media Plan &amp; Investment</b>","s0.sub":"Portefeuille média 2026 — 570 964 €<br>Awareness · B2B · B2C","s0.date":"Juillet 2026","s0.kicker":"NMF FRANCE · PLAN MÉDIA 2026","s0.tag":"L'investissement média, par bloc et mois par mois",
-"s1.eye":"INVESTISSEMENT MÉDIA 2026","s1.h":"Répartition de l'investissement","s1.kAw":"276 323 €","s1.kB2B":"163 916 €","s1.kB2C":"130 725 €","s1.kTotLbl":"TOTAL PORTEFEUILLE","s1.kTot":"570 964 €","s1.lgOn":"Online","s1.onVal":"305 036 € · 53%","s1.lgOff":"Offline","s1.offVal":"206 323 € · 36%","s1.lgDir":"Direct (Data + Télémarketing)","s1.dirVal":"59 605 € · 10%","s1.insight":"L'investissement se répartit en trois types de média : <b>Online (54%)</b> en présence continue, <b>Offline (36%)</b> sur les grands temps forts de marque, et <b>Direct (10%)</b>. Le second semestre n'est pas une prévision : c'est un plan média <b>déjà arrêté avec l'agence</b>, au même niveau d'engagement que le réel.",
-"s2.eye":"INVESTISSEMENT B2B · 163 916 €","s2.h":"Focus B2B","s2.lg1":"Fil Rouge (part B2B)","s2.lg2":"Télémarketing","s2.lg3":"Data providers","s2.compTag":"RÉPARTITION PAR CANAL","s2.lg1b":"Fil Rouge (B2B)","s2.lg2b":"Télémarketing","s2.lg3b":"Data providers","s2.compNote":"Télémarketing inclut la nouvelle agence boost-centres (montée en charge à la rentrée).","s2.stratTag":"STRATÉGIE E-COMMERCE","s2.stratIntro":"L'e-commerce ne fait pas l'objet d'une campagne isolée : il s'intègre au dispositif média déjà en place.","s2.strat1":"<b>Même audience cible.</b> On capitalise sur l'audience déjà construite, sans repartir de zéro.","s2.strat2":"<b>Le message évolue.</b> On adapte le discours à l'offre e-commerce ; le dispositif média, lui, ne change pas.","s2.strat3":"<b>Continuité.</b> Performance et apprentissage se cumulent au lieu d'être remis à zéro.",
-"s3.eye":"AWARENESS · 276 323 €","s3.h":"Notoriété de marque","s3.splitRTlbl":"RADIO &amp; TV · 75%","s3.splitRTval":"206 323 €","s3.splitBrlbl":"BRANDING · 25%","s3.splitBrval":"70 000 €","s3.calTag":"CALENDRIER DES CAMPAGNES DE MARQUE","s3.c1":"Radio · 24,8 k€","s3.c1d":"18–30 mars","s3.c2":"Radio · 45 k€","s3.c2d":"1–24 avril","s3.c3":"TV · 21,5 k€","s3.c3d":"Champions League · 30 mai","s3.c4":"TV · 27 k€","s3.c4d":"France–Norvège · 26 juin","s3.c5":"Radio · 88 k€","s3.c5d":"mi-sept. → mi-oct. · engagé","s3.cb":"Branding digital · 70 k€","s3.cbd":"continu · mai → déc.","s3.msgTag":"UN MESSAGE, DEUX PUBLICS — PROFESSIONNELS &amp; PARTICULIERS","s3.q1":"« Professionnels comme particuliers, on vous simplifie la vie. » — Radio","s3.q2":"« Des solutions logistiques pour commerçants et e-commerçants. » — TV",
-"s4.eye":"INVESTISSEMENT B2C · 130 725 €","s4.h":"Focus B2C","s4.lg1":"Fil Rouge (part B2C)","s4.lg2":"Bright Bear","s4.lg3":"Google / Facebook Ads direct","s4.compTag":"RÉPARTITION PAR CANAL","s4.lg1b":"Fil Rouge (B2C)","s4.lg2b":"Bright Bear","s4.lg3b":"Google / Facebook direct","s4.read":"Le B2C reste porté à <b>80% par le Fil Rouge</b>, avec un premier semestre chargé (pic d'avril) puis un rythme régulier sur le second. Bright Bear et la publicité Google / Facebook viennent en appoint."
+"s0.title":"Products &amp; Services<br><b style=\"font-weight:900;\">Media Plan &amp; Investment</b>","s0.sub":"Portefeuille média 2026 — 590 964 €<br>Awareness · B2B · B2C","s0.date":"Juillet 2026","s0.kicker":"NMF FRANCE · PLAN MÉDIA 2026","s0.tag":"Par bloc, par canal, mois par mois",
+"s1.eye":"INVESTISSEMENT MÉDIA 2026","s1.h":"Répartition de l'investissement","s1.kAw":"296 323 €","s1.kB2B":"163 916 €","s1.kB2C":"130 725 €","s1.kTotLbl":"TOTAL PORTEFEUILLE","s1.kTot":"590 964 €","s1.lgOn":"Online","s1.onVal":"325 036 € · 55%","s1.lgOff":"Offline","s1.offVal":"206 323 € · 35%","s1.lgDir":"Direct (Data + Télémarketing)","s1.dirVal":"59 605 € · 10%","s1.insight":"L'investissement se répartit en trois types de média : <b>Online (55%)</b> en présence continue, <b>Offline (35%)</b> sur les grands temps forts de marque, et <b>Direct (10%)</b>. Le second semestre n'est pas une prévision : c'est un plan média <b>déjà arrêté avec l'agence</b>, au même niveau d'engagement que le réel.",
+"s2.eye":"INVESTISSEMENT B2B · 163 916 €","s2.h":"Focus B2B — par canal","s2.lgTel":"Télémarketing","s2.lgData":"Data providers","s2.compTag":"RÉPARTITION PAR CANAL","s2.stratTag":"STRATÉGIE E-COMMERCE","s2.strat":"L'e-commerce s'intègre au dispositif existant : même audience cible, le message évolue mais les canaux (SEA / PMax / IAB) restent — pas de remise à zéro, la performance se cumule.",
+"s3.eye":"AWARENESS · 296 323 €","s3.h":"Notoriété de marque — par canal","s3.lgBr":"Branding IAB","s3.compTag":"RÉPARTITION PAR CANAL","s3.msgTag":"UN MESSAGE, DEUX PUBLICS","s3.q1":"« Professionnels comme particuliers, on vous simplifie la vie. » — Radio","s3.q2":"« Des solutions pour commerçants et e-commerçants. » — TV",
+"s4.eye":"INVESTISSEMENT B2C · 130 725 €","s4.h":"Focus B2C — par canal","s4.lgSoc":"Social &amp; Display","s4.compTag":"RÉPARTITION PAR CANAL","s4.note":"Le B2C est porté à 80% par SEA + PMax. « Social &amp; Display » regroupe le paid Meta/Google piloté et les campagnes directes."
 },
 en:{
 "nav.prev":"← Prev","nav.next":"Next →","real":"ACTUAL ——","eng":"COMMITTED − − −",
 "footer.full":"© 2026 NMF France — Internal document, do not distribute without permission.","footer.short":"© 2026 NMF France — Internal document, do not distribute without permission.",
-"s0.title":"Products &amp; Services<br><b style=\"font-weight:900;\">Media Plan &amp; Investment</b>","s0.sub":"2026 media portfolio — €570,964<br>Awareness · B2B · B2C","s0.date":"July 2026","s0.kicker":"NMF FRANCE · 2026 MEDIA PLAN","s0.tag":"Media investment, by block and month by month",
-"s1.eye":"2026 MEDIA INVESTMENT","s1.h":"How the investment splits","s1.kAw":"€276,323","s1.kB2B":"€163,916","s1.kB2C":"€130,725","s1.kTotLbl":"TOTAL PORTFOLIO","s1.kTot":"€570,964","s1.lgOn":"Online","s1.onVal":"€305,036 · 53%","s1.lgOff":"Offline","s1.offVal":"€206,323 · 36%","s1.lgDir":"Direct (Data + Telemarketing)","s1.dirVal":"€59,605 · 10%","s1.insight":"The investment splits across three media types: <b>Online (54%)</b> as a continuous presence, <b>Offline (36%)</b> on the major brand moments, and <b>Direct (10%)</b>. The second half is not a forecast: it is a media plan <b>already agreed with the agency</b>, at the same commitment level as actual spend.",
-"s2.eye":"B2B INVESTMENT · €163,916","s2.h":"B2B focus","s2.lg1":"Fil Rouge (B2B share)","s2.lg2":"Telemarketing","s2.lg3":"Data providers","s2.compTag":"SPLIT BY CHANNEL","s2.lg1b":"Fil Rouge (B2B)","s2.lg2b":"Telemarketing","s2.lg3b":"Data providers","s2.compNote":"Telemarketing includes the new boost-centres agency (ramping up from September).","s2.stratTag":"E-COMMERCE STRATEGY","s2.stratIntro":"E-commerce is not run as a standalone campaign: it plugs into the media setup already in place.","s2.strat1":"<b>Same target audience.</b> We build on the audience already established, rather than starting from scratch.","s2.strat2":"<b>The message evolves.</b> We adapt the narrative to the e-commerce offer; the media setup itself stays the same.","s2.strat3":"<b>Continuity.</b> Performance and learning compound instead of being reset.",
-"s3.eye":"AWARENESS · €276,323","s3.h":"Brand awareness","s3.splitRTlbl":"RADIO &amp; TV · 75%","s3.splitRTval":"€206,323","s3.splitBrlbl":"BRANDING · 25%","s3.splitBrval":"€70,000","s3.calTag":"BRAND CAMPAIGN CALENDAR","s3.c1":"Radio · €24.8k","s3.c1d":"18–30 Mar","s3.c2":"Radio · €45k","s3.c2d":"1–24 Apr","s3.c3":"TV · €21.5k","s3.c3d":"Champions League · 30 May","s3.c4":"TV · €27k","s3.c4d":"France–Norway · 26 Jun","s3.c5":"Radio · €88k","s3.c5d":"mid-Sep → mid-Oct · committed","s3.cb":"Digital branding · €70k","s3.cbd":"ongoing · May → Dec","s3.msgTag":"ONE MESSAGE, TWO AUDIENCES — PROFESSIONALS &amp; CONSUMERS","s3.q1":"“Professionals and consumers alike — we make life simpler.” — Radio","s3.q2":"“Logistics solutions for retailers and e-tailers.” — TV",
-"s4.eye":"B2C INVESTMENT · €130,725","s4.h":"B2C focus","s4.lg1":"Fil Rouge (B2C share)","s4.lg2":"Bright Bear","s4.lg3":"Google / Facebook Ads direct","s4.compTag":"SPLIT BY CHANNEL","s4.lg1b":"Fil Rouge (B2C)","s4.lg2b":"Bright Bear","s4.lg3b":"Google / Facebook direct","s4.read":"B2C stays <b>80% carried by the Fil Rouge</b>, with a loaded first half (April peak) then a steady second half. Bright Bear and Google / Facebook advertising play a top-up role."
+"s0.title":"Products &amp; Services<br><b style=\"font-weight:900;\">Media Plan &amp; Investment</b>","s0.sub":"2026 media portfolio — €590,964<br>Awareness · B2B · B2C","s0.date":"July 2026","s0.kicker":"NMF FRANCE · 2026 MEDIA PLAN","s0.tag":"By block, by channel, month by month",
+"s1.eye":"2026 MEDIA INVESTMENT","s1.h":"How the investment splits","s1.kAw":"€296,323","s1.kB2B":"€163,916","s1.kB2C":"€130,725","s1.kTotLbl":"TOTAL PORTFOLIO","s1.kTot":"€590,964","s1.lgOn":"Online","s1.onVal":"€325,036 · 55%","s1.lgOff":"Offline","s1.offVal":"€206,323 · 35%","s1.lgDir":"Direct (Data + Telemarketing)","s1.dirVal":"€59,605 · 10%","s1.insight":"The investment splits across three media types: <b>Online (55%)</b> as a continuous presence, <b>Offline (35%)</b> on the major brand moments, and <b>Direct (10%)</b>. The second half is not a forecast: it is a media plan <b>already agreed with the agency</b>, at the same commitment level as actual spend.",
+"s2.eye":"B2B INVESTMENT · €163,916","s2.h":"B2B focus — by channel","s2.lgTel":"Telemarketing","s2.lgData":"Data providers","s2.compTag":"SPLIT BY CHANNEL","s2.stratTag":"E-COMMERCE STRATEGY","s2.strat":"E-commerce plugs into the existing setup: same target audience, the message evolves but the channels (SEA / PMax / IAB) stay — no reset, performance compounds.",
+"s3.eye":"AWARENESS · €296,323","s3.h":"Brand awareness — by channel","s3.lgBr":"Branding IAB","s3.compTag":"SPLIT BY CHANNEL","s3.msgTag":"ONE MESSAGE, TWO AUDIENCES","s3.q1":"“Professionals and consumers alike — we make life simpler.” — Radio","s3.q2":"“Solutions for retailers and e-tailers.” — TV",
+"s4.eye":"B2C INVESTMENT · €130,725","s4.h":"B2C focus — by channel","s4.lgSoc":"Social &amp; Display","s4.compTag":"SPLIT BY CHANNEL","s4.note":"B2C is 80% carried by SEA + PMax. “Social & Display” bundles managed Meta/Google paid and direct campaigns."
 }
 };
 const slides=document.querySelectorAll('.slide');const total=slides.length;let cur=0,lang='fr',theme='mbe';
