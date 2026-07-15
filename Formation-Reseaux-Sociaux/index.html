@@ -27,13 +27,13 @@
   --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
 }
 [data-theme="fortidia"]{
-  --bg:#EDE8E0; --ink:#1C3040; --muted:rgba(28,48,64,.55); --soft:rgba(28,48,64,.4);
-  --accent:#F5E800;
-  --accent-tx:#1C3040;
-  --on-accent:#1C3040;
-  --panel:rgba(28,48,64,.05); --line:rgba(28,48,64,.12);
-  --divider-bg:#1C3040; --divider-tx:#FFFFFF;
-  --footer-bg:#1C3040; --footer-tx:#8FA0AD;
+  --bg:#EFE7E4; --ink:#23373C; --muted:rgba(35,55,60,.55); --soft:rgba(35,55,60,.4);
+  --accent:#FFFF00;
+  --accent-tx:#23373C;
+  --on-accent:#23373C;
+  --panel:rgba(35,55,60,.05); --line:rgba(35,55,60,.12);
+  --divider-bg:#23373C; --divider-tx:#FFFFFF;
+  --footer-bg:#23373C; --footer-tx:#8FA0AD;
 }
 /* ===================== BASE ===================== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -207,12 +207,17 @@ table.cheat td{color:var(--muted);}
 #nav button:hover{background:rgba(255,255,255,.16);}
 #nav .toggle{border-color:rgba(255,255,255,.45);font-weight:700;min-width:74px;}
 #nav .toggle.theme{color:#E2001A;}
-[data-theme="fortidia"] #nav .toggle.theme{color:#F5E800;}
+[data-theme="fortidia"] #nav .toggle.theme{color:#FFFF00;}
 #counter{color:rgba(255,255,255,.65);font-size:12px;min-width:50px;text-align:center;}
 #nav .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 2px;}
 #fullbtn{border:none!important;color:rgba(255,255,255,.55);font-size:17px;padding:2px 6px!important;}
 #fullbtn:hover{color:#fff;}
+
+/* Réalignement charte Fortidia officielle : Fortidia Sans→DM Sans (corps), Fortidia Serif→Tenor Sans (titres) */
+[data-theme="fortidia"] #deck{font-family:'DM Sans',Arial,sans-serif;}
+[data-theme="fortidia"] h1.t,[data-theme="fortidia"] .head .ttl,[data-theme="fortidia"] .dv-ttl,[data-theme="fortidia"] .dv-eye,[data-theme="fortidia"] .eyebrow,[data-theme="fortidia"] .thx .big{font-family:'Tenor Sans',Georgia,serif;}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Tenor+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="progress"></div>
